@@ -1,0 +1,13 @@
+{
+  "name": "engage",
+  "owner": {
+    "name": "Jonathan Gautheron"
+  },
+  "plugins": [
+    {
+      "name": "engage",
+      "source": "./",
+      "description": "Terse-by-default output styles (terse / concise / docs / plain) + lazy-by-default engineering + light Star Trek garnish. Say \"hit it\" to proceed."
+    }
+  ]
+}

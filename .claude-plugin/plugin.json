@@ -1,6 +1,6 @@
 {
   "name": "engage",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A lean output-style pack: terse by default, switchable to concise / docs / plain, with lazy-by-default engineering discipline and a light Star Trek garnish. Zero per-turn overhead — the style lives in the system prompt. Say \"hit it\" to proceed.",
   "author": {
     "name": "Jonathan Gautheron"

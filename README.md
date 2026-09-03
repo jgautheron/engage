@@ -6,7 +6,7 @@ A lean Claude Code output-style pack. One voice: terse, lazy-in-the-good-way, no
 light Star Trek garnish. Say **"hit it"** to proceed.
 
 engage ships as **output styles**, not hooks. The style lives in the system prompt (which is
-prompt-cached), so it costs a fixed ~1,160 tokens once and **nothing per turn**, and it never
+prompt-cached), so it costs a fixed ~1,050 tokens once and **nothing per turn**, and it never
 drifts mid-session.
 
 ## Styles
@@ -22,13 +22,13 @@ at a time.
 | **engage-plain** | Normal full English, no compression, minus AI-slop. | Sharing output with others |
 
 All four carry the same **engineering discipline** (lazy by default: YAGNI, stdlib and native
-first, shortest diff *that stays readable*, reader-first — intention-revealing names (name magic
-literals), guard clauses over nesting, declarative pipelines over hand loops, deep modules over
-shallow wrappers, measure before optimizing (clever ≠
-faster), terse *why-not-what* comments (no war stories, ticket numbers, or commented-out code),
-never simplify away validation/security/error-handling) and the same
-**always-rules**: artifact-first (long output → file + summary), no AI-slop, compress prose not
-reasoning, ask with concrete examples, and the Trek garnish.
+first, shortest diff *that stays readable*, reader-first — names for intent, constants for magic
+literals, guard clauses over nesting, deep modules over shallow wrappers, boring over clever (no
+truthiness tricks, no positional-tuple returns), single-source every business rule, no dead code,
+measure before optimizing, a 1–3 line contract on every exported symbol, terse *why-not-what*
+comments (no war stories or ticket numbers), never simplify away validation/security/error-handling)
+and the same **always-rules**: artifact-first (long output → file + summary), no AI-slop, compress
+prose not reasoning, ask with concrete examples, and the Trek garnish.
 
 ## Install
 
@@ -90,7 +90,7 @@ tokens (chars/4), same basis for all:
 
 | Delivery | one-time | per turn |
 |---|--:|--:|
-| **engage** (output style) | ~1160 | **0** |
+| **engage** (output style) | ~1050 | **0** |
 | a terse-prose hook plugin | ~1180 | ~34 |
 | a lazy-code hook plugin | ~1310 | 0 |
 | both hook plugins together | ~2490 | ~34 |
@@ -99,11 +99,11 @@ Total tokens carried at N turns:
 
 | turns | engage | terse hook | code hook | both hooks |
 |---|--:|--:|--:|--:|
-| 1 | **1158** | 1212 | 1308 | 2520 |
-| 10 | **1158** | 1518 | 1308 | 2826 |
-| 50 | **1158** | 2878 | 1308 | 4186 |
-| 100 | **1158** | 4578 | 1308 | 5886 |
-| 500 | **1158** | 18178 | 1308 | 19486 |
+| 1 | **1048** | 1212 | 1308 | 2520 |
+| 10 | **1048** | 1518 | 1308 | 2826 |
+| 50 | **1048** | 2878 | 1308 | 4186 |
+| 100 | **1048** | 4578 | 1308 | 5886 |
+| 500 | **1048** | 18178 | 1308 | 19486 |
 
 Flat line vs rising ones — engage is cheapest at every N, below even a single *prose-only* hook's
 one-time cost, and the gap widens every turn. And engage carries prose *and* the full engineering
@@ -115,6 +115,16 @@ separate technical-writing *skill* onto a hook plugin costs ~6.8k tokens the ses
 _Estimate (chars/4, ±15%); ratios reliable. engage's one-time cost sits in the prompt-cached system
 prompt; hook injections re-run per session and the terse hook re-injects every turn._
 
+## Research
+
+The engineering block is tuned by A/B experiment, not taste: 14 rule-sets × 5 TypeScript tasks,
+109 generations + 27 neutral-reader modifications against hidden edge-case suites, all strict-typed.
+Correctness was a ceiling for every rule-set — rules move *structure and cost*. The current block is
+the measured middle ground: same rule-text size as before, a contract on every export, zero clever
+idioms, +44% generated code — the fuller "agent-readable" bundles cost +113–119% for no correctness
+gain. Details: [docs/agent-readability-study.md](docs/agent-readability-study.md) ·
+[HTML report](docs/agent-readability-report.html).
+
 ## Layout
 
 ```
@@ -123,4 +133,5 @@ prompt; hook injections re-run per session and the terse hook re-injects every t
 output-styles/engage-*.md        the four voices
 commands/trek.md                 the one slash command
 assets/logo.svg                  wordmark
+docs/                            readability study + report
 ```

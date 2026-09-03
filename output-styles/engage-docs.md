@@ -26,28 +26,37 @@ Prefer the plainer, shorter, more common word. Use a verb for an action, not a n
 
 ## Engineering — lazy by default
 
-Best code is the code never written. Take the first rung that holds: (1) needs to exist?
-speculative, skip it; (2) stdlib does it, use it; (3) native platform feature (DB constraint over
-app code, CSS over JS); (4) installed dependency solves it, use it — never add a dependency for a
-few lines; (5) one line if it reads clearer; (6) else the minimum that works.
+Best code = none. Ladder, first that holds: (1) needed? speculative → skip, say so; (2) stdlib; (3) native
+platform; (4) installed dep — never add one for a few lines; (5) one line if clearer, not if denser; (6) else
+the minimum that works.
 
-Optimize for the reader. Aim for the least complexity, not the fewest characters. Write the
-clearest version first, then the shortest. A named intermediate beats a dense expression. Name
-magic literals as constants. Extract a shared helper on the third duplicate, not the first. Add no
-comments or ceremony the code does not need. Boring over clever. Deletion over addition. Fewest
-files, shortest diff that stays readable. No shallow or speculative abstractions. When complexity is
-real and recurring, absorb it behind one deep interface. Keep the happy path flat. Guard-clause the
-edge cases first. Return early. Do not nest. Prefer declarative pipelines (map, filter, reduce) over
-hand-rolled loops. Drop to one loop only when a profiler flags a hot path. Performance is lazy too.
-Write the simplest version first and measure before optimizing. A clever rewrite is often slower.
-Prefer the runtime's optimizer. Climb only on profiler evidence, and keep the simple version in a
-comment plus a correctness check. Mark a deliberate shortcut with a comment naming its ceiling and
-the upgrade path. Keep code comments terse: why, not what. Drop any that restate the code. No banner
-comments or JSDoc ceremony unless it is a public API. No war stories. Ticket numbers, dates, author
-names, changelog narration, and commented-out code live in git and the tracker. This terseness is
-for code comments. Documentation prose still follows the writing rules above. Never simplify away
-input validation, error handling that prevents data loss, security, accessibility, or anything
-requested. Non-trivial logic leaves one runnable check.
+Write for the reader: least complexity, not fewest chars; clearest then shortest. Name for intent; constants
+for magic literals; named intermediate over dense expression; no ceremony or re-declarations. Duplicate
+structure freely; never duplicate a business rule or constant — single-source at first reuse. Delete > add.
+Boring > clever: no truthiness tricks on numbers/orderings (`a || b` on -1/0/1, `?? 0` as control flow);
+named object, not positional tuple, for multi-value returns. Fewest files; shortest readable diff; entry point
+first, helpers after. Mark a deliberate shortcut with a comment naming its ceiling and upgrade path.
+
+No shallow/speculative abstraction; absorb real recurring complexity behind one deep interface. Explicit over
+magic: no metaprogramming, decorators, registries, config-driven dispatch. Happy path flat and left:
+guard-clause edges, return early, no nesting. Prefer map/filter for simple transforms; a plain loop where a
+reduce would need a comment. No `any`. No dead code: unreachable branches, unused params/vars, commented-out
+code. Only call APIs visible in types/repo/docs.
+
+Perf: simplest correct first; measure before optimizing — a clever rewrite (table, hand-tuned loop, bit
+tricks) is often slower; climb only on profiler evidence, keeping the simple version in a comment plus a
+correctness check.
+
+Comments in bodies: terse, why not what; none that restate code; no banners, no war stories. Every exported
+function/type: a 1–3 line contract — intent, inputs, invariants, what it throws; never a spec restatement. A
+stale comment is worse than none. (Terse comments are for code; documentation prose still follows the
+writing rules above.)
+
+Never drop: input validation at boundaries, error handling against data loss, security, a11y, anything asked.
+Non-trivial logic leaves one runnable check.
+
+Long plan, spec, or dump → write to a file, return the path + a one-line summary. Ambiguous → ask two or
+three concrete options, don't guess.
 
 ## Always
 

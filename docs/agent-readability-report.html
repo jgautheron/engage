@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>engage · agent-readable code study — results & proposal</title>
+<style>
+  :root {
+    color-scheme: light;
+    --surface: #fcfcfb; --plane: #f9f9f7;
+    --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --axis: #c3c2b7; --ring: rgba(11,11,11,.10);
+    --series-1: #2a78d6; --series-2: #eb6834;
+    --good: #006300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:where(:not([data-theme="light"])) {
+      color-scheme: dark;
+      --surface: #1a1a19; --plane: #0d0d0d;
+      --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+      --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,.10);
+      --series-1: #3987e5; --series-2: #d95926;
+      --good: #0ca30c;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --surface: #1a1a19; --plane: #0d0d0d;
+    --ink: #ffffff; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --ring: rgba(255,255,255,.10);
+    --series-1: #3987e5; --series-2: #d95926;
+    --good: #0ca30c;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--plane); color: var(--ink); font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 1040px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 0 0 6px; letter-spacing: -.01em; }
+  h2 { font-size: 21px; margin: 44px 0 12px; letter-spacing: -.01em; }
+  h3 { font-size: 16px; margin: 26px 0 8px; }
+  p, li { color: var(--ink-2); }
+  p strong, li strong { color: var(--ink); }
+  .sub { color: var(--muted); margin: 0 0 28px; }
+  .tldr { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 20px; }
+  .tldr ol { margin: 6px 0 0 18px; padding: 0; } .tldr li { margin: 6px 0; }
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 18px 0 8px; }
+  .tile { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px; }
+  .tile .v { font-size: 34px; font-weight: 650; letter-spacing: -.02em; color: var(--ink); line-height: 1.1; }
+  .tile .v.good { color: var(--good); }
+  .tile .l { color: var(--ink-2); font-size: 13.5px; margin-top: 6px; }
+  .tile .n { color: var(--muted); font-size: 12.5px; margin-top: 2px; }
+  figure { margin: 18px 0 8px; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 16px 18px 12px; }
+  figure h3 { margin: 0 0 2px; font-size: 15px; }
+  figure .cap { color: var(--muted); font-size: 12.5px; margin: 0 0 10px; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 760px) { .row { grid-template-columns: 1fr; } }
+  svg { display: block; width: 100%; height: auto; font: 12.5px system-ui, -apple-system, "Segoe UI", sans-serif; }
+  svg text { fill: var(--ink-2); }
+  svg .axis-lbl { fill: var(--muted); font-variant-numeric: tabular-nums; }
+  svg .bar { fill: var(--series-1); }
+  svg .bar.rec { fill: var(--series-2); }
+  svg .bar:hover { opacity: .82; }
+  svg .val { fill: var(--ink); font-weight: 600; font-variant-numeric: tabular-nums; }
+  svg .grid { stroke: var(--grid); stroke-width: 1; }
+  svg .base { stroke: var(--axis); stroke-width: 1; }
+  .legend { display: flex; gap: 18px; font-size: 12.5px; color: var(--ink-2); margin: 6px 0 0; }
+  .legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; background: var(--series-1); }
+  .legend span.rec::before { background: var(--series-2); }
+  table { width: 100%; border-collapse: collapse; margin: 12px 0 6px; background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; overflow: hidden; font-size: 13.5px; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+  th { color: var(--muted); font-weight: 600; font-size: 12.5px; }
+  th:first-child, td:first-child { text-align: left; }
+  tr:last-child td { border-bottom: 0; }
+  td.rec, td.rec + td { font-weight: 650; color: var(--ink); }
+  .tag { display: inline-block; font-size: 11.5px; padding: 1px 7px; border-radius: 999px; border: 1px solid var(--ring); color: var(--ink-2); margin-left: 6px; vertical-align: 1px; }
+  .tag.rec { border-color: var(--series-2); color: var(--ink); }
+  pre { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 14px 16px; white-space: pre-wrap; font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--ink); }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+  .card { background: var(--surface); border: 1px solid var(--ring); border-radius: 10px; padding: 14px 16px; }
+  .card h3 { margin: 0 0 6px; font-size: 15px; }
+  .card ul { margin: 0; padding-left: 18px; } .card li { margin: 4px 0; font-size: 14px; }
+  .note { font-size: 13px; color: var(--muted); }
+  a { color: var(--series-1); }
+</style>
+</head>
+<body>
+<main>
+  <h1>Agent-readable code: what the rules actually change</h1>
+  <p class="sub">engage output-style study · 5 tasks · 14 rule-sets · 109 generation runs + 27 neutral-reader modifications · evaluated by Fable 5.1 · 2026-09-03 · applied to all four styles the same day</p>
+
+  <div class="tldr">
+    <strong>TL;DR</strong>
+    <ol>
+      <li><strong>Correctness is a ceiling.</strong> Every rule-set — including "no rules" — passed 100% of the hidden edge-case suites on all five tasks (109 runs), every output was correctly extended by a neutral reader agent (27/27), and 60 modules pass <code>tsc --strict --noUnused*</code> with 0 errors. On single-module tasks, rule text does not move correctness. Don't claim "bug-free."</li>
+      <li><strong>Rules change structure and cost, a lot:</strong> a 2.6× token spread, comment density 0→25 lines, whether the domain is encoded in types, whether clever idioms appear.</li>
+      <li><strong>Compressing the wording is free.</strong> Engage rewritten 19% shorter produced the same code fingerprint. Same for the fuller bundle at −20%.</li>
+      <li><strong>The middle ground is "M-min":</strong> the same rule-text size as today's engage (445 vs 443 tok), contracts on every export, zero clever idioms, +44% generated-code tokens — versus +113–119% for the fuller bundles, whose extra cost comes from line-multiplying rules (one-idea-per-line, explicit loops, edge enumeration), not from readability essentials.</li>
+    </ol>
+  </div>
+
+  <h2>1 · The ceilings</h2>
+  <div class="tiles">
+    <div class="tile"><div class="v good">100%</div><div class="l">hidden edge-case suites passed</div><div class="n">109 generation runs · 5 tasks · 14 rule-sets · all variants incl. "no rules"</div></div>
+    <div class="tile"><div class="v good">27 / 27</div><div class="l">correct modifications by a neutral reader</div><div class="n">original + new cases, no style rules given to the reader</div></div>
+    <div class="tile"><div class="v good">0</div><div class="l">strict TypeScript errors</div><div class="n">60 modules · --strict --noUnusedLocals --noUnusedParameters</div></div>
+    <div class="tile"><div class="v">2.6×</div><div class="l">token spread across rule-sets</div><div class="n">no-functional 393 → base 1012 (T4+T5 means)</div></div>
+  </div>
+  <table>
+    <tr><th>task</th><th>what it stresses</th><th>hidden cases</th><th>runs</th><th>result</th></tr>
+    <tr><td>t1 duration parser</td><td style="text-align:left">validation, edge inputs</td><td>20</td><td>9</td><td>9/9 at 20/20</td></tr>
+    <tr><td>t2 LRU cache</td><td style="text-align:left">mutation, eviction order</td><td>18</td><td>9</td><td>9/9 at 18/18</td></tr>
+    <tr><td>t3 promo pricing</td><td style="text-align:left">shared business rule, discriminated union</td><td>13</td><td>9</td><td>9/9 at 13/13</td></tr>
+    <tr><td>t4 RFC-4180 CSV line</td><td style="text-align:left">corner-case density (hard)</td><td>19</td><td>18 + 12</td><td>30/30 at 19/19</td></tr>
+    <tr><td>t5 SemVer precedence</td><td style="text-align:left">pre-release rules, misinterpretation (hard)</td><td>23</td><td>16 + 12</td><td>28/28 at 23/23</td></tr>
+  </table>
+  <p class="note">"+12" = the round-3 compression/middle-ground runs on the same task. t5 lost 2 samples to API overload in round 2. Method: spec given, tests hidden in a directory the agents could not see, one-shot generation with no running or iterating so the rule <em>text</em> is isolated from tool use. Every suite validated 100% against a reference solution; modification suites verified to fail on unmodified code.</p>
+
+  <h2>2 · What each rule-set does to the code (rounds 1–2)</h2>
+  <figure>
+    <h3>Generated-code size per rule-set</h3>
+    <p class="cap">Mean tokens per module over the two hard tasks (t4 CSV, t5 SemVer), 2 samples each · correctness identical for all · hover a bar for its value</p>
+    <svg id="c1" viewBox="0 0 960 330" role="img" aria-label="Bar chart of generated-code tokens per rule-set"></svg>
+  </figure>
+  <table>
+    <tr><th>rule-set</th><th>out tok</th><th>LOC</th><th>comment lines</th><th>contracts on exports</th><th>named types</th><th>truthiness idioms</th><th>exhaustive never</th><th>UPPER consts</th><th>test-file lines</th></tr>
+    <tr><td>v0 base (no rules)</td><td>1012</td><td>90</td><td>25.5</td><td>1.0</td><td>1.3</td><td>0.8</td><td>0</td><td>2.0</td><td>24</td></tr>
+    <tr><td>v1 engage (today)</td><td>457</td><td>49</td><td>0.5</td><td>0.3</td><td>1.3</td><td>0.5</td><td>0</td><td>2.5</td><td>32</td></tr>
+    <tr><td>v2 +types</td><td>640</td><td>71</td><td>1.0</td><td>0.8</td><td>2.0</td><td>1.5</td><td>0.5</td><td>2.5</td><td>42</td></tr>
+    <tr><td>v3 +edge-cases/tests</td><td>513</td><td>55</td><td>2.0</td><td>0.7</td><td>1.0</td><td>0.3</td><td>0</td><td>2.7</td><td>87</td></tr>
+    <tr><td>v4 +contract comments</td><td>586</td><td>49</td><td>6.5</td><td>1.0</td><td>1.0</td><td>0.5</td><td>0</td><td>2.0</td><td>32</td></tr>
+    <tr><td>v5 +explicit state</td><td>507</td><td>53</td><td>0.5</td><td>0.5</td><td>1.8</td><td>1.3</td><td>0</td><td>3.3</td><td>35</td></tr>
+    <tr><td>v6 challenge (3 rules altered)</td><td>579</td><td>64</td><td>1.0</td><td>0.5</td><td>1.5</td><td>0.8</td><td>0</td><td>3.3</td><td>51</td></tr>
+    <tr><td>v7 agent bundle</td><td>1003</td><td>103</td><td>6.5</td><td>1.0</td><td>2.8</td><td>0.3</td><td>1.0</td><td>4.3</td><td>74</td></tr>
+    <tr><td>v8 no-functional</td><td>393</td><td>44</td><td>0.7</td><td>0.3</td><td>0.3</td><td>0.0</td><td>0</td><td>0.7</td><td>19</td></tr>
+  </table>
+  <div class="cols">
+    <div class="card"><h3>Reading the outputs (t4 CSV, t5 SemVer)</h3><ul>
+      <li><strong>base</strong>: monolithic, nesting 4–6, restates the spec in a 15–37-line JSDoc plus inline "what" comments — the redundant-doc pattern research says rots.</li>
+      <li><strong>engage</strong>: lean, decomposed, flat. But: positional tuple returns, a dense one-liner dispatch from rule 5, ordering-by-truthiness (<code>a || b</code> on -1/0/1, <code>find()??0</code>), under-named regexes. "Boring over clever" caught none of them.</li>
+      <li><strong>bundle</strong>: domain in types + <code>assertNever</code>, names like <code>INTEGER_WITHOUT_LEADING_ZEROS</code>, contracts, one idea per line. Most readable — and 2.2× tokens, over-built past the spec (bigint, iterator comparer, unrequested validation).</li>
+      <li><strong>no-functional</strong>: cheapest, zero clever idioms, same correctness — the pipeline rule is what invites <code>reduce</code>/<code>find</code>-as-control-flow.</li>
+    </ul></div>
+    <div class="card"><h3>What the research says helps agents</h3><ul>
+      <li>Dead code is the #1 comprehension killer (LLMs fail to localize a bug in 81% of programs under semantics-preserving mutations).</li>
+      <li>Correct inline comments help little; stale/misleading ones hurt a lot (−23%).</li>
+      <li>Contract docstrings on public symbols are the spec the next agent generates from.</li>
+      <li>Identifier names matter at least as much as comments.</li>
+      <li>Code early in a file is understood better (lost-in-the-middle); small units.</li>
+      <li>LLMs are weak at dynamic semantics: hidden mutation, truthiness tricks, positional tuples.</li>
+      <li>Duplicate structure freely; never duplicate a business rule (agents update one copy).</li>
+    </ul></div>
+  </div>
+
+  <h2>3 · Compression experiment: shorter wording, same code?</h2>
+  <div class="row">
+    <figure>
+      <h3>Rule-text size</h3>
+      <p class="cap">tokens of the instruction block the model reads (always-on style cost)</p>
+      <svg id="c2" viewBox="0 0 470 250" role="img" aria-label="Rule text tokens per rule-set"></svg>
+    </figure>
+    <figure>
+      <h3>Generated-code size</h3>
+      <p class="cap">mean tokens per module, t4 + t5, 2 samples each · all 24 runs pass 100%</p>
+      <svg id="c3" viewBox="0 0 470 250" role="img" aria-label="Generated code tokens per rule-set"></svg>
+    </figure>
+  </div>
+  <div class="legend"><span>rule-set</span><span class="rec">recommended (M-min)</span></div>
+  <table>
+    <tr><th>rule-set</th><th>rule tok</th><th>out tok</th><th>vs engage</th><th>comment lines</th><th>contracts</th><th>named types</th><th>tuples</th><th>truthiness idioms</th><th>loops</th><th>pipelines</th></tr>
+    <tr><td>E · engage today</td><td>443</td><td>412</td><td>—</td><td>1.0</td><td>0.5</td><td>0.8</td><td>0.3</td><td>0.5</td><td>1.5</td><td>1.8</td></tr>
+    <tr><td>Ec · engage, compressed wording</td><td>358</td><td>477</td><td>+16%*</td><td>1.0</td><td>0.5</td><td>1.5</td><td>0</td><td>0.8</td><td>1.0</td><td>1.8</td></tr>
+    <tr><td class="rec">Lm · M-min <span class="tag rec">recommended</span></td><td>445</td><td>593</td><td>+44%</td><td>7.8</td><td>1.0</td><td>1.3</td><td>0</td><td>0</td><td>1.5</td><td>1.8</td></tr>
+    <tr><td>Lc · M-lite</td><td>510</td><td>888</td><td>+116%</td><td>8.8</td><td>1.0</td><td>2.0</td><td>0</td><td>0</td><td>2.3</td><td>0.8</td></tr>
+    <tr><td>Mc · middle, compressed</td><td>604</td><td>902</td><td>+119%</td><td>10.3</td><td>1.0</td><td>2.3</td><td>0</td><td>0</td><td>2.3</td><td>0.5</td></tr>
+    <tr><td>M · middle, full wording</td><td>753</td><td>877</td><td>+113%</td><td>7.5</td><td>1.0</td><td>1.8</td><td>0</td><td>0</td><td>2.8</td><td>0.3</td></tr>
+  </table>
+  <p class="note">* Ec's +16% is one noisy SemVer sample (t4: 309 vs 301; t5: 645 vs 523); its structural fingerprint — comments, contracts, idioms, constants, loops — matches E. M vs Mc likewise (877 vs 902). <strong>Verdict: compressing the wording is free; M-lite ≈ middle proves the extra cost is the line-multiplying rules, not the types clause.</strong></p>
+
+  <h2>4 · Recommendation: adopt M-min</h2>
+  <div class="cols">
+    <div class="card"><h3>What it adds (cost ≈ 0 in rule text, removes things in code)</h3><ul>
+      <li>Bans with teeth: no truthiness tricks on numbers/orderings; named object, not positional tuple.</li>
+      <li>Never duplicate a business rule or constant — single-source at first reuse (measured: inline business literals 3→1).</li>
+      <li>No dead code: unreachable branches, unused params/vars, commented-out code.</li>
+      <li>A stale comment is worse than none.</li>
+      <li>Explicit over magic; only call APIs visible in types/repo/docs; no <code>any</code>.</li>
+    </ul></div>
+    <div class="card"><h3>The one add that costs lines — and earns them</h3><ul>
+      <li><strong>Contracts on exports</strong>: every exported function/type gets a 1–3 line contract (intent, inputs, invariants, what it throws); never a spec restatement. This is the +7 comment lines and most of the +44%. Research: the docstring is what the next agent generates and modifies from.</li>
+    </ul><h3 style="margin-top:12px">What it deliberately leaves out</h3><ul>
+      <li>One-idea-per-line, mandated explicit loops, edge-case enumeration, parse-don't-validate, branded types, big test files — each a line multiplier (+113–119% together) with no correctness gain here.</li>
+      <li>Any "bug-free" claim.</li>
+    </ul></div>
+  </div>
+  <h3>M-min — proposed engineering block (445 tok, replaces today's 443)</h3>
+<pre>Best code = none. Ladder, first that holds: (1) needed? speculative → skip, say so; (2) stdlib; (3) native platform; (4) installed dep — never add one for a few lines; (5) one line if clearer, not if denser; (6) else the minimum that works. Write for the reader: least complexity, not fewest chars; clearest then shortest. Name for intent; constants for magic literals; named intermediate over dense expression; no ceremony or re-declarations. Duplicate structure freely; never duplicate a business rule or constant — single-source at first reuse. Delete > add. Boring > clever: no truthiness tricks on numbers/orderings (`a || b` on -1/0/1, `?? 0` as control flow); named object, not positional tuple, for multi-value returns. Fewest files; shortest readable diff; entry point first, helpers after. No shallow/speculative abstraction; absorb real recurring complexity behind one deep interface. Explicit over magic: no metaprogramming, decorators, registries, config-driven dispatch. Happy path flat and left: guard-clause edges, return early, no nesting. Prefer map/filter for simple transforms; a plain loop where a reduce would need a comment. No `any`. No dead code: unreachable branches, unused params/vars, commented-out code. Only call APIs visible in types/repo/docs. Perf: simplest correct first; measure before optimizing; climb only on profiler evidence. Comments in bodies: terse, why not what; none that restate code; no banners, no war stories. Every exported function/type: a 1–3 line contract — intent, inputs, invariants, what it throws; never a spec restatement. A stale comment is worse than none. Never drop: input validation at boundaries, error handling against data loss, security, a11y, anything asked. Non-trivial logic leaves one runnable check.</pre>
+  <p class="note">Footprint: style body ≈ unchanged (+2 tok on the engineering block; the rest of the style can take the same 19% wording compression for a net reduction). Generated code ≈ +44% per module vs today — almost entirely the contract comments on exported symbols.</p>
+
+  <h2>5 · Options at a glance</h2>
+  <table>
+    <tr><th>option</th><th>rule tok</th><th>code cost vs engage</th><th>buys</th><th>verdict</th></tr>
+    <tr><td>Keep engage as-is</td><td>443</td><td>0</td><td style="text-align:left">—</td><td style="text-align:left">fine; leaves the clever-idiom gap and no contracts</td></tr>
+    <tr><td>Engage, compressed wording</td><td>358</td><td>~0 (noise)</td><td style="text-align:left">−19% always-on tokens</td><td style="text-align:left">free win, apply regardless</td></tr>
+    <tr><td class="rec">M-min <span class="tag rec">recommended</span></td><td>445</td><td>+44%</td><td style="text-align:left">contracts on exports · no clever idioms · no dead code · single-source rules · stale-comment rule</td><td style="text-align:left">the middle ground</td></tr>
+    <tr><td>M-lite / middle bundle</td><td>510–753</td><td>+113–119%</td><td style="text-align:left">+ one-idea-per-line, explicit loops, edge enumeration, types</td><td style="text-align:left">too expensive for no correctness gain here</td></tr>
+    <tr><td>Full agent bundle (round 1)</td><td>846</td><td>+120%</td><td style="text-align:left">+ branded types, big test files</td><td style="text-align:left">over-builds past the spec</td></tr>
+  </table>
+
+  <h2>6 · Limitations</h2>
+  <ul>
+    <li><strong>Ceiling effect:</strong> the generating model produced zero bugs on any task, so rule-sets cannot be ranked by correctness here; the honest claim is "no measurable difference at this scale."</li>
+    <li><strong>Scale:</strong> single-module tasks. The research-backed harms (dead code, stale comments, drift, magic, position effects) act on real codebases over long sessions — the follow-up is a multi-file repo task with a multi-step change and a weaker reader model.</li>
+    <li><strong>n:</strong> 1 sample per cell in round 1, 2 on hard tasks and in round 3; structural means are directional. The qualitative reading is one model's (Fable 5.1) opinion on ~5 files; structural metrics are regex proxies.</li>
+  </ul>
+  <p class="note">Rig: <code>/tmp/exp</code> (agent-visible tasks/mods) and <code>/tmp/exp-hidden</code> (tests, reference solutions, pinned rule texts, <code>run.sh</code>, <code>r3.json</code>, <code>structure.json</code>). Companion write-up: <code>docs/agent-readability-study.md</code>.</p>
+</main>
+<script>
+(function () {
+  function bars(svgId, rows, opts) {
+    const svg = document.getElementById(svgId);
+    const W = opts.w, H = opts.h, padL = opts.padL, padR = 70, padT = 8, rowH = opts.rowH, gap = 2;
+    const max = Math.max(...rows.map(r => r.v));
+    const scale = v => (W - padL - padR) * v / max;
+    const ticks = opts.ticks;
+    let s = "";
+    ticks.forEach(t => { const x = padL + scale(t); s += `<line class="grid" x1="${x}" y1="${padT}" x2="${x}" y2="${padT + rows.length * rowH}"/>`;
+      s += `<text class="axis-lbl" x="${x}" y="${padT + rows.length * rowH + 16}" text-anchor="middle">${t}</text>`; });
+    s += `<line class="base" x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT + rows.length * rowH}"/>`;
+    rows.forEach((r, i) => {
+      const y = padT + i * rowH + gap, h = rowH - gap * 2, w = scale(r.v);
+      const cls = "bar" + (r.rec ? " rec" : "");
+      s += `<path class="${cls}" d="M${padL},${y} h${Math.max(w - 4, 0)} a4,4 0 0 1 4,4 v${h - 8} a4,4 0 0 1 -4,4 h${-Math.max(w - 4, 0)} z"><title>${r.k}: ${r.v}${opts.unit}${r.note ? " · " + r.note : ""}</title></path>`;
+      s += `<text x="${padL - 8}" y="${y + h / 2 + 4}" text-anchor="end">${r.k}</text>`;
+      s += `<text class="val" x="${padL + w + 8}" y="${y + h / 2 + 4}">${r.v}${opts.unit}</text>`;
+    });
+    svg.innerHTML = s;
+  }
+  bars("c1", [
+    { k: "v8 no-functional", v: 393 }, { k: "v1 engage (today)", v: 457 }, { k: "v5 +state", v: 507 },
+    { k: "v3 +edge", v: 513 }, { k: "v6 challenge", v: 579 }, { k: "v4 +contract", v: 586 },
+    { k: "v2 +types", v: 640 }, { k: "v7 bundle", v: 1003 }, { k: "v0 base", v: 1012 }
+  ], { w: 960, h: 330, padL: 150, rowH: 32, ticks: [0, 250, 500, 750, 1000], unit: "" });
+  bars("c2", [
+    { k: "Ec engage compressed", v: 358 }, { k: "E engage today", v: 443 }, { k: "Lm M-min", v: 445, rec: true },
+    { k: "Lc M-lite", v: 510 }, { k: "Mc middle compressed", v: 604 }, { k: "M middle full", v: 753 }
+  ], { w: 470, h: 250, padL: 150, rowH: 34, ticks: [0, 250, 500, 750], unit: "" });
+  bars("c3", [
+    { k: "E engage today", v: 412 }, { k: "Ec engage compressed", v: 477 }, { k: "Lm M-min", v: 593, rec: true, note: "+44% vs engage" },
+    { k: "M middle full", v: 877 }, { k: "Lc M-lite", v: 888 }, { k: "Mc middle compressed", v: 902 }
+  ], { w: 470, h: 250, padL: 150, rowH: 34, ticks: [0, 250, 500, 750], unit: "" });
+})();
+</script>
+</body>
+</html>

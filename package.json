@@ -1,0 +1,11 @@
+{
+  "name": "engage",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "Terse, lazy-in-the-good-way output style for Claude Code, Codex, pi and OpenCode.",
+  "license": "MIT",
+  "pi": { "extensions": ["./pi/index.js"] },
+  "keywords": ["pi-package", "output-style", "terse", "yagni"],
+  "scripts": { "test": "node --test lib/*.test.mjs pi/*.test.mjs opencode/*.test.mjs codex/*.test.mjs install.test.mjs" }
+}

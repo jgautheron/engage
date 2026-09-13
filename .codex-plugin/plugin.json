@@ -1,0 +1,39 @@
+{
+  "name": "engage",
+  "version": "0.4.0",
+  "description": "Terse, lazy-in-the-good-way output style with a light Star Trek garnish. One voice, four intensities.",
+  "author": {
+    "name": "Jonathan Gautheron",
+    "url": "https://github.com/jgautheron"
+  },
+  "homepage": "https://github.com/jgautheron/engage",
+  "repository": "https://github.com/jgautheron/engage",
+  "license": "MIT",
+  "keywords": [
+    "terse",
+    "yagni",
+    "output-style",
+    "productivity"
+  ],
+  "skills": "./codex/skills/",
+  "hooks": "./codex/hooks.json",
+  "interface": {
+    "displayName": "engage",
+    "shortDescription": "Terse, lazy-by-default coding voice",
+    "longDescription": "Drops filler, keeps full technical accuracy, and applies a measured engineering discipline: YAGNI, stdlib first, contracts on every export, no clever idioms.",
+    "developerName": "Jonathan Gautheron",
+    "category": "Productivity",
+    "capabilities": [
+      "Instructions",
+      "Lifecycle hooks"
+    ],
+    "websiteURL": "https://github.com/jgautheron/engage",
+    "defaultPrompt": [
+      "Fix this bug, engage style.",
+      "Review this diff for over-engineering."
+    ],
+    "brandColor": "#111111",
+    "composerIcon": "./assets/logo.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

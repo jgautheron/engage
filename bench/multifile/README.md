@@ -9,7 +9,7 @@ free-shipping threshold, per-category tax, and a second function that must agree
 Then a three-part change ([change.md](change.md)) that crosses modules: move the threshold and its
 basis, add a promo kind that touches types/discounts/tax, make codes lenient and add a receipt field.
 
-**Method.** Sonnet generates one shot, no running (4 variants × 3 samples; v0-3 did not finish).
+**Method.** Sonnet generates one shot, no running (4 variants × 3 samples).
 Haiku, with no style rules, applies the change blind to each result. Hidden suites: 30 generation
 cases, 15 change cases; both validated 100% against the references in `ref/`, and the change suite
 fails 13/15 on unmodified code. `tsc --strict --noUnused*`. Structure via [metrics.ts](metrics.ts).
@@ -21,18 +21,22 @@ v3 engage with compressed Voice/Always sections.
 
 | variant | generation 30 | Haiku change 15 | tsc errors | code tok | comment lines | contracts on exports | Haiku tokens for change |
 |---|--:|--:|--:|--:|--:|--:|--:|
-| v0 no rules (n=2) | 30, 30 | 15, **13** | 0 | ~3780 | ~75 | 10–11 | ~57k |
+| v0 no rules | 30 ×3 | 15, **13**, **13** | 0 | ~3700 | ~75 | 10–11 | ~55k |
 | v1 engage v0.2 | 30 ×3 | 15 ×3 | 0 | ~2430 | 1–5 | 1–2 | ~53k |
 | v2 engage now | 30 ×3 | 15 ×3 | 0 | ~3050 | 30–43 | 13–19 | ~57k |
 | v3 compressed | 30 ×3 | 15 ×3 | 0 | ~2970 | 9–30 | 9–11 | ~50k |
 
-- **Correctness is still a ceiling.** 41/42 scored runs perfect. The one failure (v0-2, cap logic
-  after adding the category promo) is a no-rules codebase; one failure at n=2 is not evidence.
+- **Generation is still a ceiling** (12/12 at 30/30, 0 tsc errors). **Maintenance is not:** Haiku's
+  change failed on **2 of 3 no-rules codebases** (13/15 each, both in the new category promo — cap
+  and digital handling) and on **0 of 9 engage codebases**. Fisher exact p ≈ 0.045 for the split —
+  a real but thin signal, not proof. Both failing codebases were the largest and most commented
+  (~3.6–3.8k tok, ~75 comment lines); Haiku invented a "reduce both proportionally" cap in one.
+  No difference among the three engage variants.
 - **Duplication did not bite.** v2-3 defined the free-shipping threshold in two files; Haiku still
   found and changed both.
 - **Rules move cost and shape.** M-min writes ~25% more code than v0.2 — nearly all of it the
-  export contracts — and ~20% less than no rules. No measurable maintenance payoff for the
-  contracts at this scale; kept on research grounds (see the main study).
+  export contracts — and ~20% less than no rules. v0.2 and M-min maintained equally well here, so
+  the contracts show no extra payoff at this scale; kept on research grounds (see the main study).
 
 ## Compression check (item from the same pass)
 

@@ -1,7 +1,10 @@
 // bun score.ts <genDir> [modDir] → JSON { spec, preserve?, seats? } as [pass, total]
 const [genDir, modDir] = process.argv.slice(2);
-const G = await import(`${genDir}/src/index.ts`);
-const M = modDir ? await import(`${modDir}/src/index.ts`) : null;
+// Behaviour is scored on tsc output when the source can't load natively (e.g. non-`type` re-exports);
+// arena reports native loading as its own metric.
+const load = async (d: string) => { try { return await import(`${d}/src/index.ts`); } catch { return await import(`${d}/.build/index.js`); } };
+const G = await load(genDir);
+const M = modDir ? await load(modDir) : null;
 
 const plans = [
   { id: "free", monthlyCents: 0 }, { id: "basic", monthlyCents: 1000 }, { id: "pro", monthlyCents: 3100 },

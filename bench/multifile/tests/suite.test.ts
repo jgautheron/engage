@@ -5,7 +5,7 @@ import expected from "./expected.json";
 
 const TARGET = process.env.TARGET!;
 const KIND = process.env.KIND as "gen" | "mod";
-const m = await import(`${TARGET}/src/index.ts`);
+const m = await import(`${TARGET}/src/index.ts`).catch(() => import(`${TARGET}/.build/index.js`));
 const cases = KIND === "gen" ? gen : mod;
 const ps = KIND === "gen" ? promos : modPromos;
 

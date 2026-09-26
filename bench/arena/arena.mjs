@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // engage arena — pits engage against other rule sets on prose + two code tasks.
-// usage: node arena.mjs [--n 2] [--suites prose,checkout,billing] [--variants base,terse-hook,code-hook,both-hooks,engage]
+// usage: node arena.mjs [--n 2]  |  node arena.mjs --rescore 1 --out results/<stamp> [--suites prose,checkout,billing] [--variants base,terse-hook,code-hook,both-hooks,engage]
 //        [--gen-model sonnet] [--mod-model haiku] [--prose-model sonnet] [--jobs 4] [--out results/<stamp>]
 import { spawn, execFileSync } from "node:child_process";
 import fs from "node:fs";
@@ -124,6 +124,15 @@ function tscErrors(dir) {
   try { execFileSync("bunx", ["tsc", "--noEmit", "--strict", "--noUnusedLocals", "--noUnusedParameters", "--target", "es2022", "--moduleResolution", "bundler", "--module", "esnext", "--skipLibCheck", ...files], { stdio: "pipe" }); return 0; }
   catch (e) { return (String(e.stdout).match(/error TS/g) ?? []).length; }
 }
+// Emit JS with tsc so behaviour can be scored even when native TS loading fails.
+function build(dir) {
+  const files = fs.readdirSync(path.join(dir, "src"), { recursive: true }).filter((f) => String(f).endsWith(".ts")).map((f) => path.join(dir, "src", String(f)));
+  try { execFileSync("bunx", ["tsc", "--outDir", path.join(dir, ".build"), "--rootDir", path.join(dir, "src"), "--target", "es2022", "--module", "esnext", "--moduleResolution", "bundler", "--skipLibCheck", ...files], { stdio: "pipe" }); } catch {}
+}
+// Does src/index.ts load without a build step (Bun / Node type-stripping / esbuild semantics)?
+function loadsNatively(dir) {
+  try { execFileSync("bun", ["-e", `await import(${JSON.stringify(path.join(dir, "src/index.ts"))})`], { stdio: "pipe", timeout: 60000 }); return 1; } catch { return 0; }
+}
 const frac = (s) => { const m = /(\d+)\/(\d+)/.exec(s ?? ""); return m ? +m[1] / +m[2] : 0; };
 
 async function codeTask(task, contenders) {
@@ -145,9 +154,15 @@ async function codeTask(task, contenders) {
     return { variant: v, sample: s, dir, modDir, genOutTok: g.outTok, modOutTok: m.outTok, cost: g.cost + m.cost };
   });
   console.log(`${task}: ${gen.length} generate+maintain pairs`);
-  const runs = await pool(gen, JOBS);
+  return scoreCode(task, await pool(gen, JOBS));
+}
+
+function scoreCode(task, runs) {
+  const T = path.join(HERE, "tasks", task);
   for (const r of runs) {
     const has = (d) => fs.existsSync(path.join(d, "src/index.ts"));
+    for (const d of [r.dir, r.modDir]) if (has(d)) build(d);
+    r.native = has(r.dir) ? (loadsNatively(r.dir) + (has(r.modDir) ? loadsNatively(r.modDir) : 0)) / 2 : 0;
     r.metrics = has(r.dir) ? JSON.parse(bun(["metrics.ts", r.dir], path.join(REPO, "bench/multifile")) || "{}") : {};
     r.tsc = has(r.dir) ? tscErrors(r.dir) : null;
     if (task === "checkout") {
@@ -183,6 +198,7 @@ function scorecard(rows, footprint, versions) {
       add("billing: seats prorated like plans", "max", (v) => mean(R(v).map((r) => r.seats)), pct);
     }
     add(`${t}: change done correctly (weak maintainer)`, "max", (v) => mean(R(v).map((r) => r.modScore)), pct);
+    add(`${t}: runs without a build step`, "max", (v) => mean(R(v).map((r) => r.native ?? 0)), pct);
     add(`${t}: strict tsc errors`, "min", (v) => mean(R(v).map((r) => r.tsc ?? 99)), (x) => x.toFixed(1), 0);
     add(`${t}: code size (tok)`, "min", (v) => mean(R(v).map((r) => r.metrics?.tok ?? 0)), (x) => x.toFixed(0), 0.05);
     add(`${t}: generation output tokens`, "min", (v) => mean(R(v).map((r) => r.genOutTok)), (x) => x.toFixed(0), 0.05);
@@ -216,12 +232,21 @@ function scorecard(rows, footprint, versions) {
 }
 
 // ---------- main ----------
-fs.mkdirSync(WORK, { recursive: true });
-const { contenders, versions, footprint } = buildContenders();
-fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
-const rows = {};
-if (SUITES.includes("prose")) rows.prose = await prose(contenders);
-for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
+const RESCORE = arg("rescore");
+let rows = {}, footprint, versions;
+if (RESCORE) {
+  // Re-score an earlier run in place (no new model calls).
+  rows = JSON.parse(fs.readFileSync(path.join(OUT, "results.json"), "utf8"));
+  ({ footprint, versions } = JSON.parse(fs.readFileSync(path.join(OUT, "footprint.json"), "utf8")));
+  for (const t of ["checkout", "billing"]) if (rows[t]) scoreCode(t, rows[t]);
+} else {
+  fs.mkdirSync(WORK, { recursive: true });
+  let contenders;
+  ({ contenders, versions, footprint } = buildContenders());
+  fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
+  if (SUITES.includes("prose")) rows.prose = await prose(contenders);
+  for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
+}
 fs.writeFileSync(path.join(OUT, "results.json"), JSON.stringify(rows, null, 1));
 const md = scorecard(rows, footprint, versions);
 fs.writeFileSync(path.join(OUT, "scorecard.md"), md);

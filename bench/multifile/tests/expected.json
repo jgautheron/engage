@@ -1,0 +1,720 @@
+{
+ "gen": [
+  {
+   "name": "single food line",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 3,
+      "unitCents": 125,
+      "lineCents": 375
+     }
+    ],
+    "subtotalCents": 375,
+    "discountCents": 0,
+    "shippingCents": 499,
+    "taxCents": 41,
+    "totalCents": 915
+   }
+  },
+  {
+   "name": "merge duplicate skus keeps order",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 3,
+      "unitCents": 1850,
+      "lineCents": 5550
+     },
+     {
+      "sku": "apple",
+      "qty": 2,
+      "unitCents": 125,
+      "lineCents": 250
+     }
+    ],
+    "subtotalCents": 5800,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "taxCents": 458,
+    "totalCents": 6258
+   }
+  },
+  {
+   "name": "empty cart",
+   "error": "empty cart"
+  },
+  {
+   "name": "unknown sku",
+   "error": "unknown sku"
+  },
+  {
+   "name": "qty zero",
+   "error": "invalid qty"
+  },
+  {
+   "name": "qty fractional",
+   "error": "invalid qty"
+  },
+  {
+   "name": "merged qty over 99",
+   "error": "invalid qty"
+  },
+  {
+   "name": "negative line merged to valid",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 3,
+      "unitCents": 125,
+      "lineCents": 375
+     }
+    ],
+    "subtotalCents": 375,
+    "discountCents": 0,
+    "shippingCents": 499,
+    "taxCents": 41,
+    "totalCents": 915
+   }
+  },
+  {
+   "name": "unknown promo",
+   "error": "unknown promo"
+  },
+  {
+   "name": "promo case-insensitive",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 2,
+      "unitCents": 1850,
+      "lineCents": 3700
+     }
+    ],
+    "subtotalCents": 3700,
+    "discountCents": 370,
+    "shippingCents": 499,
+    "taxCents": 316,
+    "totalCents": 4145
+   }
+  },
+  {
+   "name": "duplicate code counts once",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 2,
+      "unitCents": 1850,
+      "lineCents": 3700
+     }
+    ],
+    "subtotalCents": 3700,
+    "discountCents": 370,
+    "shippingCents": 499,
+    "taxCents": 316,
+    "totalCents": 4145
+   }
+  },
+  {
+   "name": "two order-level promos conflict",
+   "error": "promo conflict"
+  },
+  {
+   "name": "bogo + percent combine",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 5,
+      "unitCents": 125,
+      "lineCents": 625
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 2475,
+    "discountCents": 473,
+    "shippingCents": 599,
+    "taxCents": 186,
+    "totalCents": 2787
+   }
+  },
+  {
+   "name": "bogo sku absent gives 0",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 1850,
+    "discountCents": 0,
+    "shippingCents": 499,
+    "taxCents": 194,
+    "totalCents": 2543
+   }
+  },
+  {
+   "name": "percent never touches digital",
+   "value": {
+    "lines": [
+     {
+      "sku": "ebook",
+      "qty": 2,
+      "unitCents": 899,
+      "lineCents": 1798
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 3648,
+    "discountCents": 185,
+    "shippingCents": 499,
+    "taxCents": 290,
+    "totalCents": 4252
+   }
+  },
+  {
+   "name": "min subtotal not met",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 3,
+      "unitCents": 1850,
+      "lineCents": 5550
+     }
+    ],
+    "subtotalCents": 5550,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "taxCents": 458,
+    "totalCents": 6008
+   }
+  },
+  {
+   "name": "min subtotal measured after bogo on base",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 4,
+      "unitCents": 1850,
+      "lineCents": 7400
+     }
+    ],
+    "subtotalCents": 7400,
+    "discountCents": 3700,
+    "shippingCents": 599,
+    "taxCents": 354,
+    "totalCents": 4653
+   }
+  },
+  {
+   "name": "percent rounding half up",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 1,
+      "unitCents": 125,
+      "lineCents": 125
+     },
+     {
+      "sku": "song",
+      "qty": 1,
+      "unitCents": 129,
+      "lineCents": 129
+     }
+    ],
+    "subtotalCents": 254,
+    "discountCents": 13,
+    "shippingCents": 499,
+    "taxCents": 132,
+    "totalCents": 872
+   }
+  },
+  {
+   "name": "fixed capped by base",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 2,
+      "unitCents": 125,
+      "lineCents": 250
+     },
+     {
+      "sku": "ebook",
+      "qty": 3,
+      "unitCents": 899,
+      "lineCents": 2697
+     }
+    ],
+    "subtotalCents": 2947,
+    "discountCents": 250,
+    "shippingCents": 499,
+    "taxCents": 210,
+    "totalCents": 3406
+   }
+  },
+  {
+   "name": "global cap reduces order-level",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 2,
+      "unitCents": 1850,
+      "lineCents": 3700
+     },
+     {
+      "sku": "ebook",
+      "qty": 1,
+      "unitCents": 899,
+      "lineCents": 899
+     }
+    ],
+    "subtotalCents": 4599,
+    "discountCents": 2299,
+    "shippingCents": 499,
+    "taxCents": 213,
+    "totalCents": 3012
+   }
+  },
+  {
+   "name": "digital-only no shipping",
+   "value": {
+    "lines": [
+     {
+      "sku": "ebook",
+      "qty": 2,
+      "unitCents": 899,
+      "lineCents": 1798
+     },
+     {
+      "sku": "song",
+      "qty": 3,
+      "unitCents": 129,
+      "lineCents": 387
+     }
+    ],
+    "subtotalCents": 2185,
+    "discountCents": 899,
+    "shippingCents": 0,
+    "taxCents": 80,
+    "totalCents": 1366
+   }
+  },
+  {
+   "name": "free shipping at exactly 5000",
+   "value": {
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 40,
+      "unitCents": 125,
+      "lineCents": 5000
+     }
+    ],
+    "subtotalCents": 5000,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "taxCents": 0,
+    "totalCents": 5000
+   }
+  },
+  {
+   "name": "shipping just under threshold after discount",
+   "value": {
+    "lines": [
+     {
+      "sku": "lamp",
+      "qty": 1,
+      "unitCents": 4999,
+      "lineCents": 4999
+     },
+     {
+      "sku": "apple",
+      "qty": 1,
+      "unitCents": 125,
+      "lineCents": 125
+     }
+    ],
+    "subtotalCents": 5124,
+    "discountCents": 512,
+    "shippingCents": 699,
+    "taxCents": 429,
+    "totalCents": 5740
+   }
+  },
+  {
+   "name": "weight surcharge ceil kg",
+   "value": {
+    "lines": [
+     {
+      "sku": "lamp",
+      "qty": 1,
+      "unitCents": 4999,
+      "lineCents": 4999
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 6849,
+    "discountCents": 3424,
+    "shippingCents": 799,
+    "taxCents": 349,
+    "totalCents": 4573
+   }
+  },
+  {
+   "name": "split attribution food/general EU tax",
+   "value": {
+    "lines": [
+     {
+      "sku": "coffee",
+      "qty": 2,
+      "unitCents": 1299,
+      "lineCents": 2598
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 4448,
+    "discountCents": 445,
+    "shippingCents": 599,
+    "taxCents": 582,
+    "totalCents": 5184
+   }
+  },
+  {
+   "name": "shipping taxed at general rate",
+   "value": {
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 1850,
+    "discountCents": 0,
+    "shippingCents": 499,
+    "taxCents": 470,
+    "totalCents": 2819
+   }
+  },
+  {
+   "name": "free-ship: already free",
+   "value": 0
+  },
+  {
+   "name": "free-ship: digital only",
+   "value": 0
+  },
+  {
+   "name": "free-ship: counts discount",
+   "value": 501
+  },
+  {
+   "name": "free-ship: bogo counts",
+   "value": 3150
+  }
+ ],
+ "mod": [
+  {
+   "name": "A: threshold 4000",
+   "value": {
+    "appliedPromoCodes": [],
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 32,
+      "unitCents": 125,
+      "lineCents": 4000
+     }
+    ],
+    "subtotalCents": 4000,
+    "discountCents": 0,
+    "shippingCents": 0,
+    "taxCents": 0,
+    "totalCents": 4000
+   }
+  },
+  {
+   "name": "A: just under 4000",
+   "value": {
+    "appliedPromoCodes": [],
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 31,
+      "unitCents": 125,
+      "lineCents": 3875
+     }
+    ],
+    "subtotalCents": 3875,
+    "discountCents": 0,
+    "shippingCents": 1099,
+    "taxCents": 91,
+    "totalCents": 5065
+   }
+  },
+  {
+   "name": "A: order-level no longer counts",
+   "value": {
+    "appliedPromoCodes": [
+     "SAVE10"
+    ],
+    "lines": [
+     {
+      "sku": "lamp",
+      "qty": 1,
+      "unitCents": 4999,
+      "lineCents": 4999
+     }
+    ],
+    "subtotalCents": 4999,
+    "discountCents": 500,
+    "shippingCents": 0,
+    "taxCents": 371,
+    "totalCents": 4870
+   }
+  },
+  {
+   "name": "A: bogo still counts",
+   "value": {
+    "appliedPromoCodes": [
+     "MUGBOGO"
+    ],
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 3,
+      "unitCents": 1850,
+      "lineCents": 5550
+     }
+    ],
+    "subtotalCents": 5550,
+    "discountCents": 1850,
+    "shippingCents": 599,
+    "taxCents": 354,
+    "totalCents": 4653
+   }
+  },
+  {
+   "name": "A: free-ship follows",
+   "value": 300
+  },
+  {
+   "name": "A: free-ship bogo",
+   "value": 300
+  },
+  {
+   "name": "B: category food",
+   "value": {
+    "appliedPromoCodes": [
+     "FOOD20"
+    ],
+    "lines": [
+     {
+      "sku": "coffee",
+      "qty": 1,
+      "unitCents": 1299,
+      "lineCents": 1299
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 3149,
+    "discountCents": 260,
+    "shippingCents": 499,
+    "taxCents": 527,
+    "totalCents": 3915
+   }
+  },
+  {
+   "name": "B: category digital applies",
+   "value": {
+    "appliedPromoCodes": [
+     "DIGI50"
+    ],
+    "lines": [
+     {
+      "sku": "ebook",
+      "qty": 1,
+      "unitCents": 899,
+      "lineCents": 899
+     },
+     {
+      "sku": "apple",
+      "qty": 1,
+      "unitCents": 125,
+      "lineCents": 125
+     }
+    ],
+    "subtotalCents": 1024,
+    "discountCents": 450,
+    "shippingCents": 499,
+    "taxCents": 69,
+    "totalCents": 1142
+   }
+  },
+  {
+   "name": "B: category after bogo",
+   "value": {
+    "appliedPromoCodes": [
+     "EBOGO",
+     "DIGI50"
+    ],
+    "lines": [
+     {
+      "sku": "ebook",
+      "qty": 3,
+      "unitCents": 899,
+      "lineCents": 2697
+     }
+    ],
+    "subtotalCents": 2697,
+    "discountCents": 1348,
+    "shippingCents": 0,
+    "taxCents": 270,
+    "totalCents": 1619
+   }
+  },
+  {
+   "name": "B: conflicts with percent",
+   "error": "promo conflict"
+  },
+  {
+   "name": "B: capped",
+   "value": {
+    "appliedPromoCodes": [
+     "MUGBOGO",
+     "GEN33"
+    ],
+    "lines": [
+     {
+      "sku": "mug",
+      "qty": 2,
+      "unitCents": 1850,
+      "lineCents": 3700
+     },
+     {
+      "sku": "song",
+      "qty": 1,
+      "unitCents": 129,
+      "lineCents": 129
+     }
+    ],
+    "subtotalCents": 3829,
+    "discountCents": 1914,
+    "shippingCents": 499,
+    "taxCents": 483,
+    "totalCents": 2897
+   }
+  },
+  {
+   "name": "C: unknown ignored + applied codes",
+   "value": {
+    "appliedPromoCodes": [
+     "APPLEBOGO",
+     "SAVE10"
+    ],
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 4,
+      "unitCents": 125,
+      "lineCents": 500
+     }
+    ],
+    "subtotalCents": 500,
+    "discountCents": 250,
+    "shippingCents": 499,
+    "taxCents": 41,
+    "totalCents": 790
+   }
+  },
+  {
+   "name": "C: no codes → empty list",
+   "value": {
+    "appliedPromoCodes": [],
+    "lines": [
+     {
+      "sku": "apple",
+      "qty": 1,
+      "unitCents": 125,
+      "lineCents": 125
+     }
+    ],
+    "subtotalCents": 125,
+    "discountCents": 0,
+    "shippingCents": 499,
+    "taxCents": 41,
+    "totalCents": 665
+   }
+  },
+  {
+   "name": "regression: percent split",
+   "value": {
+    "appliedPromoCodes": [
+     "SAVE10"
+    ],
+    "lines": [
+     {
+      "sku": "coffee",
+      "qty": 2,
+      "unitCents": 1299,
+      "lineCents": 2598
+     },
+     {
+      "sku": "mug",
+      "qty": 1,
+      "unitCents": 1850,
+      "lineCents": 1850
+     }
+    ],
+    "subtotalCents": 4448,
+    "discountCents": 445,
+    "shippingCents": 0,
+    "taxCents": 462,
+    "totalCents": 4465
+   }
+  },
+  {
+   "name": "regression: invalid qty",
+   "error": "invalid qty"
+  }
+ ]
+}

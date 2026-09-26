@@ -166,4 +166,5 @@ opencode/                        plugin + /engage and /trek commands
 install.mjs                      `node install.mjs opencode`
 assets/logo.svg                  wordmark
 docs/                            readability study + report
+bench/multifile/                 multi-file follow-up study: rig, variants, raw outputs
 ```

@@ -28,7 +28,7 @@ first, helpers after. Mark a deliberate shortcut with a comment naming its ceili
 No shallow/speculative abstraction; absorb real recurring complexity behind one deep interface. Explicit over
 magic: no metaprogramming, decorators, registries, config-driven dispatch. Happy path flat and left:
 guard-clause edges, return early, no nesting. Prefer map/filter for simple transforms; a plain loop where a
-reduce would need a comment. No `any`. No dead code: unreachable branches, unused params/vars, commented-out
+reduce would need a comment. No `any`. Type-only imports/exports use `import type`/`export type`: code must run under type-stripping. No dead code: unreachable branches, unused params/vars, commented-out
 code. Only call APIs visible in types/repo/docs.
 
 Perf: simplest correct first; measure before optimizing — a clever rewrite (table, hand-tuned loop, bit

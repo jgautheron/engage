@@ -8,19 +8,21 @@ n=2 per cell · generator sonnet · maintainer haiku (no rules) · prose sonnet 
 | prose: output tokens / reply | 198 | 115 | 157 | 102 | 125 | both-hooks | ❌ behind |
 | checkout: spec tests after generation | 100% | 100% | 100% | 100% | 100% | terse-hook, code-hook, both-hooks, engage | 🟰 tied |
 | checkout: change done correctly (weak maintainer) | 100% | 50% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
+| checkout: runs without a build step | 100% | 75% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
 | checkout: strict tsc errors | 0.0 | 0.0 | 0.0 | 0.5 | 0.0 | terse-hook, code-hook, engage | 🟰 tied |
 | checkout: code size (tok) | 2440 | 2315 | 2219 | 2313 | 2239 | terse-hook, code-hook, both-hooks, engage | 🟰 tied |
 | checkout: generation output tokens | 18102 | 15813 | 14737 | 13408 | 15613 | both-hooks | ❌ behind |
-| billing: spec tests after generation | 100% | 50% | 50% | 50% | 0% | terse-hook, code-hook, both-hooks | ❌ behind |
-| billing: preserved behaviour after change | 100% | 50% | 50% | 50% | 0% | terse-hook, code-hook, both-hooks | ❌ behind |
-| billing: seats prorated like plans | 100% | 50% | 50% | 50% | 0% | terse-hook, code-hook, both-hooks | ❌ behind |
-| billing: change done correctly (weak maintainer) | 100% | 50% | 50% | 50% | 0% | terse-hook, code-hook, both-hooks | ❌ behind |
+| billing: spec tests after generation | 100% | 50% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
+| billing: preserved behaviour after change | 100% | 50% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
+| billing: seats prorated like plans | 100% | 50% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
+| billing: change done correctly (weak maintainer) | 100% | 50% | 100% | 100% | 100% | code-hook, both-hooks, engage | 🟰 tied |
+| billing: runs without a build step | 100% | 50% | 50% | 50% | 0% | terse-hook, code-hook, both-hooks | ❌ behind |
 | billing: strict tsc errors | 0.0 | 0.5 | 0.0 | 0.0 | 0.0 | code-hook, both-hooks, engage | 🟰 tied |
 | billing: code size (tok) | 1972 | 1617 | 1515 | 1647 | 1716 | code-hook | ❌ behind |
 | billing: generation output tokens | 17823 | 17726 | 17772 | 16117 | 17030 | both-hooks | ❌ behind |
 | rule footprint, one-time (tok) | 0 | 1301 | 1307 | 2608 | 984 | engage | ✅ best |
 | rule footprint, per turn (tok) | 0 | 61 | 0 | 61 | 0 | code-hook, engage | 🟰 tied |
 
-**engage: 1 best · 7 tied · 8 behind** (prose: output tokens / reply; checkout: generation output tokens; billing: spec tests after generation; billing: preserved behaviour after change; billing: seats prorated like plans; billing: change done correctly (weak maintainer); billing: code size (tok); billing: generation output tokens) · run cost $9.14
+**engage: 1 best · 12 tied · 5 behind** (prose: output tokens / reply; checkout: generation output tokens; billing: runs without a build step; billing: code size (tok); billing: generation output tokens) · run cost $9.14
 
 Tie band: ±2% for rates, ±5% for token counts. Small n — rerun with a larger --n before trusting a single-cell gap.

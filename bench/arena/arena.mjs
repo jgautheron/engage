@@ -218,7 +218,7 @@ function scorecard(rows, footprint, versions) {
     const within = (x) => (m.dir === "max" ? x >= best - m.tie * Math.max(1, Math.abs(best)) : x <= best + m.tie * Math.max(1, Math.abs(best)));
     const leaders = rivals.filter((v) => within(vals[v]));
     let verdict = "—";
-    if (vals.engage !== undefined) {
+    if (vals.engage !== undefined && rivals.length > 1) {
       if (vals.engage === best && leaders.length === 1) { verdict = "✅ best"; wins++; }
       else if (within(vals.engage)) { verdict = "🟰 tied"; ties++; }
       else { verdict = "❌ behind"; losses.push(m.label); }

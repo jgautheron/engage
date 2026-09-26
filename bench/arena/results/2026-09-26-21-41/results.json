@@ -1130,7 +1130,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "base",
@@ -1160,7 +1161,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "terse-hook",
@@ -1190,7 +1192,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "terse-hook",
@@ -1220,7 +1223,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 0
+   "modScore": 0,
+   "native": 0.5
   },
   {
    "variant": "code-hook",
@@ -1250,7 +1254,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "code-hook",
@@ -1280,7 +1285,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "both-hooks",
@@ -1310,7 +1316,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "both-hooks",
@@ -1340,7 +1347,8 @@
    },
    "tsc": 1,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "engage",
@@ -1370,7 +1378,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "engage",
@@ -1400,7 +1409,8 @@
    },
    "tsc": 0,
    "genScore": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   }
  ],
  "billing": [
@@ -1435,7 +1445,8 @@
    "preserve": 1,
    "seats": 1,
    "specAfter": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "base",
@@ -1468,7 +1479,8 @@
    "preserve": 1,
    "seats": 1,
    "specAfter": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "terse-hook",
@@ -1501,7 +1513,8 @@
    "preserve": 0,
    "seats": 0,
    "specAfter": 0,
-   "modScore": 0
+   "modScore": 0,
+   "native": 0
   },
   {
    "variant": "terse-hook",
@@ -1534,7 +1547,8 @@
    "preserve": 1,
    "seats": 1,
    "specAfter": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "code-hook",
@@ -1563,11 +1577,12 @@
     }
    },
    "tsc": 0,
-   "genScore": 0,
-   "preserve": 0,
-   "seats": 0,
-   "specAfter": 0,
-   "modScore": 0
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1,
+   "native": 0
   },
   {
    "variant": "code-hook",
@@ -1600,7 +1615,8 @@
    "preserve": 1,
    "seats": 1,
    "specAfter": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "both-hooks",
@@ -1629,11 +1645,12 @@
     }
    },
    "tsc": 0,
-   "genScore": 0,
-   "preserve": 0,
-   "seats": 0,
-   "specAfter": 0,
-   "modScore": 0
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1,
+   "native": 0
   },
   {
    "variant": "both-hooks",
@@ -1666,7 +1683,8 @@
    "preserve": 1,
    "seats": 1,
    "specAfter": 1,
-   "modScore": 1
+   "modScore": 1,
+   "native": 1
   },
   {
    "variant": "engage",
@@ -1695,11 +1713,12 @@
     }
    },
    "tsc": 0,
-   "genScore": 0,
-   "preserve": 0,
-   "seats": 0,
-   "specAfter": 0,
-   "modScore": 0
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1,
+   "native": 0
   },
   {
    "variant": "engage",
@@ -1728,11 +1747,12 @@
     }
    },
    "tsc": 0,
-   "genScore": 0,
-   "preserve": 0,
-   "seats": 0,
-   "specAfter": 0,
-   "modScore": 0
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1,
+   "native": 0
   }
  ]
 }

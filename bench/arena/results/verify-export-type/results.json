@@ -1,0 +1,140 @@
+{
+ "billing": [
+  {
+   "variant": "engage",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-1",
+   "modDir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-1-mod",
+   "genOutTok": 13151,
+   "modOutTok": 5529,
+   "cost": 0.2959387,
+   "native": 1,
+   "metrics": {
+    "files": 6,
+    "tok": 1521,
+    "loc": 147,
+    "comments": 27,
+    "exports": 17,
+    "contracts": 7,
+    "any": 0,
+    "truthy": 0,
+    "upperConsts": 0,
+    "tuples": 0,
+    "dupLiteralFiles": {
+     "99": 0,
+     "499": 0,
+     "5000": 0,
+     "10000": 0
+    }
+   },
+   "tsc": 0,
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1
+  },
+  {
+   "variant": "engage",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-2",
+   "modDir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-2-mod",
+   "genOutTok": 15113,
+   "modOutTok": 4382,
+   "cost": 0.30720939999999997,
+   "native": 1,
+   "metrics": {
+    "files": 5,
+    "tok": 1457,
+    "loc": 118,
+    "comments": 15,
+    "exports": 14,
+    "contracts": 1,
+    "any": 0,
+    "truthy": 0,
+    "upperConsts": 1,
+    "tuples": 0,
+    "dupLiteralFiles": {
+     "99": 0,
+     "499": 0,
+     "5000": 0,
+     "10000": 0
+    }
+   },
+   "tsc": 0,
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1
+  },
+  {
+   "variant": "engage",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-3",
+   "modDir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-3-mod",
+   "genOutTok": 17021,
+   "modOutTok": 8059,
+   "cost": 0.3747709000000001,
+   "native": 1,
+   "metrics": {
+    "files": 5,
+    "tok": 1360,
+    "loc": 131,
+    "comments": 10,
+    "exports": 14,
+    "contracts": 1,
+    "any": 0,
+    "truthy": 0,
+    "upperConsts": 1,
+    "tuples": 0,
+    "dupLiteralFiles": {
+     "99": 0,
+     "499": 0,
+     "5000": 0,
+     "10000": 0
+    }
+   },
+   "tsc": 0,
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1
+  },
+  {
+   "variant": "engage",
+   "sample": 4,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-4",
+   "modDir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/verify-export-type/work/billing/engage-4-mod",
+   "genOutTok": 11532,
+   "modOutTok": 6242,
+   "cost": 0.27424819999999994,
+   "native": 1,
+   "metrics": {
+    "files": 5,
+    "tok": 1512,
+    "loc": 141,
+    "comments": 12,
+    "exports": 14,
+    "contracts": 2,
+    "any": 0,
+    "truthy": 0,
+    "upperConsts": 1,
+    "tuples": 0,
+    "dupLiteralFiles": {
+     "99": 0,
+     "499": 0,
+     "5000": 0,
+     "10000": 0
+    }
+   },
+   "tsc": 0,
+   "genScore": 1,
+   "preserve": 1,
+   "seats": 1,
+   "specAfter": 1,
+   "modScore": 1
+  }
+ ]
+}

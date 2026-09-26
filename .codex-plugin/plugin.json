@@ -1,6 +1,6 @@
 {
   "name": "engage",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Terse, lazy-in-the-good-way output style with a light Star Trek garnish. One voice, four intensities.",
   "author": {
     "name": "Jonathan Gautheron",

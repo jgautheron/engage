@@ -31,3 +31,12 @@ Uses your Claude Code login — `claude -p` usage draws on the metered pool.
 **Scorecard.** Per metric: every contender's value, the leaders (excluding `base`), and whether
 engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and code land in
 `results/<stamp>/work/` (git-ignored); `scorecard.md`, `results.json` and `footprint.json` are kept.
+
+## Findings so far (2026-09-27)
+
+- **evolve-xl (12 iterations)** — on Sonnet every contender stays 100% correct; ponytail is 20–25%
+  leaner. On Haiku the cross-cutting undo (v5) separates designs: ponytail's minimal undo missed later
+  mutations in 2/3 projects, engage in 0/3. Engage's Haiku losses came from one local recursion slip
+  (identical in 2 samples — Haiku repeats itself on identical input, so treat n as ~2).
+- **engage-next** (8 rules imported from open ponytail PRs, +183 tok): rejected — worse undo design
+  (2/3 failures) and one compile-breaking name clash on Sonnet. Kept in `candidates/_rejected/`.

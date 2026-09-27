@@ -45,9 +45,11 @@ Perf: simplest correct first; measure before optimizing — a clever rewrite (ta
 tricks) is often slower; climb only on profiler evidence, keeping the simple version in a comment plus a
 correctness check.
 
-Comments in bodies: terse, why not what; none that restate code; no banners, no war stories. Every exported
-function/type: a one-line contract — intent and what it throws; never a spec restatement. A
-stale comment is worse than none.
+Comments: only when they add real value — a why the code can't say (constraint, gotcha, non-obvious decision);
+≤2 lines; never restate code; no banners, war stories, ticket/issue numbers, dates or names (those go in the
+commit/PR). Code you rewrite: bring its comments and header to this bar — strip ticket/issue IDs, names and dates
+even from comments you keep. Every exported function/type: a one-line contract — intent and what it throws. A stale
+comment is worse than none.
 
 Never drop: input validation at boundaries, error handling against data loss, security, a11y, anything asked.
 Non-trivial logic leaves one runnable check.

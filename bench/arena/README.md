@@ -72,3 +72,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
 - **engage-longterm** (split past ~300 lines, one choke point for cross-cutting concerns, name state
   by role) and **engage-split** (extract-before-adding past ~300 lines + "already in repo? reuse it"
   rung): rejected — no project was ever split; style rules did not change macro-architecture.
+- **Comment discipline (`--suites comments`, 2026-09-28):** probes that tempt ticket IDs, war stories
+  and long doc blocks, plus a refactor of a file full of legacy comment noise. New code was already
+  clean (0 ticket refs for engage). The real leak was *inherited* comments: when refactoring, engage
+  kept tickets/banners/authors. **Adopted in 0.4.5:** comments only when they add real value, ≤2 lines,
+  no banners/war stories/ticket IDs/dates/names, and "code you rewrite: bring its comments and header
+  to this bar — strip ticket/issue IDs, names and dates even from comments you keep". Full suite:
+  runs with ticket refs 25% → 8%, war stories 25% → 0%, blocks > 2 lines 25% → 0%, comment lines −60%.

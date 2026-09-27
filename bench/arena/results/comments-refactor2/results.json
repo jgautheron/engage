@@ -1,0 +1,64 @@
+{
+ "comments": [
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 1,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 0,
+   "stories": 0,
+   "outTok": 1032,
+   "cost": 0.0368522
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 2,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 855,
+   "cost": 0.0344062
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 3,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 837,
+   "cost": 0.0340224
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 4,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 915,
+   "cost": 0.0352326
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 5,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 888,
+   "cost": 0.0347446
+  }
+ ]
+}

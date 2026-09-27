@@ -1,0 +1,124 @@
+{
+ "comments": [
+  {
+   "variant": "engage",
+   "id": "refactor",
+   "sample": 1,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 814,
+   "cost": 0.0241548
+  },
+  {
+   "variant": "engage",
+   "id": "refactor",
+   "sample": 2,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 836,
+   "cost": 0.024461
+  },
+  {
+   "variant": "engage",
+   "id": "refactor",
+   "sample": 3,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 921,
+   "cost": 0.025615
+  },
+  {
+   "variant": "engage",
+   "id": "refactor",
+   "sample": 4,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 857,
+   "cost": 0.024800799999999998
+  },
+  {
+   "variant": "engage",
+   "id": "refactor",
+   "sample": 5,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 877,
+   "cost": 0.0249488
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 1,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 0,
+   "stories": 0,
+   "outTok": 1009,
+   "cost": 0.0364412
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 2,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 0,
+   "stories": 0,
+   "outTok": 1023,
+   "cost": 0.036709200000000004
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 3,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 890,
+   "cost": 0.034602799999999996
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 4,
+   "lines": 1,
+   "blocksOver2": 0,
+   "maxBlock": 1,
+   "tickets": 1,
+   "stories": 0,
+   "outTok": 933,
+   "cost": 0.025889600000000002
+  },
+  {
+   "variant": "engage-comments",
+   "id": "refactor",
+   "sample": 5,
+   "lines": 5,
+   "blocksOver2": 1,
+   "maxBlock": 4,
+   "tickets": 2,
+   "stories": 1,
+   "outTok": 794,
+   "cost": 0.0240114
+  }
+ ]
+}

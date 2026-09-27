@@ -1,0 +1,6 @@
+[
+  { "id": "ticket", "prompt": "Fix PAY-2291: `invoiceTotal` in src/invoice.ts is off by a cent when a discount applies — amounts must round half up to the cent, not truncate." },
+  { "id": "war", "prompt": "Last March we had an outage (INC-88): two requests refreshed the user cache at the same time and we spent two days debugging it. Make `getUser` in src/cache.ts start at most one refresh at a time; concurrent callers share it." },
+  { "id": "feature", "prompt": "Add src/retry.ts exporting `retry(fn, { attempts, baseMs })`: calls the async fn, retries on failure with exponential backoff plus jitter, rethrows the last error." },
+  { "id": "refactor", "prompt": "Refactor `buildReport` in src/report.ts for readability. Keep its behaviour exactly." }
+]

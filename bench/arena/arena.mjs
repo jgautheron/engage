@@ -279,6 +279,49 @@ async function maintainFrom(runDir, task) {
   return runs;
 }
 
+// Comment discipline: prompts that tempt long comments, ticket numbers and war stories.
+const TICKET = /\b[A-Z][A-Z0-9]{1,9}-\d+\b|#\d{2,}\b|\b(jira|ticket|issue|incident)\b/i;
+const STORY = /\b(outage|spent|debugg|last (week|month|year)|20\d\d|january|february|march|april|may|june|july|august|september|october|november|december|written by|dan said)\b/i;
+function commentStats(srcDir) {
+  const files = fs.readdirSync(srcDir, { recursive: true }).filter((f) => String(f).endsWith(".ts"));
+  let lines = 0, blocksOver2 = 0, maxBlock = 0, tickets = 0, stories = 0;
+  for (const f of files) {
+    let run = 0, inBlock = false;
+    const flush = () => { if (run > 2) blocksOver2++; maxBlock = Math.max(maxBlock, run); run = 0; };
+    for (const raw of fs.readFileSync(path.join(srcDir, String(f)), "utf8").split("\n")) {
+      const t = raw.trim();
+      const code = t.replace(/\/\/.*$/, "").trim();
+      const trailing = /\S.*\/\/\s*\S/.test(t) && !t.startsWith("//");
+      const isComment = inBlock || t.startsWith("//") || t.startsWith("/*") || t.startsWith("*");
+      if (t.startsWith("/*")) inBlock = !t.includes("*/");
+      else if (inBlock && t.includes("*/")) inBlock = false;
+      const text = isComment ? t : trailing ? t.slice(t.indexOf("//")) : "";
+      if (text) { lines++; if (TICKET.test(text)) tickets++; if (STORY.test(text)) stories++; }
+      if (isComment) run++; else { flush(); }
+      if (trailing && !isComment) { maxBlock = Math.max(maxBlock, 1); }
+      void code;
+    }
+    flush();
+  }
+  return { lines, blocksOver2, maxBlock, tickets, stories };
+}
+async function commentsSuite(contenders) {
+  const T = path.join(HERE, "tasks", "comments");
+  const prompts = JSON.parse(fs.readFileSync(path.join(T, "prompts.json"), "utf8"));
+  const jobs = [];
+  for (const [v, c] of Object.entries(contenders)) for (const p of prompts) for (let s = 1; s <= N; s++) jobs.push(async () => {
+    const dir = path.join(WORK, "comments", `${v}-${p.id}-${s}`);
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.mkdirSync(path.join(dir, "src"), { recursive: true });
+    const seed = path.join(T, "seed", p.id);
+    if (fs.existsSync(seed)) fs.cpSync(seed, dir, { recursive: true });
+    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, `(session ${s})\n${p.prompt} You cannot run code.`) });
+    return { variant: v, id: p.id, sample: s, ...commentStats(path.join(dir, "src")), outTok: r.outTok, cost: r.cost };
+  });
+  console.log(`comments: ${jobs.length} runs`);
+  return pool(jobs, JOBS);
+}
+
 // ---------- scorecard ----------
 const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 function scorecard(rows, footprint, versions) {
@@ -348,6 +391,14 @@ function scorecard(rows, footprint, versions) {
     add("health: duplicated 4-line blocks", "min", h("dupBlocks"), (x) => x.toFixed(1), 0.1);
     add("health: non-null assertions (!)", "min", h("nonNull"), (x) => x.toFixed(1), 0.1);
   }
+  if (rows.comments) {
+    const R = (v) => rows.comments.filter((r) => r.variant === v);
+    add("comments: runs with a ticket/issue reference", "min", (v) => mean(R(v).map((r) => (r.tickets > 0 ? 1 : 0))), pct, 0);
+    add("comments: runs with a war story / date / name", "min", (v) => mean(R(v).map((r) => (r.stories > 0 ? 1 : 0))), pct, 0);
+    add("comments: runs with a comment block > 2 lines", "min", (v) => mean(R(v).map((r) => (r.blocksOver2 > 0 ? 1 : 0))), pct, 0);
+    add("comments: longest comment block (lines)", "min", (v) => mean(R(v).map((r) => r.maxBlock)), (x) => x.toFixed(1), 0.1);
+    add("comments: comment lines per run", "min", (v) => mean(R(v).map((r) => r.lines)), (x) => x.toFixed(1), 0.1);
+  }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
   const vs = VARIANTS;
@@ -398,6 +449,7 @@ if (RESCORE) {
   ({ contenders, versions, footprint } = buildContenders());
   fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
   if (SUITES.includes("prose")) rows.prose = await prose(contenders);
+  if (SUITES.includes("comments")) rows.comments = await commentsSuite(contenders);
   for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
   for (const t of Object.keys(EVOLVE)) if (SUITES.includes(t)) rows[t] = await evolveTask(t, contenders);
 }

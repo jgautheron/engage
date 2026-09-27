@@ -47,3 +47,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
 - Samples now carry a neutral session tag; before that, Haiku repeated byte-identical code across
   "independent" samples. With independent samples the undo trap catches every contender on Haiku
   (ponytail 2/5, engage 3/5, engage-lean 1/5) — the earlier "0/3 for engage" did not hold.
+- **engage-compact** (new module only when it hides real complexity; export only what callers use):
+  rejected — size effect inconsistent (checkout −8%, Sonnet XL +7%, Haiku XL +3%), correctness tied or
+  slightly worse.
+- **engage vs ponytail, pooled independent samples (Haiku XL n=10, Sonnet XL n=4):** engage 92.5% vs
+  89% at v12, 14.5 vs 20.4 regressions, late/early cost per iteration 1.49× vs 1.78×; Sonnet 4/4 vs 3/4
+  projects correct at v12 (ponytail's miss: undo stack named `history`, colliding with v9's `history()`).
+  Ponytail stays smaller: +5% (Haiku) / +12% (Sonnet) final size for engage.

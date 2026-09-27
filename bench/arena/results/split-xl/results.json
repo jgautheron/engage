@@ -1,0 +1,2092 @@
+{
+ "evolve-xl": [
+  {
+   "variant": "code-hook",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v1",
+     "outTok": 721,
+     "cost": 0.032711199999999996,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 233,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v2",
+     "outTok": 1323,
+     "cost": 0.045312399999999996,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 388,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v3",
+     "outTok": 2623,
+     "cost": 0.0717764,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 691,
+     "churn": {
+      "lines": 40,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v4",
+     "outTok": 3169,
+     "cost": 0.07995100000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 955,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v5",
+     "outTok": 4176,
+     "cost": 0.094893,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1180,
+     "churn": {
+      "lines": 45,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v6",
+     "outTok": 3944,
+     "cost": 0.12060699999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1565,
+     "churn": {
+      "lines": 49,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v7",
+     "outTok": 3776,
+     "cost": 0.11720320000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2127,
+     "churn": {
+      "lines": 71,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v8",
+     "outTok": 4857,
+     "cost": 0.1416054,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2363,
+     "churn": {
+      "lines": 24,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v9",
+     "outTok": 12529,
+     "cost": 0.265896,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3024,
+     "churn": {
+      "lines": 84,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v10",
+     "outTok": 5595,
+     "cost": 0.1677192,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3206,
+     "churn": {
+      "lines": 37,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v11",
+     "outTok": 4075,
+     "cost": 0.12775,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3507,
+     "churn": {
+      "lines": 29,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v12",
+     "outTok": 975,
+     "cost": 0.069661,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3561,
+     "churn": {
+      "lines": 7,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v13",
+     "outTok": 2532,
+     "cost": 0.09422660000000001,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3612,
+     "churn": {
+      "lines": 14,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v14",
+     "outTok": 1868,
+     "cost": 0.083273,
+     "score": 0.9682539682539683,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3637,
+     "churn": {
+      "lines": 52,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-1@v15",
+     "outTok": 2930,
+     "cost": 0.09393860000000001,
+     "score": 0.9705882352941176,
+     "regressions": 2,
+     "native": 1,
+     "tok": 4098,
+     "churn": {
+      "lines": 47,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.6065239999999998,
+   "health": {
+    "files": 1,
+    "maxFileLines": 448,
+    "fns": 37,
+    "fnLenMean": 18.4,
+    "fnLenMax": 308,
+    "cxMean": 4.86,
+    "cxMax": 24,
+    "cxOver10": 3,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 6
+   }
+  },
+  {
+   "variant": "code-hook",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v1",
+     "outTok": 772,
+     "cost": 0.0332892,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 233,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v2",
+     "outTok": 1296,
+     "cost": 0.0450468,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 388,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v3",
+     "outTok": 2334,
+     "cost": 0.0662196,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 681,
+     "churn": {
+      "lines": 36,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v4",
+     "outTok": 4197,
+     "cost": 0.11944800000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 918,
+     "churn": {
+      "lines": 42,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v5",
+     "outTok": 3449,
+     "cost": 0.08422699999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1127,
+     "churn": {
+      "lines": 72,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v6",
+     "outTok": 4199,
+     "cost": 0.11919659999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1519,
+     "churn": {
+      "lines": 52,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v7",
+     "outTok": 3017,
+     "cost": 0.10106619999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2052,
+     "churn": {
+      "lines": 78,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v8",
+     "outTok": 4040,
+     "cost": 0.1363428,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2330,
+     "churn": {
+      "lines": 40,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v9",
+     "outTok": 9007,
+     "cost": 0.222891,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2862,
+     "churn": {
+      "lines": 70,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v10",
+     "outTok": 5743,
+     "cost": 0.1643344,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3049,
+     "churn": {
+      "lines": 40,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v11",
+     "outTok": 4900,
+     "cost": 0.1235678,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3416,
+     "churn": {
+      "lines": 45,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v12",
+     "outTok": 655,
+     "cost": 0.0598392,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3476,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v13",
+     "outTok": 4064,
+     "cost": 0.1356514,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3562,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v14",
+     "outTok": 5753,
+     "cost": 0.17418,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3641,
+     "churn": {
+      "lines": 96,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-2@v15",
+     "outTok": 3371,
+     "cost": 0.10231660000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4142,
+     "churn": {
+      "lines": 62,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.6876166,
+   "health": {
+    "files": 1,
+    "maxFileLines": 492,
+    "fns": 44,
+    "fnLenMean": 19.8,
+    "fnLenMax": 348,
+    "cxMean": 3.95,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 4
+   }
+  },
+  {
+   "variant": "code-hook",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v1",
+     "outTok": 812,
+     "cost": 0.0365006,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 233,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v2",
+     "outTok": 1368,
+     "cost": 0.045778400000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 382,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v3",
+     "outTok": 2953,
+     "cost": 0.076642,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 672,
+     "churn": {
+      "lines": 35,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v4",
+     "outTok": 4231,
+     "cost": 0.11567000000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 928,
+     "churn": {
+      "lines": 38,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v5",
+     "outTok": 2607,
+     "cost": 0.08696240000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1186,
+     "churn": {
+      "lines": 35,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v6",
+     "outTok": 4491,
+     "cost": 0.13353539999999997,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1597,
+     "churn": {
+      "lines": 49,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v7",
+     "outTok": 3160,
+     "cost": 0.1085056,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2097,
+     "churn": {
+      "lines": 64,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v8",
+     "outTok": 3957,
+     "cost": 0.0985866,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2321,
+     "churn": {
+      "lines": 28,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v9",
+     "outTok": 11471,
+     "cost": 0.28867279999999995,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2967,
+     "churn": {
+      "lines": 84,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v10",
+     "outTok": 5403,
+     "cost": 0.17020999999999997,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3172,
+     "churn": {
+      "lines": 41,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v11",
+     "outTok": 3356,
+     "cost": 0.11047599999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3482,
+     "churn": {
+      "lines": 30,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v12",
+     "outTok": 613,
+     "cost": 0.0595232,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3541,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v13",
+     "outTok": 2004,
+     "cost": 0.08539479999999999,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3584,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v14",
+     "outTok": 6225,
+     "cost": 0.1852584,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3674,
+     "churn": {
+      "lines": 108,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/code-hook-3@v15",
+     "outTok": 4323,
+     "cost": 0.1236728,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4156,
+     "churn": {
+      "lines": 51,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.7253889999999998,
+   "health": {
+    "files": 1,
+    "maxFileLines": 449,
+    "fns": 37,
+    "fnLenMean": 19.4,
+    "fnLenMax": 325,
+    "cxMean": 4.89,
+    "cxMax": 25,
+    "cxOver10": 5,
+    "depthMax": 4,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 4
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v1",
+     "outTok": 632,
+     "cost": 0.024318400000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 234,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v2",
+     "outTok": 1288,
+     "cost": 0.0374128,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 388,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v3",
+     "outTok": 2277,
+     "cost": 0.0537242,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 691,
+     "churn": {
+      "lines": 51,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v4",
+     "outTok": 2604,
+     "cost": 0.064968,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 914,
+     "churn": {
+      "lines": 35,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v5",
+     "outTok": 3259,
+     "cost": 0.08668039999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1207,
+     "churn": {
+      "lines": 55,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v6",
+     "outTok": 3901,
+     "cost": 0.1002622,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1626,
+     "churn": {
+      "lines": 70,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v7",
+     "outTok": 3682,
+     "cost": 0.0901312,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2252,
+     "churn": {
+      "lines": 76,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v8",
+     "outTok": 4290,
+     "cost": 0.119468,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2479,
+     "churn": {
+      "lines": 28,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v9",
+     "outTok": 10343,
+     "cost": 0.23802340000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3099,
+     "churn": {
+      "lines": 76,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v10",
+     "outTok": 6800,
+     "cost": 0.1658852,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3301,
+     "churn": {
+      "lines": 56,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v11",
+     "outTok": 4935,
+     "cost": 0.1319734,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3635,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v12",
+     "outTok": 1062,
+     "cost": 0.069703,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3695,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v13",
+     "outTok": 1824,
+     "cost": 0.07357119999999999,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3744,
+     "churn": {
+      "lines": 14,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v14",
+     "outTok": 1375,
+     "cost": 0.08230699999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3787,
+     "churn": {
+      "lines": 6,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-1@v15",
+     "outTok": 3977,
+     "cost": 0.12537220000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4268,
+     "churn": {
+      "lines": 59,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.4638005999999997,
+   "health": {
+    "files": 1,
+    "maxFileLines": 524,
+    "fns": 39,
+    "fnLenMean": 19.1,
+    "fnLenMax": 352,
+    "cxMean": 4.44,
+    "cxMax": 25,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v1",
+     "outTok": 652,
+     "cost": 0.024598599999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 246,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v2",
+     "outTok": 1318,
+     "cost": 0.0403114,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 404,
+     "churn": {
+      "lines": 19,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v3",
+     "outTok": 2547,
+     "cost": 0.06363160000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 736,
+     "churn": {
+      "lines": 56,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v4",
+     "outTok": 3716,
+     "cost": 0.0985492,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1006,
+     "churn": {
+      "lines": 60,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v5",
+     "outTok": 2327,
+     "cost": 0.0644846,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1276,
+     "churn": {
+      "lines": 49,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v6",
+     "outTok": 4199,
+     "cost": 0.10316499999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1730,
+     "churn": {
+      "lines": 70,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v7",
+     "outTok": 3834,
+     "cost": 0.08912320000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2291,
+     "churn": {
+      "lines": 86,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v8",
+     "outTok": 3597,
+     "cost": 0.1184754,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2527,
+     "churn": {
+      "lines": 42,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v9",
+     "outTok": 9770,
+     "cost": 0.25499340000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3263,
+     "churn": {
+      "lines": 103,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v10",
+     "outTok": 8681,
+     "cost": 0.2234216,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3504,
+     "churn": {
+      "lines": 59,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v11",
+     "outTok": 3648,
+     "cost": 0.117892,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3847,
+     "churn": {
+      "lines": 42,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v12",
+     "outTok": 811,
+     "cost": 0.0660288,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3915,
+     "churn": {
+      "lines": 14,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v13",
+     "outTok": 1938,
+     "cost": 0.095723,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3954,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v14",
+     "outTok": 1824,
+     "cost": 0.0814776,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4015,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-2@v15",
+     "outTok": 3033,
+     "cost": 0.0970714,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4537,
+     "churn": {
+      "lines": 71,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.5389468,
+   "health": {
+    "files": 1,
+    "maxFileLines": 628,
+    "fns": 40,
+    "fnLenMean": 24.1,
+    "fnLenMax": 453,
+    "cxMean": 4.78,
+    "cxMax": 27,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 2
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v1",
+     "outTok": 634,
+     "cost": 0.0242586,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 215,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v2",
+     "outTok": 1347,
+     "cost": 0.040400200000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 380,
+     "churn": {
+      "lines": 19,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v3",
+     "outTok": 2370,
+     "cost": 0.060545,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 668,
+     "churn": {
+      "lines": 39,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v4",
+     "outTok": 3121,
+     "cost": 0.075921,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 956,
+     "churn": {
+      "lines": 46,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v5",
+     "outTok": 3829,
+     "cost": 0.0825188,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1181,
+     "churn": {
+      "lines": 80,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v6",
+     "outTok": 4137,
+     "cost": 0.12109399999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1632,
+     "churn": {
+      "lines": 72,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v7",
+     "outTok": 4247,
+     "cost": 0.09397059999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2179,
+     "churn": {
+      "lines": 72,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v8",
+     "outTok": 3099,
+     "cost": 0.09600820000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2391,
+     "churn": {
+      "lines": 27,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v9",
+     "outTok": 10256,
+     "cost": 0.24568919999999997,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2947,
+     "churn": {
+      "lines": 79,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v10",
+     "outTok": 6349,
+     "cost": 0.17756100000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3179,
+     "churn": {
+      "lines": 49,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v11",
+     "outTok": 3138,
+     "cost": 0.0968378,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3529,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v12",
+     "outTok": 1022,
+     "cost": 0.0653874,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3585,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v13",
+     "outTok": 1892,
+     "cost": 0.08937699999999998,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3622,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v14",
+     "outTok": 1816,
+     "cost": 0.0776988,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3632,
+     "churn": {
+      "lines": 62,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-3@v15",
+     "outTok": 3727,
+     "cost": 0.09782479999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4115,
+     "churn": {
+      "lines": 69,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.4450924,
+   "health": {
+    "files": 1,
+    "maxFileLines": 520,
+    "fns": 47,
+    "fnLenMean": 19.8,
+    "fnLenMax": 366,
+    "cxMean": 3.53,
+    "cxMax": 24,
+    "cxOver10": 3,
+    "depthMax": 3,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 4
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v1",
+     "outTok": 696,
+     "cost": 0.0350048,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 238,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v2",
+     "outTok": 1369,
+     "cost": 0.041034600000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 394,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v3",
+     "outTok": 2397,
+     "cost": 0.0635734,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 723,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v4",
+     "outTok": 2429,
+     "cost": 0.0749602,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 944,
+     "churn": {
+      "lines": 37,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v5",
+     "outTok": 2749,
+     "cost": 0.0674088,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1193,
+     "churn": {
+      "lines": 74,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v6",
+     "outTok": 4285,
+     "cost": 0.12123300000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1633,
+     "churn": {
+      "lines": 66,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v7",
+     "outTok": 3606,
+     "cost": 0.08476020000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2250,
+     "churn": {
+      "lines": 85,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v8",
+     "outTok": 4469,
+     "cost": 0.1310222,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2483,
+     "churn": {
+      "lines": 35,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v9",
+     "outTok": 10332,
+     "cost": 0.2535674,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3105,
+     "churn": {
+      "lines": 86,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v10",
+     "outTok": 6445,
+     "cost": 0.1571686,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3318,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v11",
+     "outTok": 3464,
+     "cost": 0.11020920000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3675,
+     "churn": {
+      "lines": 35,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v12",
+     "outTok": 597,
+     "cost": 0.056191000000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3735,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v13",
+     "outTok": 2027,
+     "cost": 0.09462979999999999,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3777,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v14",
+     "outTok": 3961,
+     "cost": 0.1163612,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3834,
+     "churn": {
+      "lines": 89,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-1@v15",
+     "outTok": 3819,
+     "cost": 0.105883,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4437,
+     "churn": {
+      "lines": 81,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.5130073999999998,
+   "health": {
+    "files": 1,
+    "maxFileLines": 561,
+    "fns": 50,
+    "fnLenMean": 19.5,
+    "fnLenMax": 380,
+    "cxMean": 3.62,
+    "cxMax": 18,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 1
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v1",
+     "outTok": 705,
+     "cost": 0.0253136,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 248,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v2",
+     "outTok": 1446,
+     "cost": 0.0423016,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 432,
+     "churn": {
+      "lines": 29,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v3",
+     "outTok": 2249,
+     "cost": 0.058719400000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 739,
+     "churn": {
+      "lines": 45,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v4",
+     "outTok": 2947,
+     "cost": 0.08010540000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1012,
+     "churn": {
+      "lines": 48,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v5",
+     "outTok": 3358,
+     "cost": 0.07929860000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1259,
+     "churn": {
+      "lines": 82,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v6",
+     "outTok": 3783,
+     "cost": 0.09879220000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1690,
+     "churn": {
+      "lines": 65,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v7",
+     "outTok": 3078,
+     "cost": 0.1010162,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2341,
+     "churn": {
+      "lines": 84,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v8",
+     "outTok": 3953,
+     "cost": 0.11882599999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2570,
+     "churn": {
+      "lines": 27,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v9",
+     "outTok": 10754,
+     "cost": 0.27012400000000003,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3232,
+     "churn": {
+      "lines": 85,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v10",
+     "outTok": 8365,
+     "cost": 0.19865439999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3421,
+     "churn": {
+      "lines": 55,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v11",
+     "outTok": 4439,
+     "cost": 0.1340452,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3793,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v12",
+     "outTok": 607,
+     "cost": 0.0545672,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3853,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v13",
+     "outTok": 1937,
+     "cost": 0.0757796,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3898,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v14",
+     "outTok": 6909,
+     "cost": 0.16028019999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3980,
+     "churn": {
+      "lines": 99,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-2@v15",
+     "outTok": 2917,
+     "cost": 0.08937160000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4494,
+     "churn": {
+      "lines": 60,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.5871951999999998,
+   "health": {
+    "files": 1,
+    "maxFileLines": 545,
+    "fns": 51,
+    "fnLenMean": 17.4,
+    "fnLenMax": 355,
+    "cxMean": 3.57,
+    "cxMax": 23,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v1",
+     "outTok": 677,
+     "cost": 0.024929200000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 237,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v2",
+     "outTok": 1341,
+     "cost": 0.038342,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 386,
+     "churn": {
+      "lines": 17,
+      "files": 1
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v3",
+     "outTok": 3340,
+     "cost": 0.0821088,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 733,
+     "churn": {
+      "lines": 53,
+      "files": 1
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v4",
+     "outTok": 3037,
+     "cost": 0.07536599999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1036,
+     "churn": {
+      "lines": 58,
+      "files": 1
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v5",
+     "outTok": 4092,
+     "cost": 0.10160060000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1298,
+     "churn": {
+      "lines": 86,
+      "files": 1
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v6",
+     "outTok": 3753,
+     "cost": 0.0949328,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1737,
+     "churn": {
+      "lines": 64,
+      "files": 1
+     }
+    },
+    {
+     "k": 7,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v7",
+     "outTok": 2990,
+     "cost": 0.0768824,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2341,
+     "churn": {
+      "lines": 81,
+      "files": 1
+     }
+    },
+    {
+     "k": 8,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v8",
+     "outTok": 3787,
+     "cost": 0.1169768,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2602,
+     "churn": {
+      "lines": 34,
+      "files": 1
+     }
+    },
+    {
+     "k": 9,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v9",
+     "outTok": 8604,
+     "cost": 0.2245164,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3189,
+     "churn": {
+      "lines": 94,
+      "files": 1
+     }
+    },
+    {
+     "k": 10,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v10",
+     "outTok": 5939,
+     "cost": 0.17102339999999996,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3349,
+     "churn": {
+      "lines": 52,
+      "files": 1
+     }
+    },
+    {
+     "k": 11,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v11",
+     "outTok": 4376,
+     "cost": 0.12703319999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3704,
+     "churn": {
+      "lines": 33,
+      "files": 1
+     }
+    },
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v12",
+     "outTok": 849,
+     "cost": 0.0651064,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3764,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v13",
+     "outTok": 1873,
+     "cost": 0.0872064,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3799,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v14",
+     "outTok": 2691,
+     "cost": 0.08976699999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3879,
+     "churn": {
+      "lines": 19,
+      "files": 1
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/split-xl/work/evolve-xl/engage-split-3@v15",
+     "outTok": 3118,
+     "cost": 0.09663440000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4344,
+     "churn": {
+      "lines": 59,
+      "files": 1
+     }
+    }
+   ],
+   "cost": 1.4724258,
+   "health": {
+    "files": 1,
+    "maxFileLines": 546,
+    "fns": 41,
+    "fnLenMean": 19.4,
+    "fnLenMax": 362,
+    "cxMean": 4.15,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 2
+   }
+  }
+ ]
+}

@@ -237,7 +237,45 @@ function scoreEvolve(task, runs) {
       it.churn = prev ? churn(path.join(prev, "src"), path.join(it.snap, "src")) : { lines: 0, files: 0 };
       prev = it.snap;
     }
+    r.health = health(path.join(r.iters[r.iters.length - 1].snap, "src"));
   }
+  return runs;
+}
+
+// AST code-health metrics (bench/arena/health.ts, TypeScript 5 API).
+function health(srcDir) {
+  try { return JSON.parse(execFileSync("bun", [path.join(HERE, "health.ts"), srcDir], { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"] })); } catch { return null; }
+}
+
+// Blind maintenance: a rule-free weaker model applies the extra change requests (iterations after the
+// last one the contender built) to each finished project from an earlier evolve run.
+async function maintainFrom(runDir, task) {
+  const prior = JSON.parse(fs.readFileSync(path.join(runDir, "results.json"), "utf8"))[task];
+  const T = path.join(HERE, "tasks", task);
+  const all = fs.readdirSync(T).filter((f) => /^iter-\d+\.md$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
+  const built = prior[0].iters.length;
+  const extra = all.slice(built);
+  const jobs = prior.filter((r) => VARIANTS.includes(r.variant)).map((r) => async () => {
+    const last = r.iters[built - 1].snap;
+    const dir = path.join(WORK, "maintain", `${r.variant}-${r.sample}`);
+    fs.rmSync(dir, { recursive: true, force: true });
+    fs.cpSync(path.join(last, "src"), path.join(dir, "src"), { recursive: true });
+    const iters = [{ k: built, snap: last, outTok: 0, cost: 0 }];
+    for (const [i, f] of extra.entries()) {
+      const k = built + i + 1;
+      fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
+      const res = await claude({ cwd: dir, model: MODELS.mod, tools: "Read,Write,Edit,Glob,Grep",
+        prompt: `(session ${r.sample}, step ${k})\n./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.` });
+      const snap = `${dir}@v${k}`;
+      fs.rmSync(snap, { recursive: true, force: true });
+      fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
+      iters.push({ k, snap, outTok: res.outTok, cost: res.cost });
+    }
+    return { variant: r.variant, sample: r.sample, health: health(path.join(last, "src")), iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
+  });
+  console.log(`maintain: ${jobs.length} finished projects × ${extra.length} blind change requests (${MODELS.mod}, no rules)`);
+  const runs = await pool(jobs, JOBS);
+  scoreEvolve(task, runs);
   return runs;
 }
 
@@ -286,7 +324,29 @@ function scorecard(rows, footprint, versions) {
       return early ? late / early : 0;
     })), (x) => `${x.toFixed(2)}×`, 0.05);
     add(`${task}: final size (tok)`, "min", (v) => it(v, K, (i) => i.tok), (x) => x.toFixed(0), 0.1);
+    const hh = (k) => (v) => mean(R(v).map((r) => r.health?.[k] ?? 0));
+    add(`${task}: health — files at the end`, "max", hh("files"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: health — largest file (lines)`, "min", hh("maxFileLines"), (x) => x.toFixed(0), 0.1);
+    add(`${task}: health — largest function (lines)`, "min", hh("fnLenMax"), (x) => x.toFixed(0), 0.1);
+    add(`${task}: health — max branch complexity`, "min", hh("cxMax"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: health — duplicated blocks`, "min", hh("dupBlocks"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: health — non-null assertions`, "min", hh("nonNull"), (x) => x.toFixed(1), 0.1);
     add(`${task}: runs without a build step (all snapshots)`, "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
+  }
+  if (rows.maintain) {
+    const R = (v) => rows.maintain.filter((r) => r.variant === v);
+    const last = (r) => r.iters[r.iters.length - 1];
+    add("maintain: blind maintainer — tests passed at the end", "max", (v) => mean(R(v).map((r) => last(r).score)), pct);
+    add("maintain: blind maintainer — regressions (summed)", "min", (v) => mean(R(v).map((r) => r.iters.slice(1).reduce((a, i) => a + i.regressions, 0))), (x) => x.toFixed(1), 0);
+    add("maintain: blind maintainer — lines changed", "min", (v) => mean(R(v).map((r) => r.iters.slice(1).reduce((a, i) => a + i.churn.lines, 0))), (x) => x.toFixed(0), 0.1);
+    add("maintain: blind maintainer — output tokens", "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
+    const h = (k) => (v) => mean(R(v).map((r) => r.health?.[k] ?? 0));
+    add("health: largest function (lines)", "min", h("fnLenMax"), (x) => x.toFixed(0), 0.1);
+    add("health: largest file (lines)", "min", h("maxFileLines"), (x) => x.toFixed(0), 0.1);
+    add("health: max branch complexity in a function", "min", h("cxMax"), (x) => x.toFixed(1), 0.1);
+    add("health: functions with complexity > 10", "min", h("cxOver10"), (x) => x.toFixed(1), 0.1);
+    add("health: duplicated 4-line blocks", "min", h("dupBlocks"), (x) => x.toFixed(1), 0.1);
+    add("health: non-null assertions (!)", "min", h("nonNull"), (x) => x.toFixed(1), 0.1);
   }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
@@ -320,6 +380,7 @@ function scorecard(rows, footprint, versions) {
 
 // ---------- main ----------
 const RESCORE = arg("rescore");
+const MAINTAIN = arg("maintain"); // path to an earlier evolve run: blind-maintain its finished projects
 let rows = {}, footprint, versions;
 if (RESCORE) {
   // Re-score an earlier run in place (no new model calls).
@@ -327,6 +388,10 @@ if (RESCORE) {
   ({ footprint, versions } = JSON.parse(fs.readFileSync(path.join(OUT, "footprint.json"), "utf8")));
   for (const t of ["checkout", "billing"]) if (rows[t]) scoreCode(t, rows[t]);
   for (const t of Object.keys(EVOLVE)) if (rows[t]) scoreEvolve(t, rows[t]);
+} else if (MAINTAIN) {
+  fs.mkdirSync(WORK, { recursive: true });
+  ({ footprint, versions } = JSON.parse(fs.readFileSync(path.join(MAINTAIN, "footprint.json"), "utf8")));
+  rows.maintain = await maintainFrom(path.resolve(MAINTAIN), arg("task", "evolve-xl"));
 } else {
   fs.mkdirSync(WORK, { recursive: true });
   let contenders;

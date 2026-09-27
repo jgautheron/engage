@@ -1,4 +1,4 @@
-const V = 6;
+const V = 15;
 // Reference task tracker; feature set gated by V (1..12). All mutations go through `mutate`, which
 // snapshots state for undo — the design the later iterations reward.
 

@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "description": "arena tooling deps (health.ts needs the TypeScript 5 compiler API; TS 7 dropped it)",
+  "devDependencies": { "typescript": "^5.9" }
+}

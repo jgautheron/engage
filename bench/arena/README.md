@@ -63,3 +63,12 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   +7% tokens, and no name collision occurred to test its point. **engage-brief** (reply length rule):
   rejected — no gain.
 - Prose on Sonnet 5 with tools: engage 93% vs terse hook 89% on checks, 144 vs 137 tokens per reply.
+- **Long-term health (Sonnet 5, 15 iterations, v13–v15 = actors, atomic bulk complete, edit):** new
+  `health.ts` (TS-5 AST: largest file/function, branch complexity, duplication, non-null escapes) and
+  `--maintain <run>` (a rule-free Haiku applies extra change requests to finished projects). Every
+  contender, engage included, ends with one 450–660-line file around a single 300–450-line closure.
+  Blind maintenance of engage vs ponytail code: tie (100%/100%). Engage's measurable health edges:
+  fewer non-null escapes, ~0 duplication, fewer regressions, churn at ponytail's level (after 0.4.4).
+- **engage-longterm** (split past ~300 lines, one choke point for cross-cutting concerns, name state
+  by role) and **engage-split** (extract-before-adding past ~300 lines + "already in repo? reuse it"
+  rung): rejected — no project was ever split; style rules did not change macro-architecture.

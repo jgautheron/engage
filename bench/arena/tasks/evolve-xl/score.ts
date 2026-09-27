@@ -82,6 +82,22 @@ const cases: [number, string, () => boolean][] = [
   [11, "spawn has created event", () => { const t = T(); t.addTask("a", { due: "2026-01-01", repeat: "daily" }); t.complete(1); return hist(t, 2) === "created@3"; }],
   [11, "one undo reverts both", () => { const t = T(); t.addTask("a", { due: "2026-01-01", repeat: "daily" }); t.complete(1); t.undo(); return t.list({ all: true }).length === 1 && t.get(1).status === "todo" && t.addTask("b").id === 2; }],
   [11, "spawn keeps parent", () => { const t = T(); t.addTask("p"); t.addTask("a", { parent: 1, due: "2026-01-01", repeat: "daily" }); t.complete(2); return t.get(3).parent === 1 && throws(() => t.complete(1), /open subtasks/); }],
+  // v13
+  [13, "events carry actor", () => { const t = T(); t.addTask("a"); t.setActor("ann"); t.complete(1); return t.history(1).map((e: any) => `${e.type}:${e.actor}`).join() === "created:system,completed:ann"; }],
+  [13, "setActor not undoable", () => { const t = T(); t.addTask("a"); t.setActor("bo"); t.undo(); return t.list().length === 0 && (t.addTask("b"), t.history(1)[0].actor === "bo"); }],
+  [13, "actor on every mutation event", () => { const t = T(); t.setActor("cy"); t.createProject("H"); t.addTask("a", { project: "p1", tags: ["x"] }); t.tag(1, "y"); t.untag(1, "x"); t.complete(1); t.reopen(1); t.deleteProject("p1"); return t.history(1).every((e: any) => e.actor === "cy") && t.history(1).length === 6; }],
+  [13, "actor survives export", () => { const t = T(); t.setActor("di"); t.addTask("a"); return m.importTracker(t.export()).history(1)[0].actor === "di"; }],
+  // v14
+  [14, "completeMany", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.addTask("c"); return ids(t.completeMany([3, 1])) === "3,1" && t.get(2).status === "todo" && t.get(1).status === "done"; }],
+  [14, "completeMany all-or-nothing", () => { const t = T(); t.addTask("a"); t.addTask("b"); return throws(() => t.completeMany([1, 9]), /unknown task/) && t.get(1).status === "todo"; }],
+  [14, "completeMany open subtasks rolls back", () => { const t = T(); t.addTask("a"); t.addTask("p"); t.addTask("c", { parent: 2 }); return throws(() => t.completeMany([1, 2]), /open subtasks/) && t.get(1).status === "todo" && t.history(1).length === 1; }],
+  [14, "completeMany one undo + recurring", () => { const t = T(); t.addTask("a"); t.addTask("r", { due: "2026-01-01", repeat: "daily" }); t.completeMany([1, 2]); const spawned = t.list({ all: true }).length === 3; t.undo(); return spawned && t.list({ all: true }).length === 2 && t.get(1).status === "todo" && t.get(2).status === "todo"; }],
+  // v15
+  [15, "edit fields", () => { const t = T(); t.createProject("H"); t.addTask("a"); const e = t.edit(1, { title: " b ", priority: "high", due: "2026-02-03", tags: ["Y", "x"], project: "p1" }); return e.title === "b" && e.priority === 1 && e.due === "2026-02-03" && e.tags.join() === "x,y" && e.project === "p1"; }],
+  [15, "edit validates, all or nothing", () => { const t = T(); t.addTask("a"); return throws(() => t.edit(1, { title: "z", due: "2026-13-01" }), /invalid date/) && t.get(1).title === "a" && throws(() => t.edit(1, { priority: 9 }), /invalid priority/) && throws(() => t.edit(1, { title: " " }), /empty title/); }],
+  [15, "edit project null removes", () => { const t = T(); t.createProject("H"); t.addTask("a", { project: "p1" }); t.edit(1, { project: null }); return t.get(1).project === undefined && throws(() => t.edit(1, { project: "p9" }), /unknown project/); }],
+  [15, "edited event only on change", () => { const t = T(); t.addTask("a"); t.edit(1, { title: "a" }); t.edit(1, { title: "b" }); return t.history(1).map((e: any) => e.type).join() === "created,edited"; }],
+  [15, "edit one undo", () => { const t = T(); t.addTask("a", { tags: ["x"] }); t.edit(1, { title: "b", tags: [] }); t.undo(); return t.get(1).title === "a" && t.get(1).tags.join() === "x"; }],
   // v12
   [12, "stats", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.addTask("c"); t.complete(2); return JSON.stringify(t.stats()) === JSON.stringify({ todo: 2, done: 1 }); }],
 ];

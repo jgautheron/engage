@@ -5,7 +5,7 @@ const V = 2;
 type Status = "todo" | "done";
 export interface Task { id: number; title: string; status: Status; priority?: string | number; due?: string; tags?: string[]; project?: string; parent?: number; repeat?: "daily" | "weekly" }
 export interface Project { id: string; name: string }
-type Ev = { type: string; seq: number };
+type Ev = { type: string; seq: number; actor?: string };
 interface State { tasks: Task[]; projects: Project[]; nextTask: number; nextProject: number; seq: number; events: Record<number, Ev[]> }
 
 const NAMES: Record<string, number> = { high: 1, normal: 3, low: 5 };
@@ -36,7 +36,8 @@ export function createTracker(init?: State) {
   let s: State = init ?? { tasks: [], projects: [], nextTask: 1, nextProject: 1, seq: 0, events: {} };
   const past: State[] = [];
   const find = (id: number) => { const t = s.tasks.find((x) => x.id === id); if (!t) throw new Error("unknown task"); return t; };
-  const event = (id: number, type: string) => { if (V < 9) return; (s.events[id] ??= []).push({ type, seq: ++s.seq }); };
+  let actor = "system";
+  const event = (id: number, type: string) => { if (V < 9) return; const e: Ev = { type, seq: ++s.seq }; if (V >= 13) e.actor = actor; (s.events[id] ??= []).push(e); };
   function mutate<T>(f: () => T): T {
     const before = clone(s);
     try { const r = f(); if (V >= 5) past.push(before); return r; } catch (e) { s = before; throw e; }
@@ -49,6 +50,19 @@ export function createTracker(init?: State) {
     return a.id - b.id;
   });
 
+  function completeOne(id: number): Task {
+    const t = find(id);
+    if (t.status === "done") return out(t);
+    if (V >= 8 && descendants(id).some((d) => d.status !== "done")) throw new Error("open subtasks");
+    t.status = "done";
+    event(id, "completed");
+    if (V >= 11 && t.repeat) {
+      const n: Task = { ...clone(t), id: s.nextTask++, status: "todo", due: addDays(t.due!, t.repeat === "daily" ? 1 : 7) };
+      s.tasks.push(n);
+      event(n.id, "created");
+    }
+    return out(t);
+  }
   const tracker = {
     addTask(title: string, opts: any = {}): Task {
       return mutate(() => {
@@ -76,21 +90,7 @@ export function createTracker(init?: State) {
       if (f.project !== undefined) ts = ts.filter((t) => t.project === f.project);
       return sortTasks(ts, V >= 3 && f.sort === "due").map(out);
     },
-    complete(id: number): Task {
-      return mutate(() => {
-        const t = find(id);
-        if (t.status === "done") return out(t);
-        if (V >= 8 && descendants(id).some((d) => d.status !== "done")) throw new Error("open subtasks");
-        t.status = "done";
-        event(id, "completed");
-        if (V >= 11 && t.repeat) {
-          const n: Task = { ...clone(t), id: s.nextTask++, status: "todo", due: addDays(t.due!, t.repeat === "daily" ? 1 : 7) };
-          s.tasks.push(n);
-          event(n.id, "created");
-        }
-        return out(t);
-      });
-    },
+    complete(id: number): Task { return mutate(() => completeOne(id)); },
   } as any;
   if (V >= 3) tracker.overdue = (today: string) => s.tasks.filter((t) => t.status !== "done" && t.due && t.due < today)
     .sort((a, b) => (a.due! < b.due! ? -1 : a.due! > b.due! ? 1 : a.id - b.id)).map(out);
@@ -120,6 +120,19 @@ export function createTracker(init?: State) {
     tracker.reopen = (id: number) => mutate(() => { const t = find(id); if (t.status === "done") { t.status = "todo"; event(id, "reopened"); } return out(t); });
     tracker.history = (id: number) => { find(id); return clone(s.events[id] ?? []); };
   }
+  if (V >= 13) tracker.setActor = (name: string) => { actor = name; };
+  if (V >= 14) tracker.completeMany = (ids: number[]) => mutate(() => ids.map((id) => completeOne(id)));
+  if (V >= 15) tracker.edit = (id: number, ch: any) => mutate(() => {
+    const t = find(id);
+    const before = JSON.stringify(t);
+    if ("title" in ch) { const x = String(ch.title).trim(); if (!x) throw new Error("empty title"); t.title = x; }
+    if ("priority" in ch) t.priority = normPriority(ch.priority);
+    if ("due" in ch) { if (!validDate(ch.due)) throw new Error("invalid date"); t.due = ch.due; }
+    if ("tags" in ch) t.tags = normTags(ch.tags ?? []);
+    if ("project" in ch) { if (ch.project === null) delete t.project; else { if (!s.projects.some((p) => p.id === ch.project)) throw new Error("unknown project"); t.project = ch.project; } }
+    if (JSON.stringify(t) !== before) event(id, "edited");
+    return out(t);
+  });
   if (V >= 12) tracker.stats = () => ({ todo: s.tasks.filter((t) => t.status === "todo").length, done: s.tasks.filter((t) => t.status === "done").length });
   return tracker;
 }

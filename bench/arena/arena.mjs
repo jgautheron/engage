@@ -13,7 +13,7 @@ const REPO = path.resolve(HERE, "../..");
 const CACHE = path.join(os.homedir(), ".cache", "engage-bench");
 const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > 0 ? process.argv[i + 1] : d; };
 const N = +arg("n", 2);
-const SUITES = arg("suites", "prose,checkout,billing").split(",");
+const SUITES = arg("suites", "prose,checkout,billing,evolve").split(",");
 const VARIANTS = arg("variants", "base,terse-hook,code-hook,both-hooks,engage").split(",");
 const MODELS = { gen: arg("gen-model", "sonnet"), mod: arg("mod-model", "haiku"), prose: arg("prose-model", "sonnet") };
 const JOBS = +arg("jobs", 4);
@@ -178,6 +178,57 @@ function scoreCode(task, runs) {
   return runs;
 }
 
+// Evolution: the same contender builds v1 from scratch, then applies change requests v2..v5 in fresh
+// sessions, seeing only its own code and the new request. Scored per iteration against cumulative tests.
+function churn(a, b) {
+  let out = "";
+  try { out = execFileSync("git", ["diff", "--no-index", "--numstat", a, b], { encoding: "utf8" }); } catch (e) { out = String(e.stdout ?? ""); }
+  const rows = out.trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
+  return { lines: rows.reduce((s, [ad, rm]) => s + (+ad || 0) + (+rm || 0), 0), files: rows.length };
+}
+async function evolveTask(contenders) {
+  const T = path.join(HERE, "tasks", "evolve");
+  const ITERS = 5;
+  const jobs = [];
+  for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
+    const dir = path.join(WORK, "evolve", `${v}-${s}`);
+    fs.mkdirSync(dir, { recursive: true });
+    const iters = [];
+    for (let k = 1; k <= ITERS; k++) {
+      fs.copyFileSync(path.join(T, `iter-${k}.md`), path.join(dir, "REQUEST.md"));
+      const prompt = k === 1
+        ? "Build what ./REQUEST.md asks for, under ./src. Do not write tests. You cannot run code; get it right in one pass."
+        : "./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.";
+      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, prompt) });
+      const snap = `${dir}@v${k}`;
+      fs.rmSync(snap, { recursive: true, force: true });
+      if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
+      iters.push({ k, snap, outTok: r.outTok, cost: r.cost });
+    }
+    return { variant: v, sample: s, dir, iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
+  });
+  console.log(`evolve: ${jobs.length} projects × ${ITERS} iterations`);
+  return scoreEvolve(await pool(jobs, JOBS));
+}
+function scoreEvolve(runs) {
+  const T = path.join(HERE, "tasks", "evolve");
+  for (const r of runs) {
+    let prev = null;
+    for (const it of r.iters) {
+      const has = fs.existsSync(path.join(it.snap, "src/index.ts"));
+      if (has) build(it.snap);
+      const j = has ? JSON.parse(bun(["score.ts", it.snap, String(it.k)], T) || "{}") : { pass: 0, total: 1, failed: [] };
+      it.score = j.total ? j.pass / j.total : 0;
+      it.regressions = (j.failed ?? []).filter((f) => +f.slice(1, f.indexOf(":")) < it.k).length;
+      it.native = has ? loadsNatively(it.snap) : 0;
+      it.tok = has ? JSON.parse(bun(["metrics.ts", it.snap], path.join(REPO, "bench/multifile")) || "{}").tok ?? 0 : 0;
+      it.churn = prev ? churn(path.join(prev, "src"), path.join(it.snap, "src")) : { lines: 0, files: 0 };
+      prev = it.snap;
+    }
+  }
+  return runs;
+}
+
 // ---------- scorecard ----------
 const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 function scorecard(rows, footprint, versions) {
@@ -203,6 +254,19 @@ function scorecard(rows, footprint, versions) {
     add(`${t}: code size (tok)`, "min", (v) => mean(R(v).map((r) => r.metrics?.tok ?? 0)), (x) => x.toFixed(0), 0.05);
     add(`${t}: generation output tokens`, "min", (v) => mean(R(v).map((r) => r.genOutTok)), (x) => x.toFixed(0), 0.05);
   }
+  if (rows.evolve) {
+    const R = (v) => rows.evolve.filter((r) => r.variant === v);
+    const it = (v, k, f) => mean(R(v).map((r) => f(r.iters[k - 1])));
+    add("evolve: tests passed, mean over v1–v5", "max", (v) => mean([1, 2, 3, 4, 5].map((k) => it(v, k, (i) => i.score))), pct);
+    add("evolve: tests passed at v5 (all features)", "max", (v) => it(v, 5, (i) => i.score), pct);
+    add("evolve: regressions (earlier cases broken, sum v2–v5)", "min", (v) => [2, 3, 4, 5].reduce((a, k) => a + it(v, k, (i) => i.regressions), 0), (x) => x.toFixed(1), 0);
+    add("evolve: v1 size (no premature abstraction, tok)", "min", (v) => it(v, 1, (i) => i.tok), (x) => x.toFixed(0), 0.1);
+    add("evolve: lines changed v3+v4 (design pays off)", "min", (v) => it(v, 3, (i) => i.churn.lines) + it(v, 4, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
+    add("evolve: lines changed v5 (trivial change stays trivial)", "min", (v) => it(v, 5, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
+    add("evolve: output tokens, all 5 iterations", "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
+    add("evolve: final size v5 (tok)", "min", (v) => it(v, 5, (i) => i.tok), (x) => x.toFixed(0), 0.1);
+    add("evolve: runs without a build step (all snapshots)", "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
+  }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
   const vs = VARIANTS;
@@ -227,7 +291,7 @@ function scorecard(rows, footprint, versions) {
   }
   const cost = Object.values(rows).flat().reduce((s, r) => s + (r.cost ?? 0), 0);
   md += `\n**engage: ${wins} best · ${ties} tied · ${losses.length} behind**${losses.length ? ` (${losses.join("; ")})` : ""} · run cost $${cost.toFixed(2)}\n`;
-  md += `\nTie band: ±2% for rates, ±5% for token counts. Small n — rerun with a larger --n before trusting a single-cell gap.\n`;
+  md += `\nTie band: ±2% for rates, ±5% for token counts, ±10% for code size and lines changed. Small n — rerun with a larger --n before trusting a single-cell gap.\n`;
   return md;
 }
 
@@ -239,6 +303,7 @@ if (RESCORE) {
   rows = JSON.parse(fs.readFileSync(path.join(OUT, "results.json"), "utf8"));
   ({ footprint, versions } = JSON.parse(fs.readFileSync(path.join(OUT, "footprint.json"), "utf8")));
   for (const t of ["checkout", "billing"]) if (rows[t]) scoreCode(t, rows[t]);
+  if (rows.evolve) scoreEvolve(rows.evolve);
 } else {
   fs.mkdirSync(WORK, { recursive: true });
   let contenders;
@@ -246,6 +311,7 @@ if (RESCORE) {
   fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
   if (SUITES.includes("prose")) rows.prose = await prose(contenders);
   for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
+  if (SUITES.includes("evolve")) rows.evolve = await evolveTask(contenders);
 }
 fs.writeFileSync(path.join(OUT, "results.json"), JSON.stringify(rows, null, 1));
 const md = scorecard(rows, footprint, versions);

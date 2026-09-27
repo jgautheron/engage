@@ -1,0 +1,30 @@
+{
+  "footprint": {
+    "base": {
+      "once": 0,
+      "perTurn": 0
+    },
+    "terse-hook": {
+      "once": 1301,
+      "perTurn": 61
+    },
+    "code-hook": {
+      "once": 1307,
+      "perTurn": 0
+    },
+    "both-hooks": {
+      "once": 2608,
+      "perTurn": 61
+    },
+    "engage": {
+      "once": 1095,
+      "perTurn": 0
+    }
+  },
+  "versions": {
+    "terse-hook": "2fd153c",
+    "code-hook": "e3ba2aa",
+    "both-hooks": "2fd153c+e3ba2aa",
+    "engage": "e3273bf"
+  }
+}

@@ -15,7 +15,7 @@ const arg = (k, d) => { const i = process.argv.indexOf(`--${k}`); return i > 0 ?
 const N = +arg("n", 2);
 const SUITES = arg("suites", "prose,checkout,billing,evolve").split(",");
 const VARIANTS = arg("variants", "base,terse-hook,code-hook,both-hooks,engage").split(",");
-const MODELS = { gen: arg("gen-model", "sonnet"), mod: arg("mod-model", "haiku"), prose: arg("prose-model", "sonnet") };
+const MODELS = { gen: arg("gen-model", "claude-sonnet-5"), mod: arg("mod-model", "haiku"), prose: arg("prose-model", "claude-sonnet-5") };
 const JOBS = +arg("jobs", 4);
 const OUT = path.resolve(arg("out", path.join(HERE, "results", new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-"))));
 const WORK = path.join(OUT, "work");
@@ -109,7 +109,8 @@ async function prose(contenders) {
   const jobs = [];
   for (const [v, c] of Object.entries(contenders)) for (const p of prompts) for (let s = 1; s <= N; s++) jobs.push(async () => {
     const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "arena-prose-"));
-    const r = await claude({ cwd, model: MODELS.prose, prompt: wrap(c, p.prompt), system: c.system, tools: "" });
+    // Read-only tools in an empty dir: a model that looks before answering finds nothing and must still answer.
+    const r = await claude({ cwd, model: MODELS.prose, prompt: wrap(c, p.prompt), system: c.system, tools: "Read,Glob,Grep" });
     const checks = [...p.must.map((re) => new RegExp(re, "im").test(r.text)), ...(p.mustNot ?? []).map((re) => !new RegExp(re, "im").test(r.text)), !SLOP.test(r.text)];
     const row = { variant: v, id: p.id, sample: s, ok: r.ok, pass: checks.filter(Boolean).length, checks: checks.length, outTok: r.outTok, words: r.text.split(/\s+/).filter(Boolean).length, cost: r.cost };
     fs.mkdirSync(path.join(WORK, "prose"), { recursive: true });

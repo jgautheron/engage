@@ -54,3 +54,12 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   89% at v12, 14.5 vs 20.4 regressions, late/early cost per iteration 1.49× vs 1.78×; Sonnet 4/4 vs 3/4
   projects correct at v12 (ponytail's miss: undo stack named `history`, colliding with v9's `history()`).
   Ponytail stays smaller: +5% (Haiku) / +12% (Sonnet) final size for engage.
+- **Sonnet 5 focus (2026-09-27)** — default models pinned to `claude-sonnet-5` (the `sonnet` alias
+  already resolved to it). Prose runs now get read-only tools in an empty dir: without them, "look at
+  the repo first" (good agent behaviour) was scored as a failure on vague requests.
+- **engage-extend** ("extend the existing structure; restructure only when the change can't fit, and
+  say so"): **adopted in 0.4.4** — design-heavy churn 253 → 213 lines (ponytail 216), same tokens,
+  same correctness. **engage-verify** (re-read touched files, run checks): held — churn also down but
+  +7% tokens, and no name collision occurred to test its point. **engage-brief** (reply length rule):
+  rejected — no gain.
+- Prose on Sonnet 5 with tools: engage 93% vs terse hook 89% on checks, 144 vs 137 tokens per reply.

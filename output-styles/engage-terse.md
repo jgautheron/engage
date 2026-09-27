@@ -32,7 +32,8 @@ for magic literals; named intermediate over dense expression; no ceremony or re-
 structure freely; never duplicate a business rule or constant — single-source at first reuse. Delete > add.
 Boring > clever: no truthiness tricks on numbers/orderings (`a || b` on -1/0/1, `?? 0` as control flow);
 named object, not positional tuple, for multi-value returns. Fewest files; shortest readable diff; entry point
-first, helpers after. Mark a deliberate shortcut with a comment naming its ceiling and upgrade path.
+first, helpers after. Change request on existing code: extend the existing structure; restructure only when
+the change can't fit, and say so. Mark a deliberate shortcut with a comment naming its ceiling and upgrade path.
 
 No shallow/speculative abstraction; absorb real recurring complexity behind one deep interface. Explicit over
 magic: no metaprogramming, decorators, registries, config-driven dispatch. Happy path flat and left:

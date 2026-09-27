@@ -8,7 +8,8 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const env = { ...process.env, XDG_CONFIG_HOME: fs.mkdtempSync(path.join(os.tmpdir(), "engage-cx-")) };
-const run = (file, ...args) => execFileSync("node", [path.join(here, file), ...args], { env, encoding: "utf8" });
+const run = (file, ...args) => execFileSync("node", [path.join(here, file), ...args], { env, encoding: "utf8", input: "" });
+const hook = (source) => JSON.parse(execFileSync("node", [path.join(here, "activate.mjs")], { env, encoding: "utf8", input: JSON.stringify({ source }) }));
 
 test("codex: activate emits SessionStart context; CLI switches persist", () => {
   let out = JSON.parse(run("activate.mjs"));
@@ -26,6 +27,12 @@ test("codex: activate emits SessionStart context; CLI switches persist", () => {
 
   assert.equal(run("engage.mjs", "off").trim(), "engage: style off · trek off");
   assert.deepEqual(JSON.parse(run("activate.mjs")), {});
+});
+
+test("codex: compaction re-injects the style with a continue-don't-greet note; startup doesn't", () => {
+  run("engage.mjs", "terse");
+  assert.match(hook("compact").hookSpecificOutput.additionalContext, /continue the work already in progress/);
+  assert.doesNotMatch(hook("startup").hookSpecificOutput.additionalContext, /compacted/);
 
   assert.throws(() => run("engage.mjs", "ultra"), /unknown style/);
 });

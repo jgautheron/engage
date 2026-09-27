@@ -53,6 +53,9 @@ function buildContenders() {
     "both-hooks": { start: [terse.start, code.start], turn: [terse.turn, code.turn] },
     engage: { system: engage },
   };
+  // Candidate engage revisions to A/B: bench/arena/candidates/<name>.md → contender <name>.
+  const cand = path.join(HERE, "candidates");
+  if (fs.existsSync(cand)) for (const f of fs.readdirSync(cand).filter((f) => f.endsWith(".md"))) all[f.slice(0, -3)] = { system: fs.readFileSync(path.join(cand, f), "utf8").trim() };
   const versions = { "terse-hook": cav.sha, "code-hook": pt.sha, "both-hooks": `${cav.sha}+${pt.sha}`, engage: execFileSync("git", ["-C", REPO, "rev-parse", "--short", "HEAD"]).toString().trim() };
   const footprint = Object.fromEntries(Object.entries(all).map(([k, v]) => [k, {
     once: Math.round(((v.system ?? "") + (v.start ?? []).join("")).length / 4),
@@ -186,16 +189,22 @@ function churn(a, b) {
   const rows = out.trim().split("\n").filter(Boolean).map((l) => l.split("\t"));
   return { lines: rows.reduce((s, [ad, rm]) => s + (+ad || 0) + (+rm || 0), 0), files: rows.length };
 }
-async function evolveTask(contenders) {
-  const T = path.join(HERE, "tasks", "evolve");
-  const ITERS = 5;
+// Evolution configs: hard = iterations where architecture decides the cost; trivial = should stay tiny.
+const EVOLVE = {
+  evolve: { hard: [3, 4], trivial: 5 },
+  "evolve-xl": { hard: [5, 9, 10, 11], trivial: 12 },
+};
+async function evolveTask(task, contenders) {
+  const T = path.join(HERE, "tasks", task);
+  const files = fs.readdirSync(T).filter((f) => /^iter-\d+\.md$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
   const jobs = [];
   for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
-    const dir = path.join(WORK, "evolve", `${v}-${s}`);
+    const dir = path.join(WORK, task, `${v}-${s}`);
     fs.mkdirSync(dir, { recursive: true });
     const iters = [];
-    for (let k = 1; k <= ITERS; k++) {
-      fs.copyFileSync(path.join(T, `iter-${k}.md`), path.join(dir, "REQUEST.md"));
+    for (const [i, f] of files.entries()) {
+      const k = i + 1;
+      fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
       const prompt = k === 1
         ? "Build what ./REQUEST.md asks for, under ./src. Do not write tests. You cannot run code; get it right in one pass."
         : "./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.";
@@ -207,17 +216,18 @@ async function evolveTask(contenders) {
     }
     return { variant: v, sample: s, dir, iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
   });
-  console.log(`evolve: ${jobs.length} projects × ${ITERS} iterations`);
-  return scoreEvolve(await pool(jobs, JOBS));
+  console.log(`${task}: ${jobs.length} projects × ${files.length} iterations`);
+  return scoreEvolve(task, await pool(jobs, JOBS));
 }
-function scoreEvolve(runs) {
-  const T = path.join(HERE, "tasks", "evolve");
+function scoreEvolve(task, runs) {
+  const T = path.join(HERE, "tasks", task);
   for (const r of runs) {
     let prev = null;
     for (const it of r.iters) {
       const has = fs.existsSync(path.join(it.snap, "src/index.ts"));
       if (has) build(it.snap);
-      const j = has ? JSON.parse(bun(["score.ts", it.snap, String(it.k)], T) || "{}") : { pass: 0, total: 1, failed: [] };
+      const args = ["score.ts", it.snap, String(it.k), ...(prev ? [prev] : [])];
+      const j = has ? JSON.parse(bun(args, T) || "{}") : { pass: 0, total: 1, failed: [] };
       it.score = j.total ? j.pass / j.total : 0;
       it.regressions = (j.failed ?? []).filter((f) => +f.slice(1, f.indexOf(":")) < it.k).length;
       it.native = has ? loadsNatively(it.snap) : 0;
@@ -254,18 +264,27 @@ function scorecard(rows, footprint, versions) {
     add(`${t}: code size (tok)`, "min", (v) => mean(R(v).map((r) => r.metrics?.tok ?? 0)), (x) => x.toFixed(0), 0.05);
     add(`${t}: generation output tokens`, "min", (v) => mean(R(v).map((r) => r.genOutTok)), (x) => x.toFixed(0), 0.05);
   }
-  if (rows.evolve) {
-    const R = (v) => rows.evolve.filter((r) => r.variant === v);
+  for (const task of Object.keys(EVOLVE)) if (rows[task]) {
+    const { hard, trivial } = EVOLVE[task];
+    const R = (v) => rows[task].filter((r) => r.variant === v);
+    const K = R(VARIANTS[0])[0]?.iters.length ?? 0;
     const it = (v, k, f) => mean(R(v).map((r) => f(r.iters[k - 1])));
-    add("evolve: tests passed, mean over v1–v5", "max", (v) => mean([1, 2, 3, 4, 5].map((k) => it(v, k, (i) => i.score))), pct);
-    add("evolve: tests passed at v5 (all features)", "max", (v) => it(v, 5, (i) => i.score), pct);
-    add("evolve: regressions (earlier cases broken, sum v2–v5)", "min", (v) => [2, 3, 4, 5].reduce((a, k) => a + it(v, k, (i) => i.regressions), 0), (x) => x.toFixed(1), 0);
-    add("evolve: v1 size (no premature abstraction, tok)", "min", (v) => it(v, 1, (i) => i.tok), (x) => x.toFixed(0), 0.1);
-    add("evolve: lines changed v3+v4 (design pays off)", "min", (v) => it(v, 3, (i) => i.churn.lines) + it(v, 4, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
-    add("evolve: lines changed v5 (trivial change stays trivial)", "min", (v) => it(v, 5, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
-    add("evolve: output tokens, all 5 iterations", "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
-    add("evolve: final size v5 (tok)", "min", (v) => it(v, 5, (i) => i.tok), (x) => x.toFixed(0), 0.1);
-    add("evolve: runs without a build step (all snapshots)", "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
+    const ks = Array.from({ length: K }, (_, i) => i + 1);
+    const half = Math.floor((K - 1) / 2);
+    add(`${task}: tests passed, mean over all ${K} iterations`, "max", (v) => mean(ks.map((k) => it(v, k, (i) => i.score))), pct);
+    add(`${task}: tests passed at v${K} (every feature)`, "max", (v) => it(v, K, (i) => i.score), pct);
+    add(`${task}: regressions (earlier cases broken, summed)`, "min", (v) => ks.slice(1).reduce((a, k) => a + it(v, k, (i) => i.regressions), 0), (x) => x.toFixed(1), 0);
+    add(`${task}: v1 size — no premature abstraction (tok)`, "min", (v) => it(v, 1, (i) => i.tok), (x) => x.toFixed(0), 0.1);
+    add(`${task}: lines changed on design-heavy iterations (${hard.map((k) => "v" + k).join(",")})`, "min", (v) => hard.reduce((a, k) => a + it(v, k, (i) => i.churn.lines), 0), (x) => x.toFixed(0), 0.1);
+    add(`${task}: lines changed on the trivial v${trivial}`, "min", (v) => it(v, trivial, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
+    add(`${task}: output tokens, whole project`, "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
+    add(`${task}: cost growth — late vs early iteration tokens`, "min", (v) => mean(R(v).map((r) => {
+      const t = r.iters.filter((i) => i.k !== 1 && i.k !== trivial).map((i) => i.outTok);
+      const early = mean(t.slice(0, half)), late = mean(t.slice(-half));
+      return early ? late / early : 0;
+    })), (x) => `${x.toFixed(2)}×`, 0.05);
+    add(`${task}: final size (tok)`, "min", (v) => it(v, K, (i) => i.tok), (x) => x.toFixed(0), 0.1);
+    add(`${task}: runs without a build step (all snapshots)`, "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
   }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
@@ -276,13 +295,15 @@ function scorecard(rows, footprint, versions) {
   for (const m of metrics) {
     const vals = Object.fromEntries(vs.map((v) => [v, m.fn(v)]));
     // "base" (no rules) is the reference row, not a contender.
-    const rivals = vs.filter((v) => v !== "base");
+    const rivals = vs.filter((v) => v !== "base" && (v === "engage" || !v.startsWith("engage-")));
     const rv = rivals.map((v) => vals[v]);
     const best = m.dir === "max" ? Math.max(...rv) : Math.min(...rv);
     const within = (x) => (m.dir === "max" ? x >= best - m.tie * Math.max(1, Math.abs(best)) : x <= best + m.tie * Math.max(1, Math.abs(best)));
     const leaders = rivals.filter((v) => within(vals[v]));
     let verdict = "—";
     if (vals.engage !== undefined && rivals.length > 1) {
+      // candidates (engage-*) are compared too but never counted as rivals of engage in the verdict
+
       if (vals.engage === best && leaders.length === 1) { verdict = "✅ best"; wins++; }
       else if (within(vals.engage)) { verdict = "🟰 tied"; ties++; }
       else { verdict = "❌ behind"; losses.push(m.label); }
@@ -303,7 +324,7 @@ if (RESCORE) {
   rows = JSON.parse(fs.readFileSync(path.join(OUT, "results.json"), "utf8"));
   ({ footprint, versions } = JSON.parse(fs.readFileSync(path.join(OUT, "footprint.json"), "utf8")));
   for (const t of ["checkout", "billing"]) if (rows[t]) scoreCode(t, rows[t]);
-  if (rows.evolve) scoreEvolve(rows.evolve);
+  for (const t of Object.keys(EVOLVE)) if (rows[t]) scoreEvolve(t, rows[t]);
 } else {
   fs.mkdirSync(WORK, { recursive: true });
   let contenders;
@@ -311,7 +332,7 @@ if (RESCORE) {
   fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
   if (SUITES.includes("prose")) rows.prose = await prose(contenders);
   for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
-  if (SUITES.includes("evolve")) rows.evolve = await evolveTask(contenders);
+  for (const t of Object.keys(EVOLVE)) if (SUITES.includes(t)) rows[t] = await evolveTask(t, contenders);
 }
 fs.writeFileSync(path.join(OUT, "results.json"), JSON.stringify(rows, null, 1));
 const md = scorecard(rows, footprint, versions);

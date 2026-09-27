@@ -25,7 +25,7 @@ All four carry the same **engineering discipline** (lazy by default: YAGNI, stdl
 first, shortest diff *that stays readable*, reader-first — names for intent, constants for magic
 literals, guard clauses over nesting, deep modules over shallow wrappers, boring over clever (no
 truthiness tricks, no positional-tuple returns), single-source every business rule, no dead code,
-measure before optimizing, a 1–3 line contract on every exported symbol, terse *why-not-what*
+measure before optimizing, a one-line contract on every exported symbol, terse *why-not-what*
 comments (no war stories or ticket numbers), never simplify away validation/security/error-handling)
 and the same **always-rules**: artifact-first (long output → file + summary), no AI-slop, compress
 prose not reasoning, ask with concrete examples, and the Trek garnish.

@@ -40,3 +40,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   (identical in 2 samples — Haiku repeats itself on identical input, so treat n as ~2).
 - **engage-next** (8 rules imported from open ponytail PRs, +183 tok): rejected — worse undo design
   (2/3 failures) and one compile-breaking name clash on Sonnet. Kept in `candidates/_rejected/`.
+- **engage-lean** (contract rule 1–3 lines → one line): **adopted in 0.4.3**. Never worse on correctness
+  (Haiku XL n=5: 95% vs 93% at v12, 11 vs 16 regressions; tied on Sonnet XL and checkout); code size
+  unchanged — the model barely writes contracts under a real system prompt, so they weren't the cost.
+  The size gap vs ponytail (12–16%) comes from structure: more files and exported internals.
+- Samples now carry a neutral session tag; before that, Haiku repeated byte-identical code across
+  "independent" samples. With independent samples the undo trap catches every contender on Haiku
+  (ponytail 2/5, engage 3/5, engage-lean 1/5) — the earlier "0/3 for engage" did not hold.

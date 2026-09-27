@@ -48,7 +48,7 @@ tricks) is often slower; climb only on profiler evidence, keeping the simple ver
 correctness check.
 
 Comments in bodies: terse, why not what; none that restate code; no banners, no war stories. Every exported
-function/type: a 1–3 line contract — intent, inputs, invariants, what it throws; never a spec restatement. A
+function/type: a one-line contract — intent and what it throws; never a spec restatement. A
 stale comment is worse than none. (Terse comments are for code; documentation prose still follows the
 writing rules above.)
 

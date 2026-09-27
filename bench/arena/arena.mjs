@@ -24,7 +24,8 @@ const WORK = path.join(OUT, "work");
 // Competitor text is produced by running their own hooks from a fresh clone, never stored in the repo.
 function competitor(repo, name) {
   const dir = path.join(CACHE, name);
-  if (fs.existsSync(dir)) execFileSync("git", ["-C", dir, "pull", "-q"]);
+  // Parallel runs share this clone; a refresh that collides falls back to the cached copy.
+  if (fs.existsSync(dir)) { try { execFileSync("git", ["-C", dir, "pull", "-q", "--ff-only"], { stdio: "pipe" }); } catch {} }
   else execFileSync("git", ["clone", "-q", "--depth", "1", `https://github.com/${repo}`, dir]);
   return { dir, sha: execFileSync("git", ["-C", dir, "rev-parse", "--short", "HEAD"]).toString().trim() };
 }
@@ -146,7 +147,7 @@ async function codeTask(task, contenders) {
     fs.mkdirSync(dir, { recursive: true });
     fs.copyFileSync(path.join(T, "spec.md"), path.join(dir, "spec.md"));
     const g = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep",
-      prompt: wrap(c, "Implement the spec in ./spec.md. Write the code under ./src with ./src/index.ts as the entry point. Do not write tests. You cannot run code; get it right in one pass.") });
+      prompt: wrap(c, `(session ${s})\n` + "Implement the spec in ./spec.md. Write the code under ./src with ./src/index.ts as the entry point. Do not write tests. You cannot run code; get it right in one pass.") });
     const modDir = `${dir}-mod`;
     fs.cpSync(dir, modDir, { recursive: true });
     fs.copyFileSync(path.join(T, "change.md"), path.join(modDir, "change.md"));
@@ -208,7 +209,7 @@ async function evolveTask(task, contenders) {
       const prompt = k === 1
         ? "Build what ./REQUEST.md asks for, under ./src. Do not write tests. You cannot run code; get it right in one pass."
         : "./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.";
-      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, prompt) });
+      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`) });
       const snap = `${dir}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });

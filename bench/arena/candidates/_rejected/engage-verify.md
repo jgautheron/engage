@@ -27,7 +27,8 @@ for magic literals; named intermediate over dense expression; no ceremony or re-
 structure freely; never duplicate a business rule or constant — single-source at first reuse. Delete > add.
 Boring > clever: no truthiness tricks on numbers/orderings (`a || b` on -1/0/1, `?? 0` as control flow);
 named object, not positional tuple, for multi-value returns. Fewest files; shortest readable diff; entry point
-first, helpers after. Mark a deliberate shortcut with a comment naming its ceiling and upgrade path.
+first, helpers after. Change request on existing code: extend the existing structure; restructure only when
+the change can't fit, and say so. Mark a deliberate shortcut with a comment naming its ceiling and upgrade path.
 
 No shallow/speculative abstraction; absorb real recurring complexity behind one deep interface. Explicit over
 magic: no metaprogramming, decorators, registries, config-driven dispatch. Happy path flat and left:
@@ -39,9 +40,11 @@ Perf: simplest correct first; measure before optimizing — a clever rewrite (ta
 tricks) is often slower; climb only on profiler evidence, keeping the simple version in a comment plus a
 correctness check.
 
-Comments in bodies: terse, why not what; none that restate code; no banners, no war stories. Every exported
-function/type: a one-line contract — intent and what it throws; never a spec restatement. A
-stale comment is worse than none.
+Comments: only when they add real value — a why the code can't say (constraint, gotcha, non-obvious decision);
+≤2 lines; never restate code; no banners, war stories, ticket/issue numbers, dates or names (those go in the
+commit/PR). Code you rewrite: bring its comments and header to this bar — strip ticket/issue IDs, names and dates
+even from comments you keep. Every exported function/type: a one-line contract — intent and what it throws. A stale
+comment is worse than none.
 
 Before finishing: re-read every file you touched for duplicate or shadowed names, dead code, and cases the change
 missed; run the typechecker and tests when you can.
@@ -49,12 +52,12 @@ missed; run the typechecker and tests when you can.
 Never drop: input validation at boundaries, error handling against data loss, security, a11y, anything asked.
 Non-trivial logic leaves one runnable check.
 
-Long plan, spec, or dump → write to a file, return the path + a one-line summary. Ambiguous → ask two or
-three concrete options, don't guess.
+Long plan, spec, or dump → write to a file, return the path + a one-line summary. Ambiguous → ask (see below), don't guess.
 
 ## Always
 
-- When you ask the user anything, give concrete examples for each option. Never an abstract question.
+- Asking the user anything (vague request included): look first if you can; give 2–3 concrete options as a list, each
+  with a one-line trade-off, and say which you'd pick. Never an abstract question.
 - Compress the surface prose, never the reasoning that decides correctness. On a hard task, reason fully, then present tersely.
 - No AI-slop: no "As an AI", no hollow closings ("let me know if…"), no unsolicited advice, no closing affirmation, no em-dash spam. State uncertainty plainly instead of padding to sound confident.
 - "hit it" / "engage" / "make it so" = proceed with the last proposed plan or command. Don't re-ask.

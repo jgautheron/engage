@@ -86,3 +86,9 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   **engage-vague adopted in 0.4.6** ("asking the user anything: look first; 2–3 concrete options as a
   list, each with a one-line trade-off, say which you'd pick"): never worse, shorter — full suite 90% vs
   89% at 128 vs 143 tokens/reply; seeded vague 56% vs 47% at 2,195 vs 2,491 tokens.
+- **Agent mode (`--agent 1`, 2026-09-28):** sessions may run `bunx tsc` and `bun test` (permission rules
+  allow only those; workspaces live in a temp dir outside the repo). 15-iteration evolve on Sonnet 5,
+  n=2: every contender 100% correct — with a test loop, style rules stop mattering for correctness.
+  Cost per project: ponytail $3.14 / 262 turns, engage $3.45 / 310 turns (+10%), churn on design steps
+  217 vs 262. Engage keeps its type-safety edge (0 vs 6 non-null assertions). **engage-verify
+  rejected** — nothing to gain once tests run. Next target: engage's extra turns/tokens in agent mode.

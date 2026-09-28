@@ -17,6 +17,12 @@ const SUITES = arg("suites", "prose,checkout,billing,evolve").split(",");
 const VARIANTS = arg("variants", "base,terse-hook,code-hook,both-hooks,engage").split(",");
 const MODELS = { gen: arg("gen-model", "claude-sonnet-5"), mod: arg("mod-model", "haiku"), prose: arg("prose-model", "claude-sonnet-5") };
 const JOBS = +arg("jobs", 4);
+// --agent 1: sessions may run the typechecker and tests (like real use). Workspaces then live outside
+// the repo so agent-written test code can't wander into the hidden suites.
+const AGENT = arg("agent") === "1";
+const AGENT_TOOLS = "Read,Write,Edit,Glob,Grep,Bash";
+const AGENT_ALLOW = ["Bash(bunx tsc:*)", "Bash(bun test:*)"];
+const TSCONFIG = JSON.stringify({ compilerOptions: { strict: true, noEmit: true, target: "es2022", module: "esnext", moduleResolution: "bundler", skipLibCheck: true, types: [] }, include: ["src", "test"] }, null, 2);
 const OUT = path.resolve(arg("out", path.join(HERE, "results", new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-"))));
 const WORK = path.join(OUT, "work");
 
@@ -75,8 +81,9 @@ function wrap(c, prompt) {
 
 // ---------- claude runner ----------
 // --restricted: ignores user/project settings (no output style, plugins, CLAUDE.md), no shell, file tools confined to cwd.
-function claude({ cwd, model, prompt, system, tools }) {
+function claude({ cwd, model, prompt, system, tools, allow = [] }) {
   const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "json", "--permission-mode", "acceptEdits", "--tools", tools];
+  if (allow.length) args.push("--allowedTools", ...allow);
   if (system) args.push("--append-system-prompt", system);
   return new Promise((resolve) => {
     // Prompt on stdin: --tools is variadic and would swallow a positional prompt.
@@ -87,8 +94,8 @@ function claude({ cwd, model, prompt, system, tools }) {
     const timer = setTimeout(() => p.kill("SIGTERM"), 20 * 60 * 1000);
     p.on("close", () => {
       clearTimeout(timer);
-      try { const j = JSON.parse(out); resolve({ ok: !j.is_error, text: j.result ?? "", outTok: j.usage?.output_tokens ?? 0, cost: j.total_cost_usd ?? 0 }); }
-      catch { resolve({ ok: false, text: out.slice(0, 500), outTok: 0, cost: 0 }); }
+      try { const j = JSON.parse(out); resolve({ ok: !j.is_error, text: j.result ?? "", outTok: j.usage?.output_tokens ?? 0, cost: j.total_cost_usd ?? 0, turns: j.num_turns ?? 0 }); }
+      catch { resolve({ ok: false, text: out.slice(0, 500), outTok: 0, cost: 0, turns: 0 }); }
     });
   });
 }
@@ -203,22 +210,27 @@ async function evolveTask(task, contenders) {
   const files = fs.readdirSync(T).filter((f) => /^iter-\d+\.md$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
   const jobs = [];
   for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
-    const dir = path.join(WORK, task, `${v}-${s}`);
+    const home = path.join(WORK, task, `${v}-${s}`);
+    const dir = AGENT ? fs.mkdtempSync(path.join(os.tmpdir(), "arena-agent-")) : home;
     fs.mkdirSync(dir, { recursive: true });
+    if (AGENT) fs.writeFileSync(path.join(dir, "tsconfig.json"), TSCONFIG);
     const iters = [];
     for (const [i, f] of files.entries()) {
       const k = i + 1;
       fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
+      const how = AGENT
+        ? "Check your work with `bunx tsc --noEmit` and `bun test`; put any tests under ./test."
+        : "Do not write tests. You cannot run code; get it right in one pass.";
       const prompt = k === 1
-        ? "Build what ./REQUEST.md asks for, under ./src. Do not write tests. You cannot run code; get it right in one pass."
-        : "./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.";
-      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`) });
-      const snap = `${dir}@v${k}`;
+        ? `Build what ./REQUEST.md asks for, under ./src. ${how}`
+        : `./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}`;
+      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`) });
+      const snap = `${home}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
-      iters.push({ k, snap, outTok: r.outTok, cost: r.cost });
+      iters.push({ k, snap, outTok: r.outTok, cost: r.cost, turns: r.turns });
     }
-    return { variant: v, sample: s, dir, iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
+    return { variant: v, sample: s, dir: home, iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
   });
   console.log(`${task}: ${jobs.length} projects × ${files.length} iterations`);
   return scoreEvolve(task, await pool(jobs, JOBS));
@@ -368,6 +380,8 @@ function scorecard(rows, footprint, versions) {
       const early = mean(t.slice(0, half)), late = mean(t.slice(-half));
       return early ? late / early : 0;
     })), (x) => `${x.toFixed(2)}×`, 0.05);
+    add(`${task}: $ cost, whole project`, "min", (v) => mean(R(v).map((r) => r.cost)), (x) => `$${x.toFixed(2)}`, 0.05);
+    add(`${task}: agent turns, whole project`, "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + (i.turns ?? 0), 0))), (x) => x.toFixed(0), 0.05);
     add(`${task}: final size (tok)`, "min", (v) => it(v, K, (i) => i.tok), (x) => x.toFixed(0), 0.1);
     const hh = (k) => (v) => mean(R(v).map((r) => r.health?.[k] ?? 0));
     add(`${task}: health — files at the end`, "max", hh("files"), (x) => x.toFixed(1), 0.1);

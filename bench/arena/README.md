@@ -79,3 +79,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   no banners/war stories/ticket IDs/dates/names, and "code you rewrite: bring its comments and header
   to this bar — strip ticket/issue IDs, names and dates even from comments you keep". Full suite:
   runs with ticket refs 25% → 8%, war stories 25% → 0%, blocks > 2 lines 25% → 0%, comment lines −60%.
+- **Vague requests (2026-09-28):** the old check (a "?" only) mostly measured the harness. In an empty
+  dir the right move is "where's the project?" — engage does that; in a real project the request stops
+  being vague and acting on the obvious reading is fine. Vague prompts now run in a seeded API project
+  (`tasks/prose-seeds/api`) and are checked for asking + ≥2 listed options + a recommended pick.
+  **engage-vague adopted in 0.4.6** ("asking the user anything: look first; 2–3 concrete options as a
+  list, each with a one-line trade-off, say which you'd pick"): never worse, shorter — full suite 90% vs
+  89% at 128 vs 143 tokens/reply; seeded vague 56% vs 47% at 2,195 vs 2,491 tokens.

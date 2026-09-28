@@ -1,0 +1,268 @@
+{
+ "prose": [
+  {
+   "variant": "terse-hook",
+   "id": "vague-cache",
+   "sample": 1,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 2618,
+   "words": 443,
+   "cost": 0.0575022
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-cache",
+   "sample": 2,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 2798,
+   "words": 326,
+   "cost": 0.0744148
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-cache",
+   "sample": 3,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 2787,
+   "words": 320,
+   "cost": 0.0731086
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-cache",
+   "sample": 4,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 2409,
+   "words": 387,
+   "cost": 0.059580999999999995
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-fast",
+   "sample": 1,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1622,
+   "words": 179,
+   "cost": 0.0496644
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-fast",
+   "sample": 2,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1775,
+   "words": 176,
+   "cost": 0.0490336
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-fast",
+   "sample": 3,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1514,
+   "words": 173,
+   "cost": 0.042454
+  },
+  {
+   "variant": "terse-hook",
+   "id": "vague-fast",
+   "sample": 4,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1541,
+   "words": 200,
+   "cost": 0.0441068
+  },
+  {
+   "variant": "engage",
+   "id": "vague-cache",
+   "sample": 1,
+   "ok": true,
+   "pass": 1,
+   "checks": 4,
+   "outTok": 3822,
+   "words": 291,
+   "cost": 0.0786602
+  },
+  {
+   "variant": "engage",
+   "id": "vague-cache",
+   "sample": 2,
+   "ok": true,
+   "pass": 1,
+   "checks": 4,
+   "outTok": 3081,
+   "words": 324,
+   "cost": 0.0617916
+  },
+  {
+   "variant": "engage",
+   "id": "vague-cache",
+   "sample": 3,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 3270,
+   "words": 281,
+   "cost": 0.0626082
+  },
+  {
+   "variant": "engage",
+   "id": "vague-cache",
+   "sample": 4,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 3090,
+   "words": 501,
+   "cost": 0.05303900000000001
+  },
+  {
+   "variant": "engage",
+   "id": "vague-fast",
+   "sample": 1,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 1646,
+   "words": 155,
+   "cost": 0.034361
+  },
+  {
+   "variant": "engage",
+   "id": "vague-fast",
+   "sample": 2,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1870,
+   "words": 194,
+   "cost": 0.0364926
+  },
+  {
+   "variant": "engage",
+   "id": "vague-fast",
+   "sample": 3,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 1751,
+   "words": 237,
+   "cost": 0.0385428
+  },
+  {
+   "variant": "engage",
+   "id": "vague-fast",
+   "sample": 4,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 1394,
+   "words": 185,
+   "cost": 0.0301818
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-cache",
+   "sample": 1,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 2428,
+   "words": 203,
+   "cost": 0.0479392
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-cache",
+   "sample": 2,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 3323,
+   "words": 459,
+   "cost": 0.0665372
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-cache",
+   "sample": 3,
+   "ok": true,
+   "pass": 1,
+   "checks": 4,
+   "outTok": 2413,
+   "words": 383,
+   "cost": 0.049246
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-cache",
+   "sample": 4,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 3426,
+   "words": 427,
+   "cost": 0.061400600000000014
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-fast",
+   "sample": 1,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 1283,
+   "words": 146,
+   "cost": 0.0292866
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-fast",
+   "sample": 2,
+   "ok": true,
+   "pass": 2,
+   "checks": 4,
+   "outTok": 1499,
+   "words": 162,
+   "cost": 0.0344972
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-fast",
+   "sample": 3,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1468,
+   "words": 237,
+   "cost": 0.0308058
+  },
+  {
+   "variant": "engage-vague",
+   "id": "vague-fast",
+   "sample": 4,
+   "ok": true,
+   "pass": 3,
+   "checks": 4,
+   "outTok": 1716,
+   "words": 242,
+   "cost": 0.0338842
+  }
+ ]
+}

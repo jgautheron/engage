@@ -109,6 +109,8 @@ async function prose(contenders) {
   const jobs = [];
   for (const [v, c] of Object.entries(contenders)) for (const p of prompts) for (let s = 1; s <= N; s++) jobs.push(async () => {
     const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "arena-prose-"));
+    // Some prompts run inside a seeded project, so "look first, then offer options" has something to look at.
+    if (p.seed) fs.cpSync(path.join(HERE, "tasks", "prose-seeds", p.seed), cwd, { recursive: true });
     // Read-only tools in an empty dir: a model that looks before answering finds nothing and must still answer.
     const r = await claude({ cwd, model: MODELS.prose, prompt: wrap(c, p.prompt), system: c.system, tools: "Read,Glob,Grep" });
     const checks = [...p.must.map((re) => new RegExp(re, "im").test(r.text)), ...(p.mustNot ?? []).map((re) => !new RegExp(re, "im").test(r.text)), !SLOP.test(r.text)];

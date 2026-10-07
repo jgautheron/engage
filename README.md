@@ -3,7 +3,7 @@
 </p>
 
 A lean output-style pack for Claude Code, Codex, pi and OpenCode. One voice: terse,
-lazy-in-the-good-way, no fluff — with a light Star Trek garnish. Say **"hit it"** to proceed.
+lazy-in-the-good-way, no fluff — with an optional Star Trek garnish (off by default; `/trek on`). Say **"hit it"** to proceed.
 
 engage ships as **output styles**, not hooks. The style lives in the system prompt (which is
 prompt-cached), so it costs a fixed ~1,050 tokens once and **nothing per turn**, and it never
@@ -28,7 +28,7 @@ truthiness tricks, no positional-tuple returns), single-source every business ru
 measure before optimizing, a one-line contract on every exported symbol, ≤2-line *why-not-what*
 comments only when they add value (no war stories, ticket numbers, dates or names — even in comments you keep), never simplify away validation/security/error-handling)
 and the same **always-rules**: artifact-first (long output → file + summary), no AI-slop, compress
-prose not reasoning, ask with concrete examples, and the Trek garnish.
+prose not reasoning, ask with concrete examples, and the optional Trek garnish.
 
 ## Install
 
@@ -67,7 +67,7 @@ settings.json (`engage-terse` · `engage-concise` · `engage-docs` · `engage-pl
 have the command, `/output-style <name>` also works.
 
 ```
-/trek [on|off]             toggle the Star Trek garnish
+/trek [on|off]             Star Trek garnish — off by default
 ```
 
 "hit it" / "engage" / "make it so" = proceed with the last proposed plan. Writing a doc? Switch to
@@ -76,21 +76,21 @@ have the command, `/output-style <name>` also works.
 ## Other hosts
 
 The same four style files drive Codex, pi and OpenCode through a thin adapter each. One shared
-setting — `~/.config/engage/state.json` (`{ "style": "terse", "trek": true }`) — so switching in
+setting — `~/.config/engage/state.json` (`{ "style": "terse", "trek": false }`) — so switching in
 one host switches them all. Node ≥ 18 is the only requirement.
 
 | Host | Install | Switch |
 |---|---|---|
-| **Codex** ≥ 0.131 | `codex plugin marketplace add jgautheron/engage` then `codex plugin add engage@engage`, open `/hooks` once to trust the SessionStart hook, start a new session | `$engage docs`, `$engage trek off` (the skill runs the CLI and adopts the style at once) |
-| **pi** ≥ 0.50 | `pi install git:github.com/jgautheron/engage` | `/engage docs`, `/trek off` — with completions and a footer badge |
-| **OpenCode** ≥ 1.1.26 | `git clone https://github.com/jgautheron/engage && node engage/install.mjs opencode` | `/engage docs`, `/trek off` — applies to the same turn |
+| **Codex** ≥ 0.131 | `codex plugin marketplace add jgautheron/engage` then `codex plugin add engage@engage`, open `/hooks` once to trust the SessionStart hook, start a new session | `$engage docs`, `$engage trek on` (the skill runs the CLI and adopts the style at once) |
+| **pi** ≥ 0.50 | `pi install git:github.com/jgautheron/engage` | `/engage docs`, `/trek on` — with completions and a footer badge |
+| **OpenCode** ≥ 1.1.26 | `git clone https://github.com/jgautheron/engage && node engage/install.mjs opencode` | `/engage docs`, `/trek on` — applies to the same turn |
 
 How each host carries the style:
 
 - **Codex** — a plugin-bundled `SessionStart` hook (`startup`, `resume`, `clear`, `compact`)
   emits the style as developer context once per session. Codex has no output-style concept and
   never auto-trusts plugin hooks, hence the one-time `/hooks` review. `/trek` from Claude Code
-  arrives as the migrated `$source-command-trek` skill; prefer `$engage trek off`.
+  arrives as the migrated `$source-command-trek` skill; prefer `$engage trek on|off`.
 - **pi** — an extension appends the style to the system prompt each turn and registers the two
   commands. Re-run `pi install git:…@<ref>` to move to a newer commit; `pi update` keeps git refs pinned.
 - **OpenCode** — a plugin pushes the style through the system-prompt transform (so the built-in

@@ -30,7 +30,7 @@ test("pi: registers /engage + /trek, appends style, persists switches", async ()
   let out = await handlers.before_agent_start({ systemPrompt: "BASE" });
   assert.match(out.systemPrompt, /^BASE\n\n/);
   assert.match(out.systemPrompt, /## Voice — terse/);
-  assert.match(out.systemPrompt, /Star Trek garnish/);
+  assert.doesNotMatch(out.systemPrompt, /Star Trek garnish/); // off by default
 
   await commands.engage.handler("docs", ctx);
   assert.equal(status.engage, "engage:docs");

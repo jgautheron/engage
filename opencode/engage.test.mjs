@@ -23,7 +23,7 @@ test("opencode: v1 module shape, transform pushes style, commands switch same-tu
   assert.equal(output.system.length, 2);
   assert.match(output.system[1], /## Voice — terse/);
 
-  assert.match(await run("engage", "concise"), /^engage: style concise · trek on\./);
+  assert.match(await run("engage", "concise"), /^engage: style concise · trek off\./); // off by default
   assert.match(await run("trek", "off"), /^engage: style concise · trek off\./);
   output = { system: [] };
   await transform({}, output);

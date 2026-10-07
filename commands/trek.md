@@ -1,5 +1,5 @@
 ---
-description: Toggle the light Star Trek garnish on/off.
+description: Turn the light Star Trek garnish on or off (off by default).
 argument-hint: "[on|off]"
 ---
 Set the Star Trek garnish = `$ARGUMENTS` (default `on` if empty). `on` → occasional light nods

@@ -18,7 +18,7 @@ test("codex: activate emits SessionStart context; CLI switches persist", () => {
   assert.match(out.hookSpecificOutput.additionalContext, /## Voice — terse/);
   assert.match(out.hookSpecificOutput.additionalContext, /node ".*codex\/engage\.mjs" terse\|concise/);
 
-  assert.equal(run("engage.mjs", "docs").trim(), "engage: style docs · trek on");
+  assert.equal(run("engage.mjs", "docs").trim(), "engage: style docs · trek off"); // off by default
   assert.equal(run("engage.mjs", "trek", "off").trim(), "engage: style docs · trek off");
   assert.equal(run("engage.mjs").trim(), "engage: style docs · trek off");
   out = JSON.parse(run("activate.mjs"));

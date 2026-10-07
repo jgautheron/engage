@@ -21,10 +21,17 @@ n=2 per cell · generator claude-sonnet-5 · maintainer haiku (no rules) · pros
 | evolve-xl: health — max branch complexity | 22.0 | 21.5 | 22.0 | code-hook, engage | 🟰 tied |
 | evolve-xl: health — duplicated blocks | 0.0 | 0.5 | 2.0 | code-hook | ❌ behind |
 | evolve-xl: health — non-null assertions | 6.0 | 0.0 | 2.0 | engage | ✅ best |
+| evolve-xl: locality — existing functions changed per iteration | 3.7 | 5.2 | 3.9 | code-hook | ❌ behind |
+| evolve-xl: locality — new functions per iteration | 2.4 | 3.6 | 3.3 | engage | ✅ best |
+| evolve-xl: design — share of pure functions | 75% | 75% | 78% | code-hook, engage | 🟰 tied |
+| evolve-xl: design — union types (literal + tagged) | 3.5 | 5.0 | 4.0 | engage | ✅ best |
+| evolve-xl: design — exhaustive never checks | 0.0 | 0.0 | 0.0 | code-hook, engage | 🟰 tied |
+| evolve-xl: design — imports per file | 0.00 | 0.00 | 0.00 | code-hook, engage | 🟰 tied |
+| evolve-xl: tests — test cases written | 0 | 0 | 0 | code-hook, engage | 🟰 tied |
 | evolve-xl: runs without a build step (all snapshots) | 100% | 100% | 100% | code-hook, engage | 🟰 tied |
 | rule footprint, one-time (tok) | 1307 | 1115 | 1157 | engage | ✅ best |
 | rule footprint, per turn (tok) | 0 | 0 | 0 | code-hook, engage | 🟰 tied |
 
-**engage: 3 best · 10 tied · 7 behind** (evolve-xl: v1 size — no premature abstraction (tok); evolve-xl: lines changed on design-heavy iterations (v5,v9,v10,v11); evolve-xl: output tokens, whole project; evolve-xl: $ cost, whole project; evolve-xl: agent turns, whole project; evolve-xl: health — largest file (lines); evolve-xl: health — duplicated blocks) · run cost $19.73
+**engage: 5 best · 14 tied · 8 behind** (evolve-xl: v1 size — no premature abstraction (tok); evolve-xl: lines changed on design-heavy iterations (v5,v9,v10,v11); evolve-xl: output tokens, whole project; evolve-xl: $ cost, whole project; evolve-xl: agent turns, whole project; evolve-xl: health — largest file (lines); evolve-xl: health — duplicated blocks; evolve-xl: locality — existing functions changed per iteration) · run cost $19.73
 
 Tie band: ±2% for rates, ±5% for token counts, ±10% for code size and lines changed. Small n — rerun with a larger --n before trusting a single-cell gap.

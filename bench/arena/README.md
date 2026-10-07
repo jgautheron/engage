@@ -92,3 +92,16 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   Cost per project: ponytail $3.14 / 262 turns, engage $3.45 / 310 turns (+10%), churn on design steps
   217 vs 262. Engage keeps its type-safety edge (0 vs 6 non-null assertions). **engage-verify
   rejected** — nothing to gain once tests run. Next target: engage's extra turns/tokens in agent mode.
+- **Architecture round (2026-10-07):** new metrics (`health.ts`: pure-function share, union types,
+  exhaustive checks, coupling, tests; `locality.ts`: existing functions changed per iteration), resume
+  for interrupted runs, `--iters`, `--start-from` (swap). Agent mode, Sonnet 5, v1–v12, n=2, then a
+  rule-free Haiku maintains v13–v15.
+  - **engage-tdd** (failing test first, one behaviour per test) — best of the race: fewest design-step
+    lines (190 vs engage 227 / ponytail 206), smallest code, lowest complexity, most tests (92), and the
+    cheapest code for Haiku to maintain (14.5k tokens). Candidate for adoption after confirmation.
+  - **engage-plan** (3-line design before v1) — rejected: only contender with regressions, and its code
+    was the hardest to maintain (Haiku: 94%, 10 regressions).
+  - **engage-core** / **engage-types** — no gain while building; their code was the safest to maintain
+    (Haiku 100%, ≤1 regression) — weak signal at n=2. Nobody wrote an exhaustive `never` check.
+  - **Swap:** hygiene (duplication, complexity) follows the contender's habits; change locality follows
+    the v1 design — engage starts → 3.0–3.5 existing functions changed per feature, ponytail starts → 4.1–4.3.

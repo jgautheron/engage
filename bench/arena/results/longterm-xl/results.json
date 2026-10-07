@@ -17,6 +17,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -31,6 +36,11 @@
      "churn": {
       "lines": 19,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -45,6 +55,11 @@
      "churn": {
       "lines": 46,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -59,6 +74,11 @@
      "churn": {
       "lines": 48,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -73,6 +93,11 @@
      "churn": {
       "lines": 141,
       "files": 1
+     },
+     "locality": {
+      "added": 7,
+      "changed": 1,
+      "removed": 4
      }
     },
     {
@@ -87,6 +112,11 @@
      "churn": {
       "lines": 76,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -101,6 +131,11 @@
      "churn": {
       "lines": 71,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -115,6 +150,11 @@
      "churn": {
       "lines": 36,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -129,6 +169,11 @@
      "churn": {
       "lines": 87,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 10,
+      "removed": 0
      }
     },
     {
@@ -143,6 +188,11 @@
      "churn": {
       "lines": 42,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -157,6 +207,11 @@
      "churn": {
       "lines": 44,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -171,6 +226,11 @@
      "churn": {
       "lines": 13,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -185,6 +245,11 @@
      "churn": {
       "lines": 12,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -199,6 +264,11 @@
      "churn": {
       "lines": 45,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -213,10 +283,38 @@
      "churn": {
       "lines": 66,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.6472606
+   "cost": 1.6472606,
+   "health": {
+    "files": 1,
+    "maxFileLines": 560,
+    "fns": 38,
+    "fnLenMean": 24.3,
+    "fnLenMax": 413,
+    "cxMean": 4.58,
+    "cxMax": 25,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3,
+    "pureShare": 0.74,
+    "literalUnions": 2,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "code-hook",
@@ -235,6 +333,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -249,6 +352,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -263,6 +371,11 @@
      "churn": {
       "lines": 38,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -277,6 +390,11 @@
      "churn": {
       "lines": 29,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -291,6 +409,11 @@
      "churn": {
       "lines": 79,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -305,6 +428,11 @@
      "churn": {
       "lines": 72,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -319,6 +447,11 @@
      "churn": {
       "lines": 89,
       "files": 1
+     },
+     "locality": {
+      "added": 17,
+      "changed": 1,
+      "removed": 13
      }
     },
     {
@@ -333,6 +466,11 @@
      "churn": {
       "lines": 30,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -347,6 +485,11 @@
      "churn": {
       "lines": 89,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 12,
+      "removed": 0
      }
     },
     {
@@ -361,6 +504,11 @@
      "churn": {
       "lines": 42,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -375,6 +523,11 @@
      "churn": {
       "lines": 27,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -389,6 +542,11 @@
      "churn": {
       "lines": 10,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -403,6 +561,11 @@
      "churn": {
       "lines": 9,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -417,6 +580,11 @@
      "churn": {
       "lines": 88,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 3,
+      "removed": 1
      }
     },
     {
@@ -431,10 +599,38 @@
      "churn": {
       "lines": 60,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.5720828
+   "cost": 1.5720828,
+   "health": {
+    "files": 1,
+    "maxFileLines": 517,
+    "fns": 45,
+    "fnLenMean": 20.7,
+    "fnLenMax": 360,
+    "cxMean": 3.69,
+    "cxMax": 24,
+    "cxOver10": 3,
+    "depthMax": 3,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 4,
+    "pureShare": 0.71,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "code-hook",
@@ -453,6 +649,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -467,6 +668,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -481,6 +687,11 @@
      "churn": {
       "lines": 39,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -495,6 +706,11 @@
      "churn": {
       "lines": 44,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -509,6 +725,11 @@
      "churn": {
       "lines": 72,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -523,6 +744,11 @@
      "churn": {
       "lines": 56,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -537,6 +763,11 @@
      "churn": {
       "lines": 74,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -551,6 +782,11 @@
      "churn": {
       "lines": 24,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -565,6 +801,11 @@
      "churn": {
       "lines": 87,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 10,
+      "removed": 0
      }
     },
     {
@@ -579,6 +820,11 @@
      "churn": {
       "lines": 41,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -593,6 +839,11 @@
      "churn": {
       "lines": 35,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -607,6 +858,11 @@
      "churn": {
       "lines": 10,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -621,6 +877,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -635,6 +896,11 @@
      "churn": {
       "lines": 95,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 4,
+      "removed": 1
      }
     },
     {
@@ -649,10 +915,38 @@
      "churn": {
       "lines": 44,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.5954790000000003
+   "cost": 1.5954790000000003,
+   "health": {
+    "files": 1,
+    "maxFileLines": 457,
+    "fns": 44,
+    "fnLenMean": 17.8,
+    "fnLenMax": 322,
+    "cxMean": 3.89,
+    "cxMax": 23,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.73,
+    "literalUnions": 3,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage",
@@ -671,6 +965,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -685,6 +984,11 @@
      "churn": {
       "lines": 19,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -699,6 +1003,11 @@
      "churn": {
       "lines": 54,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -713,6 +1022,11 @@
      "churn": {
       "lines": 53,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -727,6 +1041,11 @@
      "churn": {
       "lines": 119,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -741,6 +1060,11 @@
      "churn": {
       "lines": 77,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -755,6 +1079,11 @@
      "churn": {
       "lines": 103,
       "files": 1
+     },
+     "locality": {
+      "added": 19,
+      "changed": 1,
+      "removed": 12
      }
     },
     {
@@ -769,6 +1098,11 @@
      "churn": {
       "lines": 39,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -783,6 +1117,11 @@
      "churn": {
       "lines": 106,
       "files": 1
+     },
+     "locality": {
+      "added": 7,
+      "changed": 10,
+      "removed": 0
      }
     },
     {
@@ -797,6 +1136,11 @@
      "churn": {
       "lines": 60,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -811,6 +1155,11 @@
      "churn": {
       "lines": 40,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -825,6 +1174,11 @@
      "churn": {
       "lines": 13,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -839,6 +1193,11 @@
      "churn": {
       "lines": 15,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -853,6 +1212,11 @@
      "churn": {
       "lines": 128,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -867,10 +1231,38 @@
      "churn": {
       "lines": 69,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.6723434000000001
+   "cost": 1.6723434000000001,
+   "health": {
+    "files": 1,
+    "maxFileLines": 663,
+    "fns": 52,
+    "fnLenMean": 21.5,
+    "fnLenMax": 416,
+    "cxMean": 3.73,
+    "cxMax": 24,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 4,
+    "pureShare": 0.75,
+    "literalUnions": 4,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage",
@@ -889,6 +1281,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -903,6 +1300,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -917,6 +1319,11 @@
      "churn": {
       "lines": 57,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -931,6 +1338,11 @@
      "churn": {
       "lines": 48,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -945,6 +1357,11 @@
      "churn": {
       "lines": 50,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 1,
+      "removed": 4
      }
     },
     {
@@ -959,6 +1376,11 @@
      "churn": {
       "lines": 75,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -973,6 +1395,11 @@
      "churn": {
       "lines": 80,
       "files": 1
+     },
+     "locality": {
+      "added": 14,
+      "changed": 1,
+      "removed": 8
      }
     },
     {
@@ -987,6 +1414,11 @@
      "churn": {
       "lines": 33,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1001,6 +1433,11 @@
      "churn": {
       "lines": 95,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1015,6 +1452,11 @@
      "churn": {
       "lines": 48,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1029,6 +1471,11 @@
      "churn": {
       "lines": 33,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -1043,6 +1490,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1057,6 +1509,11 @@
      "churn": {
       "lines": 15,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1071,6 +1528,11 @@
      "churn": {
       "lines": 19,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1085,10 +1547,38 @@
      "churn": {
       "lines": 63,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.4821733999999998
+   "cost": 1.4821733999999998,
+   "health": {
+    "files": 1,
+    "maxFileLines": 552,
+    "fns": 39,
+    "fnLenMean": 20.3,
+    "fnLenMax": 377,
+    "cxMean": 4.44,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.72,
+    "literalUnions": 2,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage",
@@ -1107,6 +1597,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -1121,6 +1616,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1135,6 +1635,11 @@
      "churn": {
       "lines": 49,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1149,6 +1654,11 @@
      "churn": {
       "lines": 41,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1163,6 +1673,11 @@
      "churn": {
       "lines": 41,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 4
      }
     },
     {
@@ -1177,6 +1692,11 @@
      "churn": {
       "lines": 68,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1191,6 +1711,11 @@
      "churn": {
       "lines": 77,
       "files": 1
+     },
+     "locality": {
+      "added": 6,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1205,6 +1730,11 @@
      "churn": {
       "lines": 23,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1219,6 +1749,11 @@
      "churn": {
       "lines": 68,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1233,6 +1768,11 @@
      "churn": {
       "lines": 69,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 4,
+      "removed": 2
      }
     },
     {
@@ -1247,6 +1787,11 @@
      "churn": {
       "lines": 35,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -1261,6 +1806,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1275,6 +1825,11 @@
      "churn": {
       "lines": 22,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1289,6 +1844,11 @@
      "churn": {
       "lines": 63,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1303,10 +1863,38 @@
      "churn": {
       "lines": 59,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.6006096
+   "cost": 1.6006096,
+   "health": {
+    "files": 1,
+    "maxFileLines": 513,
+    "fns": 39,
+    "fnLenMean": 19.5,
+    "fnLenMax": 354,
+    "cxMean": 4.18,
+    "cxMax": 25,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 4,
+    "pureShare": 0.74,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage-longterm",
@@ -1325,6 +1913,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -1339,6 +1932,11 @@
      "churn": {
       "lines": 29,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1353,6 +1951,11 @@
      "churn": {
       "lines": 52,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1367,6 +1970,11 @@
      "churn": {
       "lines": 42,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -1381,6 +1989,11 @@
      "churn": {
       "lines": 41,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1395,6 +2008,11 @@
      "churn": {
       "lines": 64,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -1409,6 +2027,11 @@
      "churn": {
       "lines": 89,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1423,6 +2046,11 @@
      "churn": {
       "lines": 28,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1437,6 +2065,11 @@
      "churn": {
       "lines": 92,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 11,
+      "removed": 0
      }
     },
     {
@@ -1451,6 +2084,11 @@
      "churn": {
       "lines": 62,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1465,6 +2103,11 @@
      "churn": {
       "lines": 35,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1479,6 +2122,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1493,6 +2141,11 @@
      "churn": {
       "lines": 16,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1507,6 +2160,11 @@
      "churn": {
       "lines": 21,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -1521,10 +2179,38 @@
      "churn": {
       "lines": 52,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.722652
+   "cost": 1.722652,
+   "health": {
+    "files": 1,
+    "maxFileLines": 557,
+    "fns": 38,
+    "fnLenMean": 18.7,
+    "fnLenMax": 314,
+    "cxMean": 4.5,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.74,
+    "literalUnions": 3,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage-longterm",
@@ -1543,6 +2229,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -1557,6 +2248,11 @@
      "churn": {
       "lines": 26,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1571,6 +2267,11 @@
      "churn": {
       "lines": 50,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1585,6 +2286,11 @@
      "churn": {
       "lines": 56,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -1599,6 +2305,11 @@
      "churn": {
       "lines": 41,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1613,6 +2324,11 @@
      "churn": {
       "lines": 58,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1627,6 +2343,11 @@
      "churn": {
       "lines": 75,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1641,6 +2362,11 @@
      "churn": {
       "lines": 30,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1655,6 +2381,11 @@
      "churn": {
       "lines": 80,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 10,
+      "removed": 0
      }
     },
     {
@@ -1669,6 +2400,11 @@
      "churn": {
       "lines": 45,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1683,6 +2419,11 @@
      "churn": {
       "lines": 33,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1697,6 +2438,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1711,6 +2457,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1725,6 +2476,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1739,10 +2495,38 @@
      "churn": {
       "lines": 64,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.4403604
+   "cost": 1.4403604,
+   "health": {
+    "files": 1,
+    "maxFileLines": 543,
+    "fns": 43,
+    "fnLenMean": 16.9,
+    "fnLenMax": 334,
+    "cxMean": 4,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.77,
+    "literalUnions": 3,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   },
   {
    "variant": "engage-longterm",
@@ -1761,6 +2545,11 @@
      "churn": {
       "lines": 0,
       "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
      }
     },
     {
@@ -1775,6 +2564,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1789,6 +2583,11 @@
      "churn": {
       "lines": 50,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 3,
+      "removed": 0
      }
     },
     {
@@ -1803,6 +2602,11 @@
      "churn": {
       "lines": 46,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -1817,6 +2621,11 @@
      "churn": {
       "lines": 44,
       "files": 1
+     },
+     "locality": {
+      "added": 7,
+      "changed": 1,
+      "removed": 4
      }
     },
     {
@@ -1831,6 +2640,11 @@
      "churn": {
       "lines": 71,
       "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1845,6 +2659,11 @@
      "churn": {
       "lines": 76,
       "files": 1
+     },
+     "locality": {
+      "added": 5,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1859,6 +2678,11 @@
      "churn": {
       "lines": 38,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 6,
+      "removed": 0
      }
     },
     {
@@ -1873,6 +2697,11 @@
      "churn": {
       "lines": 82,
       "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 11,
+      "removed": 0
      }
     },
     {
@@ -1887,6 +2716,11 @@
      "churn": {
       "lines": 60,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
      }
     },
     {
@@ -1901,6 +2735,11 @@
      "churn": {
       "lines": 27,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1915,6 +2754,11 @@
      "churn": {
       "lines": 11,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     },
     {
@@ -1929,6 +2773,11 @@
      "churn": {
       "lines": 17,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
      }
     },
     {
@@ -1943,6 +2792,11 @@
      "churn": {
       "lines": 22,
       "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
      }
     },
     {
@@ -1957,10 +2811,38 @@
      "churn": {
       "lines": 75,
       "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
      }
     }
    ],
-   "cost": 1.7097786000000001
+   "cost": 1.7097786000000001,
+   "health": {
+    "files": 1,
+    "maxFileLines": 542,
+    "fns": 37,
+    "fnLenMean": 20.7,
+    "fnLenMax": 357,
+    "cxMean": 4.78,
+    "cxMax": 25,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.73,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   }
   }
  ]
 }

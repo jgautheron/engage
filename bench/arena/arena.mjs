@@ -20,6 +20,9 @@ const JOBS = +arg("jobs", 4);
 // --agent 1: sessions may run the typechecker and tests (like real use). Workspaces then live outside
 // the repo so agent-written test code can't wander into the hidden suites.
 const AGENT = arg("agent") === "1";
+const ITERS = +arg("iters", 0); // build only the first N iterations (0 = all)
+const START_FROM = arg("start-from"); // earlier run whose v1 snapshot seeds each project (swap experiment)
+const START_VARIANT = arg("start-variant");
 const AGENT_TOOLS = "Read,Write,Edit,Glob,Grep,Bash";
 const AGENT_ALLOW = ["Bash(bunx tsc:*)", "Bash(bun test:*)"];
 const TSCONFIG = JSON.stringify({ compilerOptions: { strict: true, noEmit: true, target: "es2022", module: "esnext", moduleResolution: "bundler", skipLibCheck: true, types: [] }, include: ["src", "test"] }, null, 2);
@@ -207,7 +210,8 @@ const EVOLVE = {
 };
 async function evolveTask(task, contenders) {
   const T = path.join(HERE, "tasks", task);
-  const files = fs.readdirSync(T).filter((f) => /^iter-\d+\.md$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
+  const all = fs.readdirSync(T).filter((f) => /^iter-\d+\.md$/.test(f)).sort((a, b) => parseInt(a.slice(5)) - parseInt(b.slice(5)));
+  const files = ITERS ? all.slice(0, ITERS) : all;
   const jobs = [];
   for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
     const home = path.join(WORK, task, `${v}-${s}`);
@@ -215,8 +219,34 @@ async function evolveTask(task, contenders) {
     fs.mkdirSync(dir, { recursive: true });
     if (AGENT) fs.writeFileSync(path.join(dir, "tsconfig.json"), TSCONFIG);
     const iters = [];
+    if (START_FROM) {
+      // Swap experiment: start from another contender's v1, then this contender builds v2 onward.
+      const seed = path.join(START_FROM, "work", task, `${START_VARIANT}-${s}@v1`);
+      fs.cpSync(path.join(seed, "src"), path.join(dir, "src"), { recursive: true });
+      const snap1 = `${home}@v1`;
+      fs.rmSync(snap1, { recursive: true, force: true });
+      fs.cpSync(path.join(seed, "src"), path.join(snap1, "src"), { recursive: true });
+      iters.push({ k: 1, snap: snap1, outTok: 0, cost: 0, turns: 0 });
+    }
+    // Resume: continue from the last finished snapshot of this project (iteration stats live in iter.json).
+    let doneK = 0;
+    while (fs.existsSync(path.join(`${home}@v${doneK + 1}`, "src"))) doneK++;
+    if (doneK > 0) {
+      for (let k = 1; k <= doneK; k++) {
+        if (iters.some((x) => x.k === k)) continue;
+        const snap = `${home}@v${k}`;
+        const meta = fs.existsSync(path.join(snap, "iter.json")) ? JSON.parse(fs.readFileSync(path.join(snap, "iter.json"), "utf8")) : { outTok: null, cost: null, turns: null };
+        iters.push({ k, snap, ...meta });
+      }
+      const last = `${home}@v${doneK}`;
+      fs.rmSync(path.join(dir, "src"), { recursive: true, force: true });
+      fs.cpSync(path.join(last, "src"), path.join(dir, "src"), { recursive: true });
+      if (fs.existsSync(path.join(last, "test"))) fs.cpSync(path.join(last, "test"), path.join(dir, "test"), { recursive: true });
+    }
     for (const [i, f] of files.entries()) {
       const k = i + 1;
+      if (k <= doneK) continue;
+      if (START_FROM && k === 1) continue;
       fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
       const how = AGENT
         ? "Check your work with `bunx tsc --noEmit` and `bun test`; put any tests under ./test."
@@ -228,9 +258,13 @@ async function evolveTask(task, contenders) {
       const snap = `${home}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
-      iters.push({ k, snap, outTok: r.outTok, cost: r.cost, turns: r.turns });
+      if (fs.existsSync(path.join(dir, "test"))) fs.cpSync(path.join(dir, "test"), path.join(snap, "test"), { recursive: true });
+      const meta = { outTok: r.outTok, cost: r.cost, turns: r.turns };
+      fs.writeFileSync(path.join(snap, "iter.json"), JSON.stringify(meta));
+      iters.push({ k, snap, ...meta });
     }
-    return { variant: v, sample: s, dir: home, iters, cost: iters.reduce((a, i) => a + i.cost, 0) };
+    iters.sort((a, b) => a.k - b.k);
+    return { variant: v, sample: s, dir: home, iters, cost: iters.reduce((a, i) => a + (i.cost ?? 0), 0), partialCost: iters.some((i) => i.cost === null) };
   });
   console.log(`${task}: ${jobs.length} projects × ${files.length} iterations`);
   return scoreEvolve(task, await pool(jobs, JOBS));
@@ -249,6 +283,7 @@ function scoreEvolve(task, runs) {
       it.native = has ? loadsNatively(it.snap) : 0;
       it.tok = has ? JSON.parse(bun(["metrics.ts", it.snap], path.join(REPO, "bench/multifile")) || "{}").tok ?? 0 : 0;
       it.churn = prev ? churn(path.join(prev, "src"), path.join(it.snap, "src")) : { lines: 0, files: 0 };
+      it.locality = prev ? locality(path.join(prev, "src"), path.join(it.snap, "src")) : { added: 0, changed: 0, removed: 0 };
       prev = it.snap;
     }
     r.health = health(path.join(r.iters[r.iters.length - 1].snap, "src"));
@@ -258,7 +293,13 @@ function scoreEvolve(task, runs) {
 
 // AST code-health metrics (bench/arena/health.ts, TypeScript 5 API).
 function health(srcDir) {
-  try { return JSON.parse(execFileSync("bun", [path.join(HERE, "health.ts"), srcDir], { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"] })); } catch { return null; }
+  const testDir = path.join(path.dirname(srcDir), "test");
+  const args = [path.join(HERE, "health.ts"), srcDir, ...(fs.existsSync(testDir) ? [testDir] : [])];
+  try { return JSON.parse(execFileSync("bun", args, { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"] })); } catch { return null; }
+}
+// Functions added / changed / removed between two snapshots (change locality).
+function locality(a, b) {
+  try { return JSON.parse(execFileSync("bun", [path.join(HERE, "locality.ts"), a, b], { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"] })); } catch { return { added: 0, changed: 0, removed: 0 }; }
 }
 
 // Blind maintenance: a rule-free weaker model applies the extra change requests (iterations after the
@@ -390,6 +431,13 @@ function scorecard(rows, footprint, versions) {
     add(`${task}: health — max branch complexity`, "min", hh("cxMax"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — duplicated blocks`, "min", hh("dupBlocks"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — non-null assertions`, "min", hh("nonNull"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: locality — existing functions changed per iteration`, "min", (v) => mean(R(v).map((r) => mean(r.iters.slice(1).map((i) => (i.locality?.changed ?? 0) + (i.locality?.removed ?? 0))))), (x) => x.toFixed(1), 0.1);
+    add(`${task}: locality — new functions per iteration`, "max", (v) => mean(R(v).map((r) => mean(r.iters.slice(1).map((i) => i.locality?.added ?? 0)))), (x) => x.toFixed(1), 0.1);
+    add(`${task}: design — share of pure functions`, "max", hh("pureShare"), pct, 0.03);
+    add(`${task}: design — union types (literal + tagged)`, "max", (v) => mean(R(v).map((r) => (r.health?.literalUnions ?? 0) + (r.health?.taggedUnions ?? 0))), (x) => x.toFixed(1), 0.1);
+    add(`${task}: design — exhaustive never checks`, "max", hh("exhaustive"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: design — imports per file`, "min", hh("importsPerFile"), (x) => x.toFixed(2), 0.1);
+    add(`${task}: tests — test cases written`, "max", hh("testCases"), (x) => x.toFixed(0), 0.1);
     add(`${task}: runs without a build step (all snapshots)`, "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
   }
   if (rows.maintain) {

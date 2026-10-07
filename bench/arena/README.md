@@ -105,3 +105,9 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
     (Haiku 100%, ≤1 regression) — weak signal at n=2. Nobody wrote an exhaustive `never` check.
   - **Swap:** hygiene (duplication, complexity) follows the contender's habits; change locality follows
     the v1 design — engage starts → 3.0–3.5 existing functions changed per feature, ponytail starts → 4.1–4.3.
+- **TDD confirmation (n=4, agent mode, Sonnet 5, 2026-10-08):** engage-tdd's n=2 lead did **not**
+  replicate — design churn 228 vs engage 235, size 3,877 vs 3,933, complexity 19.3 vs 20.3 (all ties), and
+  change locality got worse (5.2 vs 3.9 existing functions changed per feature). Only stable effect: +28%
+  tests. Parked, not adopted. Engage vs ponytail (n=4): both 100% correct; engage lower complexity
+  (20.3 vs 25.0), fewer non-null escapes (1.3 vs 3.8), better locality (3.9 vs 4.2), more tests (69 vs 45),
+  Haiku maintenance 100% vs 99%; ponytail ~12% smaller code and ~14% cheaper per project.

@@ -45,11 +45,18 @@ It's **two steps** — installing alone does nothing visible.
 `~/.claude/settings.json` (global) or `.claude/settings.json` (project):
 
 ```json
-{ "outputStyle": "engage-terse" }
+{ "outputStyle": "engage:engage-terse" }
 ```
 
+> **Use the `engage:` prefix.** Styles shipped by a plugin are namespaced. A bare `"engage-terse"` is
+> silently ignored and Claude Code falls back to its default style.
+
+**Subagents get engage too.** Output styles only reach the main conversation; engage's
+`SubagentStart` hook injects the active style into every subagent (Explore, general-purpose, your
+own agents), minus the Trek garnish. Pick a non-engage style and subagents get nothing.
+
 Or pick it interactively with `/config` → **Output style**. (Some Claude Code builds also expose a
-`/output-style engage-terse` command; if yours returns *"Unknown command"*, use the settings key or
+`/output-style engage:engage-terse` command; if yours returns *"Unknown command"*, use the settings key or
 `/config` above — those always work.)
 
 Takes effect on the next session (or after `/clear`).
@@ -63,7 +70,7 @@ Takes effect on the next session (or after `/clear`).
 ## Switching
 
 Change the active voice via `/config` → **Output style**, or by editing the `outputStyle` key in
-settings.json (`engage-terse` · `engage-concise` · `engage-docs` · `engage-plain`). On builds that
+settings.json (`engage:engage-terse` · `engage:engage-concise` · `engage:engage-docs` · `engage:engage-plain`). On builds that
 have the command, `/output-style <name>` also works.
 
 ```

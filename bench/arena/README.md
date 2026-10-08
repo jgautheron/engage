@@ -121,3 +121,8 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
     planted bugs, 0% bug-encoding tests, ~54% mutation), 5-step evolve at ceiling (engage 100% mutation,
     0% brittle; engage-tests 99%, 3%). Ponytail skipped tests entirely in 1 of 4 projects.
   - The weakness is drift on long projects; testing a rule against it needs the 12-step agent run.
+- **Test drift (12-step agent, n=4, 2026-10-09):** engage = ponytail on mutation score (78% / 78%) and
+  suite health (100% green both); the retro 60%-vs-75% gap did not replicate (pooled n=10: ~67% vs ~76%,
+  noisy). **engage-drift** ("update/delete obsoleted tests; every feature gets tests") rejected: 75%
+  mutation, 98% green, 4% brittle. Stable difference across all runs: ponytail 2.3 assertions per test vs
+  engage 1.7 — engage writes more, smaller tests (90 vs 60) with more error-path cases.

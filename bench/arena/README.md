@@ -111,3 +111,13 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   tests. Parked, not adopted. Engage vs ponytail (n=4): both 100% correct; engage lower complexity
   (20.3 vs 25.0), fewer non-null escapes (1.3 vs 3.8), better locality (3.9 vs 4.2), more tests (69 vs 45),
   Haiku maintenance 100% vs 99%; ponytail ~12% smaller code and ~14% cheaper per project.
+- **Test quality (2026-10-08):** `testq.ts` scores a suite by mutation score (≤40 AST mutants; killed =
+  more failures than baseline), staleness (own suite green), brittleness (fails on an independent correct
+  implementation) and smells; `--suites testwrite` = write tests for a finished build with 3 planted bugs.
+  - Retro on 28 long (12-step) agent projects: engage suites catch fewer mutants than ponytail's
+    (60% vs 75%) and go stale (left `priority: "normal"` assertions red after v10).
+  - **engage-tests** (spec-derived oracles, one plausible bug per test, exact assertions, boundaries/
+    errors, mock only externals, keep the suite green) — parked: testwrite at ceiling (all catch 3/3
+    planted bugs, 0% bug-encoding tests, ~54% mutation), 5-step evolve at ceiling (engage 100% mutation,
+    0% brittle; engage-tests 99%, 3%). Ponytail skipped tests entirely in 1 of 4 projects.
+  - The weakness is drift on long projects; testing a rule against it needs the 12-step agent run.

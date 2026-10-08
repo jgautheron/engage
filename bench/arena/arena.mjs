@@ -24,7 +24,7 @@ const ITERS = +arg("iters", 0); // build only the first N iterations (0 = all)
 const START_FROM = arg("start-from"); // earlier run whose v1 snapshot seeds each project (swap experiment)
 const START_VARIANT = arg("start-variant");
 const AGENT_TOOLS = "Read,Write,Edit,Glob,Grep,Bash";
-const AGENT_ALLOW = ["Bash(bunx tsc:*)", "Bash(bun test:*)"];
+const AGENT_ALLOW = ["Bash(bunx tsc:*)", "Bash(bun test:*)", "Bash(cd:*)", "Bash(ls:*)"];
 const TSCONFIG = JSON.stringify({ compilerOptions: { strict: true, noEmit: true, target: "es2022", module: "esnext", moduleResolution: "bundler", skipLibCheck: true, types: [] }, include: ["src", "test"] }, null, 2);
 const OUT = path.resolve(arg("out", path.join(HERE, "results", new Date().toISOString().slice(0, 16).replace(/[:T]/g, "-"))));
 const WORK = path.join(OUT, "work");
@@ -249,7 +249,7 @@ async function evolveTask(task, contenders) {
       if (START_FROM && k === 1) continue;
       fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
       const how = AGENT
-        ? "Check your work with `bunx tsc --noEmit` and `bun test`; put any tests under ./test."
+        ? "Check your work by running exactly `bunx tsc --noEmit` and `bun test` from the project root; put any tests under ./test."
         : "Do not write tests. You cannot run code; get it right in one pass.";
       const prompt = k === 1
         ? `Build what ./REQUEST.md asks for, under ./src. ${how}`
@@ -286,7 +286,13 @@ function scoreEvolve(task, runs) {
       it.locality = prev ? locality(path.join(prev, "src"), path.join(it.snap, "src")) : { added: 0, changed: 0, removed: 0 };
       prev = it.snap;
     }
-    r.health = health(path.join(r.iters[r.iters.length - 1].snap, "src"));
+    const last = r.iters[r.iters.length - 1];
+    r.health = health(path.join(last.snap, "src"));
+    // Test quality of the contender's own suite: mutation score, staleness, brittleness vs the reference.
+    const refDir = [`v${last.k}`, `v${String(last.k).padStart(2, "0")}`].map((d) => path.join(T, "ref", d, "src")).find((d) => fs.existsSync(d));
+    if (fs.existsSync(path.join(last.snap, "test")) && refDir) {
+      try { r.testq = JSON.parse(execFileSync("bun", [path.join(HERE, "testq.ts"), last.snap, refDir, "40"], { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"], timeout: 1800000 })); } catch { r.testq = null; }
+    }
   }
   return runs;
 }
@@ -377,6 +383,27 @@ async function commentsSuite(contenders) {
   return pool(jobs, JOBS);
 }
 
+// Test writing: a finished implementation with 3 planted bugs + the spec; the contender writes the suite.
+async function testwriteSuite(contenders) {
+  const T = path.join(HERE, "tasks", "testwrite");
+  const jobs = [];
+  for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "arena-tw-"));
+    fs.cpSync(path.join(T, "buggy", "src"), path.join(dir, "src"), { recursive: true });
+    fs.copyFileSync(path.join(T, "SPEC.md"), path.join(dir, "SPEC.md"));
+    fs.writeFileSync(path.join(dir, "tsconfig.json"), TSCONFIG);
+    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT_TOOLS, allow: AGENT_ALLOW,
+      prompt: wrap(c, `(session ${s})\nWrite a thorough test suite for ./src under ./test using \`bun test\`. The spec is ./SPEC.md. Run it with exactly \`bun test\` from the project root. Don't modify ./src.`) });
+    const keep = path.join(WORK, "testwrite", `${v}-${s}`);
+    fs.rmSync(keep, { recursive: true, force: true });
+    if (fs.existsSync(path.join(dir, "test"))) fs.cpSync(path.join(dir, "test"), path.join(keep, "test"), { recursive: true });
+    const score = fs.existsSync(path.join(keep, "test")) ? JSON.parse(bun(["score.ts", path.join(keep, "test")], T) || "{}") : {};
+    return { variant: v, sample: s, ...score, outTok: r.outTok, cost: r.cost, turns: r.turns, reply: r.text.slice(0, 2000) };
+  });
+  console.log(`testwrite: ${jobs.length} runs`);
+  return pool(jobs, JOBS);
+}
+
 // ---------- scorecard ----------
 const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 function scorecard(rows, footprint, versions) {
@@ -438,6 +465,14 @@ function scorecard(rows, footprint, versions) {
     add(`${task}: design — exhaustive never checks`, "max", hh("exhaustive"), (x) => x.toFixed(1), 0.1);
     add(`${task}: design — imports per file`, "min", hh("importsPerFile"), (x) => x.toFixed(2), 0.1);
     add(`${task}: tests — test cases written`, "max", hh("testCases"), (x) => x.toFixed(0), 0.1);
+    const tq = (k) => (v) => mean(R(v).map((r) => r.testq?.[k] ?? 0));
+    if (rows[task].some((r) => r.testq)) {
+      add(`${task}: tests — mutation score (own suite, own code)`, "max", tq("mutationScore"), pct, 0.03);
+      add(`${task}: tests — own suite still green`, "max", tq("ownPass"), pct, 0.01);
+      add(`${task}: tests — failing on a correct alternative implementation`, "min", tq("brittle"), pct, 0.01);
+      add(`${task}: tests — assertions per test`, "max", tq("expectsPerTest"), (x) => x.toFixed(2), 0.05);
+      add(`${task}: tests — error-path tests`, "max", tq("errorTests"), (x) => x.toFixed(1), 0.1);
+    }
     add(`${task}: runs without a build step (all snapshots)`, "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
   }
   if (rows.maintain) {
@@ -462,6 +497,19 @@ function scorecard(rows, footprint, versions) {
     add("comments: runs with a comment block > 2 lines", "min", (v) => mean(R(v).map((r) => (r.blocksOver2 > 0 ? 1 : 0))), pct, 0);
     add("comments: longest comment block (lines)", "min", (v) => mean(R(v).map((r) => r.maxBlock)), (x) => x.toFixed(1), 0.1);
     add("comments: comment lines per run", "min", (v) => mean(R(v).map((r) => r.lines)), (x) => x.toFixed(1), 0.1);
+  }
+  if (rows.testwrite) {
+    const R = (v) => rows.testwrite.filter((r) => r.variant === v);
+    const m = (k) => (v) => mean(R(v).map((r) => r[k] ?? 0));
+    add("tests: planted bugs caught (of 3)", "max", m("bugsCaught"), (x) => x.toFixed(2), 0.05);
+    add("tests: share failing on the correct code (encode a bug)", "min", m("failOnCorrectShare"), pct, 0.02);
+    add("tests: mutation score on the correct code", "max", m("mutationScore"), pct, 0.03);
+    add("tests: assertions per test", "max", m("expectsPerTest"), (x) => x.toFixed(2), 0.05);
+    add("tests: error-path tests", "max", m("errorTests"), (x) => x.toFixed(1), 0.1);
+    add("tests: weak or missing assertions", "min", (v) => mean(R(v).map((r) => (r.weak ?? 0) + (r.noExpect ?? 0))), (x) => x.toFixed(1), 0.1);
+    add("tests: mocks", "min", m("mocks"), (x) => x.toFixed(1), 0.1);
+    add("tests: test cases written", "max", m("tests"), (x) => x.toFixed(0), 0.1);
+    add("tests: $ cost per suite", "min", m("cost"), (x) => `$${x.toFixed(2)}`, 0.05);
   }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
@@ -514,6 +562,7 @@ if (RESCORE) {
   fs.writeFileSync(path.join(OUT, "footprint.json"), JSON.stringify({ footprint, versions }, null, 2));
   if (SUITES.includes("prose")) rows.prose = await prose(contenders);
   if (SUITES.includes("comments")) rows.comments = await commentsSuite(contenders);
+  if (SUITES.includes("testwrite")) rows.testwrite = await testwriteSuite(contenders);
   for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
   for (const t of Object.keys(EVOLVE)) if (SUITES.includes(t)) rows[t] = await evolveTask(t, contenders);
 }

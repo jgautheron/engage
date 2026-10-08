@@ -84,13 +84,13 @@ function wrap(c, prompt) {
 
 // ---------- claude runner ----------
 // --restricted: ignores user/project settings (no output style, plugins, CLAUDE.md), no shell, file tools confined to cwd.
-function claude({ cwd, model, prompt, system, tools, allow = [] }) {
+function claude({ cwd, model, prompt, system, tools, allow = [], env }) {
   const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "json", "--permission-mode", "acceptEdits", "--tools", tools];
   if (allow.length) args.push("--allowedTools", ...allow);
   if (system) args.push("--append-system-prompt", system);
   return new Promise((resolve) => {
     // Prompt on stdin: --tools is variadic and would swallow a positional prompt.
-    const p = spawn("claude", args, { cwd, stdio: ["pipe", "pipe", "pipe"] });
+    const p = spawn("claude", args, { cwd, stdio: ["pipe", "pipe", "pipe"], env: env ? { ...process.env, ...env } : process.env });
     p.stdin.end(prompt);
     let out = "";
     p.stdout.on("data", (d) => (out += d));
@@ -404,6 +404,57 @@ async function testwriteSuite(contenders) {
   return pool(jobs, JOBS);
 }
 
+// Replay: real commits from a repo. The agent gets a plain export of the parent commit (no .git, so the
+// real fix can't be looked up) and the real commit message; afterwards the real commit's test files are
+// dropped in and run. Rust/cargo: builds share the repo's warm target dir.
+const REPLAY_ALLOW = ["Bash(cargo check:*)", "Bash(cargo test:*)", "Bash(cargo clippy:*)", "Bash(cargo build:*)", "Bash(cd:*)", "Bash(ls:*)"];
+function cargoTests(dir, pkg, testFiles, only, env = process.env) {
+  let pass = 0, fail = 0, compiled = true;
+  for (const f of testFiles) {
+    const name = path.basename(f, ".rs");
+    let out = "";
+    try { out = execFileSync("cargo", ["test", "-p", pkg, "--test", name, "--", "--test-threads=4"], { cwd: dir, env, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 900000 }); }
+    catch (e) { out = String(e.stdout ?? "") + String(e.stderr ?? ""); }
+    const seen = new Map([...out.matchAll(/^test (\S+) \.\.\. (ok|FAILED)/gm)].map((m) => [`${name}::${m[1]}`, m[2] === "ok"]));
+    if (!seen.size) compiled = false;
+    for (const k of only ?? [...seen.keys()]) { if (!k.startsWith(`${name}::`)) continue; if (seen.get(k)) pass++; else fail++; }
+  }
+  return { pass, fail, compiled };
+}
+async function replaySuite(contenders) {
+  const tasks = JSON.parse(fs.readFileSync(path.join(HERE, "tasks", "replay", arg("replay", "cachet") + ".json"), "utf8"));
+  // Each session gets its own copy-on-write clone of the warm build dir (APFS `cp -c`): no shared cargo lock.
+  const warm = path.join(tasks[0].repo, "target");
+  const jobs = [];
+  for (const t of tasks) for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), "arena-replay-"));
+    execFileSync("sh", ["-c", `git -C '${t.repo}' archive ${t.commit}^ | tar -x -C '${dir}'`]);
+    const before = fs.mkdtempSync(path.join(os.tmpdir(), "arena-replay-base-"));
+    fs.cpSync(path.join(dir, "crates", t.crate), before, { recursive: true });
+    const target = fs.mkdtempSync(path.join(os.tmpdir(), "arena-target-"));
+    execFileSync("cp", ["-cR", `${warm}/.`, target]);
+    const env = { ...process.env, CARGO_TARGET_DIR: target };
+    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT_TOOLS, allow: REPLAY_ALLOW, env,
+      prompt: wrap(c, `(session ${s})\nImplement this change in crate crates/${t.crate} (package ${t.package}). Check your work with \`cargo check -p ${t.package}\` and \`cargo test -p ${t.package}\`.\n\n--- change request ---\n${t.message}`) });
+    // Score: real test files from the commit, run against the agent's code.
+    for (const f of t.tests) {
+      const real = execFileSync("git", ["-C", t.repo, "show", `${t.commit}:${f}`], { encoding: "utf8", maxBuffer: 1 << 26 });
+      fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true });
+      fs.writeFileSync(path.join(dir, f), real);
+    }
+    const res = cargoTests(dir, t.package, t.tests, t.discriminating, env); // only tests that fail before and pass after the real change
+    const changed = churn(before, path.join(dir, "crates", t.crate));
+    const realChurn = +execFileSync("sh", ["-c", `git -C '${t.repo}' show --numstat --format= ${t.commit} -- crates/${t.crate}/src | awk '{a+=$1+$2} END{print a+0}'`], { encoding: "utf8" }).trim();
+    const keep = path.join(WORK, "replay", `${t.commit.slice(0, 9)}-${v}-${s}`);
+    fs.mkdirSync(keep, { recursive: true });
+    fs.cpSync(path.join(dir, "crates", t.crate, "src"), path.join(keep, "src"), { recursive: true });
+    for (const d of [dir, before, target]) fs.rmSync(d, { recursive: true, force: true });
+    return { variant: v, sample: s, commit: t.commit.slice(0, 9), ...res, score: res.pass + res.fail ? res.pass / (res.pass + res.fail) : 0, lines: changed.lines, realLines: realChurn, outTok: r.outTok, cost: r.cost, turns: r.turns };
+  });
+  console.log(`replay: ${jobs.length} runs (${tasks.length} commits)`);
+  return pool(jobs, JOBS);
+}
+
 // ---------- scorecard ----------
 const mean = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0);
 function scorecard(rows, footprint, versions) {
@@ -511,6 +562,14 @@ function scorecard(rows, footprint, versions) {
     add("tests: test cases written", "max", m("tests"), (x) => x.toFixed(0), 0.1);
     add("tests: $ cost per suite", "min", m("cost"), (x) => `$${x.toFixed(2)}`, 0.05);
   }
+  if (rows.replay) {
+    const R = (v) => rows.replay.filter((r) => r.variant === v);
+    add("replay: real commit's tests passing on the agent's code", "max", (v) => mean(R(v).map((r) => r.score)), pct, 0.02);
+    add("replay: runs where the real tests compiled", "max", (v) => mean(R(v).map((r) => (r.compiled ? 1 : 0))), pct, 0.02);
+    add("replay: lines changed vs the real commit", "min", (v) => mean(R(v).map((r) => r.lines / Math.max(1, r.realLines))), (x) => `${x.toFixed(2)}×`, 0.1);
+    add("replay: $ cost per change", "min", (v) => mean(R(v).map((r) => r.cost)), (x) => `$${x.toFixed(2)}`, 0.05);
+    add("replay: agent turns per change", "min", (v) => mean(R(v).map((r) => r.turns ?? 0)), (x) => x.toFixed(0), 0.05);
+  }
   add("rule footprint, one-time (tok)", "min", (v) => footprint[v].once, (x) => x.toFixed(0), 0);
   add("rule footprint, per turn (tok)", "min", (v) => footprint[v].perTurn, (x) => x.toFixed(0), 0);
   const vs = VARIANTS;
@@ -563,6 +622,7 @@ if (RESCORE) {
   if (SUITES.includes("prose")) rows.prose = await prose(contenders);
   if (SUITES.includes("comments")) rows.comments = await commentsSuite(contenders);
   if (SUITES.includes("testwrite")) rows.testwrite = await testwriteSuite(contenders);
+  if (SUITES.includes("replay")) rows.replay = await replaySuite(contenders);
   for (const t of ["checkout", "billing"]) if (SUITES.includes(t)) rows[t] = await codeTask(t, contenders);
   for (const t of Object.keys(EVOLVE)) if (SUITES.includes(t)) rows[t] = await evolveTask(t, contenders);
 }

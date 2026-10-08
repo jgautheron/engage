@@ -1,0 +1,66 @@
+{
+  "footprint": {
+    "base": {
+      "once": 0,
+      "perTurn": 0
+    },
+    "terse-hook": {
+      "once": 1137,
+      "perTurn": 102
+    },
+    "code-hook": {
+      "once": 715,
+      "perTurn": 0
+    },
+    "both-hooks": {
+      "once": 1851,
+      "perTurn": 102
+    },
+    "engage": {
+      "once": 1091,
+      "perTurn": 0
+    },
+    "abl-always": {
+      "once": 929,
+      "perTurn": 0
+    },
+    "abl-comments": {
+      "once": 971,
+      "perTurn": 0
+    },
+    "abl-design": {
+      "once": 948,
+      "perTurn": 0
+    },
+    "abl-engineering": {
+      "once": 442,
+      "perTurn": 0
+    },
+    "abl-ladder": {
+      "once": 1030,
+      "perTurn": 0
+    },
+    "abl-neverdrop": {
+      "once": 1021,
+      "perTurn": 0
+    },
+    "abl-perf": {
+      "once": 1034,
+      "perTurn": 0
+    },
+    "abl-reader": {
+      "once": 901,
+      "perTurn": 0
+    },
+    "abl-voice": {
+      "once": 889,
+      "perTurn": 0
+    }
+  },
+  "versions": {
+    "terse-hook": "2e08b91",
+    "code-hook": "9cc65d0",
+    "both-hooks": "2e08b91+9cc65d0",
+    "engage": "6c8d016"
+  }
+}

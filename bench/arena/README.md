@@ -126,3 +126,12 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   noisy). **engage-drift** ("update/delete obsoleted tests; every feature gets tests") rejected: 75%
   mutation, 98% green, 4% brittle. Stable difference across all runs: ponytail 2.3 assertions per test vs
   engage 1.7 — engage writes more, smaller tests (90 vs 60) with more error-path cases.
+- **Ablation (2026-10-09, Sonnet 5, n=3):** engage minus one section at a time. Prose: no voice → replies
+  +21% tokens; no Always → +6%. Comments: no comment rules → ticket refs 8% → 25%. 12-step build: no
+  engineering block → largest function 274 → 336 lines, complexity 18.7 → 21.0; no perf → complexity 29.7;
+  no reader rules → largest function 330, churn +11%; no design → 317; no never-drop → one broken project.
+  Ladder: no measurable change, but the task never exercises dependency/stdlib choices. **No cuts.**
+- **Real-repo replay (`--suites replay`):** real cachet commits — plain export of the parent (no .git),
+  commit message as the task, scored only on tests that fail on the parent and pass on the real commit
+  (`tasks/replay/validate.mjs` found 12 of 24 candidate commits usable). Each session gets an APFS
+  clone of the warm cargo target dir (no shared lock).

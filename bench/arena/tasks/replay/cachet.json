@@ -1,0 +1,104 @@
+[
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "b0a6a16957f4ffe7243b7486c63aee469746f62c",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
+  ],
+  "message": "\ud83d\udea7 WIP: r3 STOP-and-report (no faithful recorded review-base) + P2/P3/criss-cross hardening + tests",
+  "discriminating": [
+   "rpl_content_presence_realgit::criss_cross_multiple_merge_bases_fails_closed_to_the_fallback",
+   "rpl_content_presence_realgit::renamed_reviewed_path_is_caught_by_the_no_renames_fallback",
+   "rpl_content_presence_realgit::uppercase_slice_head_does_not_rearm_the_degenerate_oracle"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "86708d431847445a3a8fb0edd9a9cfb4b6519142",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
+  ],
+  "message": "\ud83d\udd12 rpl content-presence: proper-strict-ancestor gate + fail-safe blob-identity fallback closes the degenerate-oracle CLASS (round-2 slice_head\u2291main_tip); MQ-1 class proof via real plan_green + canon \u00a74.13",
+  "discriminating": [
+   "rpl_content_presence_realgit::genuine_fault_input_fails_closed",
+   "rpl_content_presence_realgit::a_reviewed_change_absent_from_the_combined_head_trips",
+   "rpl_content_presence_realgit::prod_shape_base_equals_slice_head_holds_a_genuine_drop_via_real_plan_green",
+   "rpl_content_presence_realgit::genuine_3way_conflict_on_reviewed_path_fails_closed",
+   "rpl_content_presence_realgit::concurrent_fold_of_disjoint_edits_reports_no_loss",
+   "rpl_content_presence_realgit::recurring_class_slice_head_ancestor_of_main_tip_holds_a_genuine_drop_via_real_plan_green",
+   "rpl_content_presence_realgit::unborn_first_ever_land_fallback_clears_present_and_holds_drop",
+   "rpl_content_presence_realgit::single_slice_net_add_then_revert_reports_no_loss"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "c93687df29a10deef2ed78fcbef41d48c50ff409",
+  "crate": "cachet-orchestrator",
+  "package": "cachet-orchestrator",
+  "tests": [
+   "crates/cachet-orchestrator/tests/gate_loop_m1.rs",
+   "crates/cachet-orchestrator/tests/vet_key_reviewer_identity.rs"
+  ],
+  "message": "\ud83d\udea7 wip: prod-path reviewer-identity test + doc sweep",
+  "discriminating": [
+   "vet_key_reviewer_identity::the_prod_reviewer_identity_carries_tier_resolved_model_and_prompt_hash",
+   "vet_key_reviewer_identity::a_resolved_model_swap_busts_the_prod_vet_key"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "6caaafbb37e28b82ac7e1bcde890e4e7a84c648c",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/object_store_split.rs",
+   "crates/cachet-git-server/tests/real_combine_land.rs"
+  ],
+  "message": "\ud83d\udc1b at-scale fixture deadlocked its own cat-file pipe; drain it",
+  "discriminating": [
+   "object_store_split::at5_backward_public_to_confidential_alternate_is_refused",
+   "object_store_split::at4_half_copied_promote_refuses_the_land",
+   "object_store_split::at7_clean_land_is_fully_served_after_promote",
+   "object_store_split::at_scale_promoted_closure_is_fsck_clean_and_byte_complete_in_public",
+   "object_store_split::at_scale_large_closure_promote_does_not_deadlock_on_the_pipe_buffer",
+   "real_combine_land::engaged_allowlist_holds_an_out_of_prefix_slice_and_freezes_the_ref",
+   "real_combine_land::unconfigured_allowlist_still_lands_and_advances_the_ref",
+   "real_combine_land::real_combiner_lands_the_combined_tree_via_the_cas"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "912f8f125f4c3ac0ace05c131f8dae7aedf8f710",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/bare_prefix_wedge_poc.rs"
+  ],
+  "message": "\ud83d\udd12 git: reserve bare internal ref prefixes",
+  "discriminating": [
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix",
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix",
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_commit_prefix"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "f57de37371aa5c8039cc59a23d3e866b6b7be62a",
+  "crate": "cachet-cli",
+  "package": "cachet-cli",
+  "tests": [
+   "crates/cachet-cli/tests/slice_open_remote.rs"
+  ],
+  "message": "\u2728 slice open --remote --follow: open then tail the slice-status poll to terminal",
+  "discriminating": [
+   "slice_open_remote::remote_open_maps_a_403_to_a_runtime_error_never_a_fabricated_verdict",
+   "slice_open_remote::remote_open_draft_sends_is_draft_true_on_the_wire",
+   "slice_open_remote::remote_open_posts_the_right_path_body_and_idempotency_key_and_renders_the_verdict",
+   "slice_open_remote::remote_open_follow_opens_then_tails_the_slice_status_to_the_terminal_verdict"
+  ]
+ }
+]

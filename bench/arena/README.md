@@ -135,3 +135,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   commit message as the task, scored only on tests that fail on the parent and pass on the real commit
   (`tasks/replay/validate.mjs` found 12 of 24 candidate commits usable). Each session gets an APFS
   clone of the warm cargo target dir (no shared lock).
+- **Real-repo replay, cachet (Rust), Sonnet 5, n=2 (2026-10-09):** 6 commits run, 2 broken in the
+  harness (real tests never compiled for any contender — likely non-.rs fixtures not copied) and
+  excluded. On the 4 valid commits, real-commit tests passing on the agent's code: **engage 83%**, no
+  rules 58%, ponytail 42%; real tests compiled: engage 8/8, no rules 7/8, ponytail 6/8. Engage never
+  failed a whole task. Caveats: several sessions hit the 20-minute cap (cost recorded as $0, edits kept;
+  affected all contenders), and "lines changed" includes the dropped-in test files — ignore it.
+  Harness to-do: longer session cap, exclude tests/ from churn, copy non-.rs fixture files.

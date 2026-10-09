@@ -7,7 +7,7 @@
     {
       "name": "engage",
       "source": "./",
-      "description": "One terse, lazy-by-default output style for coding agents — tested against no rules and other rule sets; optional Trek garnish."hit it\" to proceed."
+      "description": "One terse, lazy-by-default output style for coding agents, tested against no rules and other rule sets. Optional Trek garnish; say \"hit it\" to proceed."
     }
   ]
 }

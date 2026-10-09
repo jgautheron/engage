@@ -1,7 +1,7 @@
 {
   "name": "engage",
-  "version": "0.7.0",
-  "description": "One terse, lazy-by-default output style for coding agents — tested against no rules and other rule sets; optional Trek garnish."hit it\" to proceed.",
+  "version": "0.7.1",
+  "description": "One terse, lazy-by-default output style for coding agents, tested against no rules and other rule sets. Optional Trek garnish; say \"hit it\" to proceed.",
   "author": {
     "name": "Jonathan Gautheron"
   }

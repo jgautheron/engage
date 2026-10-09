@@ -32,16 +32,16 @@ test("pi: registers /engage + /trek, appends style, persists switches", async ()
   assert.match(out.systemPrompt, /## Voice — terse/);
   assert.doesNotMatch(out.systemPrompt, /Star Trek garnish/); // off by default
 
-  await commands.engage.handler("docs", ctx);
-  assert.equal(status.engage, "engage:docs");
+  await commands.engage.handler("terse", ctx);
+  assert.equal(status.engage, "engage:terse");
   await commands.trek.handler("off", ctx);
   out = await handlers.before_agent_start({ systemPrompt: "BASE" });
-  assert.match(out.systemPrompt, /## Voice — technical documentation/);
+  assert.match(out.systemPrompt, /## Voice — terse/);
   assert.doesNotMatch(out.systemPrompt, /Star Trek garnish/);
-  assert.equal(notices.at(-1)[1], "engage: style docs · trek off");
+  assert.equal(notices.at(-1)[1], "engage: style terse · trek off");
 
   await commands.trek.handler("", ctx); // blank toggles
-  assert.equal(notices.at(-1)[1], "engage: style docs · trek on");
+  assert.equal(notices.at(-1)[1], "engage: style terse · trek on");
 
   await commands.engage.handler("off", ctx);
   assert.equal(status.engage, "");
@@ -53,8 +53,8 @@ test("pi: registers /engage + /trek, appends style, persists switches", async ()
   assert.equal(notices.at(-1)[1], "engage: style off · trek on");
 
   // a fresh session re-reads the shared file
-  fs.writeFileSync(path.join(process.env.XDG_CONFIG_HOME, "engage", "state.json"), JSON.stringify({ style: "plain", trek: true }));
+  fs.writeFileSync(path.join(process.env.XDG_CONFIG_HOME, "engage", "state.json"), JSON.stringify({ style: "terse", trek: true }));
   await handlers.session_start({}, {});
   out = await handlers.before_agent_start({ systemPrompt: "BASE" });
-  assert.match(out.systemPrompt, /## Voice — plain/);
+  assert.match(out.systemPrompt, /## Voice — terse/);
 });

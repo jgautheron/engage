@@ -1,6 +1,6 @@
 ---
 name: engage
-description: Switch the engage output style or its Star Trek garnish. Use when the user says "$engage terse|concise|docs|plain|off", "$engage trek on|off", "/trek", or asks to change the engage style.
+description: Switch the engage output style or its Star Trek garnish. Use when the user says "$engage terse|off", "$engage trek on|off", "/trek", or asks to change the engage style.
 ---
 
 engage keeps one shared setting for every host in `~/.config/engage/state.json`.
@@ -9,7 +9,7 @@ engage keeps one shared setting for every host in `~/.config/engage/state.json`.
    `<plugin>/codex/skills/engage/SKILL.md`; the CLI is `<plugin>/codex/engage.mjs`):
 
    ```
-   node <plugin>/codex/engage.mjs terse|concise|docs|plain|off
+   node <plugin>/codex/engage.mjs terse|off
    node <plugin>/codex/engage.mjs trek on|off
    node <plugin>/codex/engage.mjs            # status
    ```

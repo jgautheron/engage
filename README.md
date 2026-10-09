@@ -9,25 +9,19 @@ engage ships as **output styles**, not hooks. The style lives in the system prom
 prompt-cached), so it costs a fixed ~1,050 tokens once and **nothing per turn**, and it never
 drifts mid-session.
 
-## Styles
+## The style
 
-Switch via `/config` → **Output style** (setup in [Install](#install) below). Only one is active
-at a time.
+One style, `engage:engage-terse`: drop articles, filler and pleasantries; fragments are fine; full
+technical accuracy. When it writes documentation, READMEs, specs or error messages for others it
+switches to full controlled sentences (active voice, one instruction per sentence, plain words).
 
-| Style | Voice | Use for |
-|---|---|---|
-| **engage-terse** *(default)* | Drop articles, filler, pleasantries. Fragments OK. Full technical accuracy. | Day-to-day work, max token savings |
-| **engage-concise** | Plain readable English, filler cut, answer-first. Full grammar. | When terse fragments read too rough |
-| **engage-docs** | Clear controlled prose: active voice, one instruction per sentence, short sentences, no phrasal verbs. | READMEs, manuals, error messages, tool descriptions |
-| **engage-plain** | Normal full English, no compression, minus AI-slop. | Sharing output with others |
-
-All four carry the same **engineering discipline** (lazy by default: YAGNI, stdlib and native
+It carries an **engineering discipline** (lazy by default: YAGNI, stdlib and native
 first, shortest diff *that stays readable*, reader-first — names for intent, constants for magic
 literals, guard clauses over nesting, deep modules over shallow wrappers, boring over clever (no
 truthiness tricks, no positional-tuple returns), single-source every business rule, no dead code,
 measure before optimizing, a one-line contract on every exported symbol, ≤2-line *why-not-what*
 comments only when they add value (no war stories, ticket numbers, dates or names — even in comments you keep), never simplify away validation/security/error-handling)
-and the same **always-rules**: artifact-first (long output → file + summary), no AI-slop, compress
+and **always-rules**: artifact-first (long output → file + summary), no AI-slop, compress
 prose not reasoning, ask with concrete examples, and the optional Trek garnish.
 
 ## Install
@@ -62,23 +56,21 @@ Or pick it interactively with `/config` → **Output style**. (Some Claude Code 
 Takes effect on the next session (or after `/clear`).
 
 > **Why the second step?** Output styles are opt-in — a plugin can *ship* them but Claude Code
-> won't force one on. Installing engage only puts the four styles in the picker; nothing changes
+> won't force one on. Installing engage only puts the style in the picker; nothing changes
 > until you pick one. That's the deliberate trade: engage lives in the cached
 > system prompt with **zero per-turn cost and no drift**, in exchange for choosing it once. (Hook-
 > based style plugins auto-activate on install but re-inject every turn — the cost engage avoids.)
 
 ## Switching
 
-Change the active voice via `/config` → **Output style**, or by editing the `outputStyle` key in
-settings.json (`engage:engage-terse` · `engage:engage-concise` · `engage:engage-docs` · `engage:engage-plain`). On builds that
-have the command, `/output-style <name>` also works.
+Turn engage on or off via `/config` → **Output style**, or the `outputStyle` key in settings.json
+(`engage:engage-terse`, or any other style to turn it off).
 
 ```
 /trek [on|off]             Star Trek garnish — off by default
 ```
 
-"hit it" / "engage" / "make it so" = proceed with the last proposed plan. Writing a doc? Switch to
-`engage-docs`. Sharing output? `engage-plain`.
+"hit it" / "engage" / "make it so" = proceed with the last proposed plan.
 
 ## Other hosts
 
@@ -105,7 +97,7 @@ How each host carries the style:
   plugin path in `~/.config/opencode/opencode.json` and copies `/engage` and `/trek` into
   `~/.config/opencode/commands/`. Keep the clone where it is: the plugin loads the styles from it.
 
-Any host: `node <engage>/codex/engage.mjs concise` edits the shared setting from a shell.
+Any host: `node <engage>/codex/engage.mjs off` (or `terse`) edits the shared setting from a shell.
 
 ## Why output styles instead of a hook
 
@@ -143,8 +135,9 @@ Flat line vs rising ones — engage is cheapest at every N, below even a single 
 one-time cost, and the gap widens every turn. And engage carries prose *and* the full engineering
 discipline in one style, where each hook does only half the job.
 
-**Docs mode is free too:** switching to `engage-docs` replaces the active style (+0). Bolting a
-separate technical-writing *skill* onto a hook plugin costs ~6.8k tokens the session it loads.
+**Docs writing is built in:** the terse style switches to controlled prose for documentation at no
+extra cost. Bolting a separate technical-writing *skill* onto a hook plugin costs ~6.8k tokens the
+session it loads.
 
 _Estimate (chars/4, ±15%); ratios reliable. engage's one-time cost sits in the prompt-cached system
 prompt; hook injections re-run per session and the terse hook re-injects every turn._

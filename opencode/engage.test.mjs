@@ -23,16 +23,16 @@ test("opencode: v1 module shape, transform pushes style, commands switch same-tu
   assert.equal(output.system.length, 2);
   assert.match(output.system[1], /## Voice — terse/);
 
-  assert.match(await run("engage", "concise"), /^engage: style concise · trek off\./); // off by default
-  assert.match(await run("trek", "off"), /^engage: style concise · trek off\./);
+  assert.match(await run("engage", "terse"), /^engage: style terse · trek off\./); // off by default
+  assert.match(await run("trek", "off"), /^engage: style terse · trek off\./);
   output = { system: [] };
   await transform({}, output);
-  assert.match(output.system[0], /## Voice — concise/);
+  assert.match(output.system[0], /## Voice — terse/);
   assert.doesNotMatch(output.system[0], /Star Trek garnish/);
 
   assert.match(await run("trek", ""), /trek on\./); // blank toggles back
   assert.match(await run("engage", "bogus"), /^unknown style/);
-  assert.match(await run("engage", ""), /^engage: style concise · trek on\./);
+  assert.match(await run("engage", ""), /^engage: style terse · trek on\./);
   const untouched = { parts: [{ type: "text", text: "hello" }] };
   await before({ command: "other", arguments: "off" }, untouched);
   assert.equal(untouched.parts[0].text, "hello");

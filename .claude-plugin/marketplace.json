@@ -7,7 +7,7 @@
     {
       "name": "engage",
       "source": "./",
-      "description": "Terse-by-default output styles (terse / concise / docs / plain) + lazy-by-default engineering + light Star Trek garnish. Say \"hit it\" to proceed."
+      "description": "One terse, lazy-by-default output style for coding agents — tested against no rules and other rule sets; optional Trek garnish."hit it\" to proceed."
     }
   ]
 }

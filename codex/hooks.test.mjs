@@ -16,13 +16,13 @@ test("codex: activate emits SessionStart context; CLI switches persist", () => {
   assert.deepEqual(Object.keys(out), ["hookSpecificOutput"]);
   assert.equal(out.hookSpecificOutput.hookEventName, "SessionStart");
   assert.match(out.hookSpecificOutput.additionalContext, /## Voice — terse/);
-  assert.match(out.hookSpecificOutput.additionalContext, /node ".*codex\/engage\.mjs" terse\|concise/);
+  assert.match(out.hookSpecificOutput.additionalContext, /node ".*codex\/engage\.mjs" terse\|off/);
 
-  assert.equal(run("engage.mjs", "docs").trim(), "engage: style docs · trek off"); // off by default
-  assert.equal(run("engage.mjs", "trek", "off").trim(), "engage: style docs · trek off");
-  assert.equal(run("engage.mjs").trim(), "engage: style docs · trek off");
+  assert.equal(run("engage.mjs", "terse").trim(), "engage: style terse · trek off"); // off by default
+  assert.equal(run("engage.mjs", "trek", "off").trim(), "engage: style terse · trek off");
+  assert.equal(run("engage.mjs").trim(), "engage: style terse · trek off");
   out = JSON.parse(run("activate.mjs"));
-  assert.match(out.hookSpecificOutput.additionalContext, /technical documentation/);
+  assert.match(out.hookSpecificOutput.additionalContext, /## Voice — terse/);
   assert.doesNotMatch(out.hookSpecificOutput.additionalContext, /Star Trek garnish/);
 
   assert.equal(run("engage.mjs", "off").trim(), "engage: style off · trek off");

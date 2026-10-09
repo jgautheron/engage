@@ -1,0 +1,1540 @@
+{
+ "authz": [
+  {
+   "variant": "code-hook",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-1@v1",
+     "outTok": 6264,
+     "cost": 0.17414759999999999,
+     "turns": 19,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 749,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-1@v2",
+     "outTok": 2561,
+     "cost": 0.07752940000000001,
+     "turns": 9,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 880,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-1@v3",
+     "outTok": 3999,
+     "cost": 0.1268158,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1008,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-1@v4",
+     "outTok": 5313,
+     "cost": 0.1422082,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1271,
+     "churn": {
+      "lines": 30,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.520701,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 150,
+    "fns": 15,
+    "fnLenMean": 13.4,
+    "fnLenMax": 111,
+    "cxMean": 2.13,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 27
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 26,
+    "expectsPerTest": 1.65,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 20,
+    "errorMsg": 20,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 24,
+    "mutationScore": 0.79
+   }
+  },
+  {
+   "variant": "code-hook",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-2@v1",
+     "outTok": 4116,
+     "cost": 0.1197468,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 750,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-2@v2",
+     "outTok": 5280,
+     "cost": 0.1940098,
+     "turns": 23,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 886,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-2@v3",
+     "outTok": 2862,
+     "cost": 0.106983,
+     "turns": 12,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 990,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-2@v4",
+     "outTok": 5713,
+     "cost": 0.14704860000000003,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1218,
+     "churn": {
+      "lines": 22,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.5677882000000001,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 126,
+    "fns": 14,
+    "fnLenMean": 14,
+    "fnLenMax": 108,
+    "cxMean": 2.36,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 1,
+    "testCases": 40
+   },
+   "testq": {
+    "testFiles": 1,
+    "tests": 40,
+    "expectsPerTest": 1.18,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 29,
+    "errorMsg": 29,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 1,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 26,
+    "mutationScore": 1
+   }
+  },
+  {
+   "variant": "code-hook",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-3@v1",
+     "outTok": 5487,
+     "cost": 0.14511899999999997,
+     "turns": 15,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 718,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-3@v2",
+     "outTok": 2882,
+     "cost": 0.09347520000000001,
+     "turns": 11,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 860,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-3@v3",
+     "outTok": 2732,
+     "cost": 0.09564620000000001,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 956,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-3@v4",
+     "outTok": 6454,
+     "cost": 0.16601579999999996,
+     "turns": 13,
+     "score": 0.9714285714285714,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1239,
+     "churn": {
+      "lines": 29,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.5002561999999999,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 144,
+    "fns": 14,
+    "fnLenMean": 12.9,
+    "fnLenMax": 95,
+    "cxMean": 2.57,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 13
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 12,
+    "expectsPerTest": 2.75,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 11,
+    "errorMsg": 11,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0.33,
+    "mutants": 36,
+    "mutationScore": 0.86
+   }
+  },
+  {
+   "variant": "code-hook",
+   "sample": 4,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-4",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-4@v1",
+     "outTok": 4601,
+     "cost": 0.11777280000000001,
+     "turns": 11,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 755,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-4@v2",
+     "outTok": 3210,
+     "cost": 0.10713500000000001,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 892,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-4@v3",
+     "outTok": 3751,
+     "cost": 0.11951580000000002,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 998,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/code-hook-4@v4",
+     "outTok": 6814,
+     "cost": 0.2195032,
+     "turns": 23,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1229,
+     "churn": {
+      "lines": 22,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.5639268000000001,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 147,
+    "fns": 14,
+    "fnLenMean": 14,
+    "fnLenMax": 108,
+    "cxMean": 2.36,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 42
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 41,
+    "expectsPerTest": 1.02,
+    "noExpect": 3,
+    "weak": 1,
+    "errorTests": 29,
+    "errorMsg": 29,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 31,
+    "mutationScore": 0.84
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-1@v1",
+     "outTok": 4242,
+     "cost": 0.155535,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 740,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-1@v2",
+     "outTok": 3869,
+     "cost": 0.1191286,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 881,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-1@v3",
+     "outTok": 3919,
+     "cost": 0.12671280000000001,
+     "turns": 15,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 977,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-1@v4",
+     "outTok": 7491,
+     "cost": 0.2415276,
+     "turns": 24,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1216,
+     "churn": {
+      "lines": 22,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.642904,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 144,
+    "fns": 13,
+    "fnLenMean": 14.7,
+    "fnLenMax": 105,
+    "cxMean": 2.38,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.92,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 38
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 37,
+    "expectsPerTest": 1.08,
+    "noExpect": 1,
+    "weak": 0,
+    "errorTests": 27,
+    "errorMsg": 26,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 21,
+    "mutationScore": 1
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-2@v1",
+     "outTok": 5791,
+     "cost": 0.1970916,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 765,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-2@v2",
+     "outTok": 3927,
+     "cost": 0.126646,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 909,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-2@v3",
+     "outTok": 2761,
+     "cost": 0.08040140000000001,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1006,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-2@v4",
+     "outTok": 4955,
+     "cost": 0.13224080000000002,
+     "turns": 12,
+     "score": 0.9714285714285714,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1245,
+     "churn": {
+      "lines": 22,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.5363798000000001,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 150,
+    "fns": 15,
+    "fnLenMean": 13.1,
+    "fnLenMax": 107,
+    "cxMean": 2.4,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 19
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 18,
+    "expectsPerTest": 1,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 12,
+    "errorMsg": 12,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0.06,
+    "mutants": 32,
+    "mutationScore": 0.59
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-3@v1",
+     "outTok": 7026,
+     "cost": 0.180561,
+     "turns": 18,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 793,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-3@v2",
+     "outTok": 5957,
+     "cost": 0.13802660000000003,
+     "turns": 11,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 913,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-3@v3",
+     "outTok": 3295,
+     "cost": 0.12495699999999998,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1011,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-3@v4",
+     "outTok": 5222,
+     "cost": 0.1620324,
+     "turns": 15,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1220,
+     "churn": {
+      "lines": 22,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.605577,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 155,
+    "fns": 16,
+    "fnLenMean": 13.1,
+    "fnLenMax": 116,
+    "cxMean": 1.69,
+    "cxMax": 3,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.94,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 3,
+    "testCases": 49
+   },
+   "testq": {
+    "testFiles": 3,
+    "tests": 48,
+    "expectsPerTest": 1.13,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 35,
+    "errorMsg": 35,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 13,
+    "mutationScore": 1
+   }
+  },
+  {
+   "variant": "engage",
+   "sample": 4,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-4",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-4@v1",
+     "outTok": 6561,
+     "cost": 0.18492140000000007,
+     "turns": 20,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 764,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-4@v2",
+     "outTok": 4039,
+     "cost": 0.1131284,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 900,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-4@v3",
+     "outTok": 3686,
+     "cost": 0.1233756,
+     "turns": 12,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1005,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-4@v4",
+     "outTok": 7382,
+     "cost": 0.23446780000000003,
+     "turns": 22,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1261,
+     "churn": {
+      "lines": 23,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.6558932000000001,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 148,
+    "fns": 14,
+    "fnLenMean": 14.1,
+    "fnLenMax": 109,
+    "cxMean": 2.43,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 35
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 34,
+    "expectsPerTest": 1.47,
+    "noExpect": 3,
+    "weak": 0,
+    "errorTests": 21,
+    "errorMsg": 21,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 34,
+    "mutationScore": 0.85
+   }
+  },
+  {
+   "variant": "engage-gdp",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-1@v1",
+     "outTok": 7062,
+     "cost": 0.1696454,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 755,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-1@v2",
+     "outTok": 2834,
+     "cost": 0.0827572,
+     "turns": 9,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 916,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-1@v3",
+     "outTok": 3209,
+     "cost": 0.10367580000000001,
+     "turns": 11,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1004,
+     "churn": {
+      "lines": 10,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-1@v4",
+     "outTok": 4579,
+     "cost": 0.1389328,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1245,
+     "churn": {
+      "lines": 23,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.4950112,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 146,
+    "fns": 14,
+    "fnLenMean": 13.4,
+    "fnLenMax": 105,
+    "cxMean": 2.5,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 48
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 47,
+    "expectsPerTest": 1.11,
+    "noExpect": 1,
+    "weak": 0,
+    "errorTests": 33,
+    "errorMsg": 33,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 1,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 26,
+    "mutationScore": 1
+   }
+  },
+  {
+   "variant": "engage-gdp",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-2@v1",
+     "outTok": 4836,
+     "cost": 0.1132972,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 800,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-2@v2",
+     "outTok": 6206,
+     "cost": 0.22139400000000006,
+     "turns": 24,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 952,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-2@v3",
+     "outTok": 3915,
+     "cost": 0.141666,
+     "turns": 17,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1056,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-2@v4",
+     "outTok": 5439,
+     "cost": 0.15442399999999995,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1317,
+     "churn": {
+      "lines": 27,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.6307811999999999,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 166,
+    "fns": 17,
+    "fnLenMean": 12.6,
+    "fnLenMax": 111,
+    "cxMean": 2.24,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 7,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.94,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 1,
+    "testCases": 50
+   },
+   "testq": {
+    "testFiles": 1,
+    "tests": 50,
+    "expectsPerTest": 1.1,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 39,
+    "errorMsg": 36,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 0.96,
+    "brittle": 0.04,
+    "mutants": 32,
+    "mutationScore": 0.84
+   }
+  },
+  {
+   "variant": "engage-gdp",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-3@v1",
+     "outTok": 6121,
+     "cost": 0.1486988,
+     "turns": 14,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 793,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-3@v2",
+     "outTok": 5018,
+     "cost": 0.134295,
+     "turns": 11,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 944,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-3@v3",
+     "outTok": 3724,
+     "cost": 0.1226362,
+     "turns": 13,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1045,
+     "churn": {
+      "lines": 13,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-3@v4",
+     "outTok": 4889,
+     "cost": 0.16395300000000002,
+     "turns": 16,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1279,
+     "churn": {
+      "lines": 23,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.569583,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 165,
+    "fns": 17,
+    "fnLenMean": 12.8,
+    "fnLenMax": 114,
+    "cxMean": 2.24,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 6,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.94,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 49
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 48,
+    "expectsPerTest": 1.08,
+    "noExpect": 1,
+    "weak": 0,
+    "errorTests": 34,
+    "errorMsg": 34,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 1,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 31,
+    "mutationScore": 0.84
+   }
+  },
+  {
+   "variant": "engage-gdp",
+   "sample": 4,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-4",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-4@v1",
+     "outTok": 6826,
+     "cost": 0.17302559999999997,
+     "turns": 17,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 706,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-4@v2",
+     "outTok": 2473,
+     "cost": 0.0872344,
+     "turns": 10,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 846,
+     "churn": {
+      "lines": 12,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-4@v3",
+     "outTok": 3230,
+     "cost": 0.092198,
+     "turns": 9,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 945,
+     "churn": {
+      "lines": 11,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdp-v1/work/authz/engage-gdp-4@v4",
+     "outTok": 5172,
+     "cost": 0.1563228,
+     "turns": 15,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 1214,
+     "churn": {
+      "lines": 28,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.5087808,
+   "partialCost": false,
+   "health": {
+    "files": 1,
+    "maxFileLines": 142,
+    "fns": 14,
+    "fnLenMean": 12.6,
+    "fnLenMax": 94,
+    "cxMean": 2.5,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 49
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 48,
+    "expectsPerTest": 1.1,
+    "noExpect": 2,
+    "weak": 0,
+    "errorTests": 35,
+    "errorMsg": 35,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 33,
+    "mutationScore": 0.85
+   }
+  }
+ ]
+}

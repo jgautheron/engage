@@ -1,0 +1,34 @@
+{
+  "footprint": {
+    "base": {
+      "once": 0,
+      "perTurn": 0
+    },
+    "terse-hook": {
+      "once": 1137,
+      "perTurn": 102
+    },
+    "code-hook": {
+      "once": 715,
+      "perTurn": 0
+    },
+    "both-hooks": {
+      "once": 1851,
+      "perTurn": 102
+    },
+    "engage": {
+      "once": 1157,
+      "perTurn": 0
+    },
+    "engage-gdp": {
+      "once": 1250,
+      "perTurn": 0
+    }
+  },
+  "versions": {
+    "terse-hook": "2e08b91",
+    "code-hook": "9cc65d0",
+    "both-hooks": "2e08b91+9cc65d0",
+    "engage": "6ebe48c"
+  }
+}

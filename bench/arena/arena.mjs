@@ -84,7 +84,7 @@ function wrap(c, prompt) {
 
 // ---------- claude runner ----------
 // --restricted: ignores user/project settings (no output style, plugins, CLAUDE.md), no shell, file tools confined to cwd.
-function claude({ cwd, model, prompt, system, tools, allow = [], env }) {
+function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 20 }) {
   const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "json", "--permission-mode", "acceptEdits", "--tools", tools];
   if (allow.length) args.push("--allowedTools", ...allow);
   if (system) args.push("--append-system-prompt", system);
@@ -94,7 +94,7 @@ function claude({ cwd, model, prompt, system, tools, allow = [], env }) {
     p.stdin.end(prompt);
     let out = "";
     p.stdout.on("data", (d) => (out += d));
-    const timer = setTimeout(() => p.kill("SIGTERM"), 20 * 60 * 1000);
+    const timer = setTimeout(() => p.kill("SIGTERM"), capMin * 60 * 1000);
     p.on("close", () => {
       clearTimeout(timer);
       try { const j = JSON.parse(out); resolve({ ok: !j.is_error, text: j.result ?? "", outTok: j.usage?.output_tokens ?? 0, cost: j.total_cost_usd ?? 0, turns: j.num_turns ?? 0 }); }
@@ -207,6 +207,7 @@ function churn(a, b) {
 const EVOLVE = {
   evolve: { hard: [3, 4], trivial: 5 },
   "evolve-xl": { hard: [5, 9, 10, 11], trivial: 12 },
+  authz: { hard: [2, 3, 4], trivial: 4 },
 };
 async function evolveTask(task, contenders) {
   const T = path.join(HERE, "tasks", task);
@@ -318,16 +319,20 @@ async function maintainFrom(runDir, task) {
   const extra = all.slice(built);
   const jobs = prior.filter((r) => VARIANTS.includes(r.variant)).map((r) => async () => {
     const last = r.iters[built - 1].snap;
-    const dir = path.join(WORK, "maintain", `${r.variant}-${r.sample}`);
+    const home = path.join(WORK, "maintain", `${r.variant}-${r.sample}`);
+    const dir = AGENT ? fs.mkdtempSync(path.join(os.tmpdir(), "arena-maint-")) : home;
     fs.rmSync(dir, { recursive: true, force: true });
     fs.cpSync(path.join(last, "src"), path.join(dir, "src"), { recursive: true });
+    if (AGENT && fs.existsSync(path.join(last, "test"))) fs.cpSync(path.join(last, "test"), path.join(dir, "test"), { recursive: true });
+    if (AGENT) fs.writeFileSync(path.join(dir, "tsconfig.json"), TSCONFIG);
     const iters = [{ k: built, snap: last, outTok: 0, cost: 0 }];
     for (const [i, f] of extra.entries()) {
       const k = built + i + 1;
       fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
-      const res = await claude({ cwd: dir, model: MODELS.mod, tools: "Read,Write,Edit,Glob,Grep",
-        prompt: `(session ${r.sample}, step ${k})\n./REQUEST.md is a change request for this codebase (./src). Implement it. Do not write tests. You cannot run code; get it right in one pass.` });
-      const snap = `${dir}@v${k}`;
+      const how = AGENT ? "Check your work by running exactly `bunx tsc --noEmit` and `bun test` from the project root." : "Do not write tests. You cannot run code; get it right in one pass.";
+      const res = await claude({ cwd: dir, model: MODELS.mod, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [],
+        prompt: `(session ${r.sample}, step ${k})\n./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}` });
+      const snap = `${home}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
       iters.push({ k, snap, outTok: res.outTok, cost: res.cost });
@@ -434,22 +439,22 @@ async function replaySuite(contenders) {
     const target = fs.mkdtempSync(path.join(os.tmpdir(), "arena-target-"));
     execFileSync("cp", ["-cR", `${warm}/.`, target]);
     const env = { ...process.env, CARGO_TARGET_DIR: target };
-    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT_TOOLS, allow: REPLAY_ALLOW, env,
+    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT_TOOLS, allow: REPLAY_ALLOW, env, capMin: 45,
       prompt: wrap(c, `(session ${s})\nImplement this change in crate crates/${t.crate} (package ${t.package}). Check your work with \`cargo check -p ${t.package}\` and \`cargo test -p ${t.package}\`.\n\n--- change request ---\n${t.message}`) });
     // Score: real test files from the commit, run against the agent's code.
-    for (const f of t.tests) {
-      const real = execFileSync("git", ["-C", t.repo, "show", `${t.commit}:${f}`], { encoding: "utf8", maxBuffer: 1 << 26 });
+    for (const f of t.overlay ?? t.tests) {
+      const real = execFileSync("git", ["-C", t.repo, "show", `${t.commit}:${f}`], { maxBuffer: 1 << 26 });
       fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true });
       fs.writeFileSync(path.join(dir, f), real);
     }
     const res = cargoTests(dir, t.package, t.tests, t.discriminating, env); // only tests that fail before and pass after the real change
-    const changed = churn(before, path.join(dir, "crates", t.crate));
+    const changed = churn(path.join(before, "src"), path.join(dir, "crates", t.crate, "src")); // src only: tests are overlaid
     const realChurn = +execFileSync("sh", ["-c", `git -C '${t.repo}' show --numstat --format= ${t.commit} -- crates/${t.crate}/src | awk '{a+=$1+$2} END{print a+0}'`], { encoding: "utf8" }).trim();
     const keep = path.join(WORK, "replay", `${t.commit.slice(0, 9)}-${v}-${s}`);
     fs.mkdirSync(keep, { recursive: true });
     fs.cpSync(path.join(dir, "crates", t.crate, "src"), path.join(keep, "src"), { recursive: true });
     for (const d of [dir, before, target]) fs.rmSync(d, { recursive: true, force: true });
-    return { variant: v, sample: s, commit: t.commit.slice(0, 9), ...res, score: res.pass + res.fail ? res.pass / (res.pass + res.fail) : 0, lines: changed.lines, realLines: realChurn, outTok: r.outTok, cost: r.cost, turns: r.turns };
+    return { variant: v, sample: s, commit: t.commit.slice(0, 9), timedOut: !r.ok && r.cost === 0, ...res, score: res.pass + res.fail ? res.pass / (res.pass + res.fail) : 0, lines: changed.lines, realLines: realChurn, outTok: r.outTok, cost: r.cost, turns: r.turns };
   });
   console.log(`replay: ${jobs.length} runs (${tasks.length} commits)`);
   return pool(jobs, JOBS);

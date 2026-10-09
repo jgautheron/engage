@@ -142,3 +142,10 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   failed a whole task. Caveats: several sessions hit the 20-minute cap (cost recorded as $0, edits kept;
   affected all contenders), and "lines changed" includes the dropped-in test files — ignore it.
   Harness to-do: longer session cap, exclude tests/ from churn, copy non-.rs fixture files.
+- **Single style (v0.7.0):** engage is now only `engage:engage-terse`; it absorbed the docs-writing rules
+  (controlled prose for docs/READMEs/error messages). concise/docs/plain removed.
+- **gdp-ts (rauchg/gdp-ts, "Ghosts of Departed Proofs") → engage-gdp** ("preconditions as types: checks
+  return evidence the sensitive operation requires"): parked — 0 of 4 Sonnet 5 projects adopted the
+  pattern on the new `authz` task (plain `requireX`/boolean checks throughout); authz correctness was at
+  ceiling (97–100%) for every contender. The pattern needs gdp-ts's library + lint + skill, not a style
+  sentence. (Harness note: the run built v1–v4 itself — pass `--iters 1` before `--maintain` next time.)

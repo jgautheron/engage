@@ -6,9 +6,11 @@ const results = (rev, t) => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "rpv-"));
   execFileSync("sh", ["-c", `git -C "${t.repo}" archive ${rev} | tar -x -C "${dir}"`]);
   const map = {};
-  for (const f of t.tests) {
+  for (const f of t.overlay ?? t.tests) {
     fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true });
-    fs.writeFileSync(path.join(dir, f), execFileSync("git", ["-C", t.repo, "show", `${t.commit}:${f}`], { encoding: "utf8", maxBuffer: 1 << 26 }));
+    fs.writeFileSync(path.join(dir, f), execFileSync("git", ["-C", t.repo, "show", `${t.commit}:${f}`], { maxBuffer: 1 << 26 }));
+  }
+  for (const f of t.tests) {
     let out = ""; try { out = execFileSync("cargo", ["test", "-p", t.package, "--test", path.basename(f, ".rs"), "--", "--test-threads=4"], { cwd: dir, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"], timeout: 900000 }); } catch (e) { out = String(e.stdout) + String(e.stderr); }
     for (const m of out.matchAll(/^test (\S+) \.\.\. (ok|FAILED)/gm)) map[`${path.basename(f, ".rs")}::${m[1]}`] = m[2] === "ok";
   }
@@ -17,7 +19,8 @@ const results = (rev, t) => {
 };
 for (const t of tasks) {
   const parent = results(t.commit + "^", t), real = results(t.commit, t);
-  t.discriminating = Object.keys(real).filter((k) => real[k] && parent[k] !== true);
+  // Fair tests only: compile against the parent (existing API) and fail there, then pass on the real commit.
+  t.discriminating = Object.keys(real).filter((k) => real[k] && parent[k] === false);
   console.log(t.commit.slice(0, 9), t.package, `real ok ${Object.values(real).filter(Boolean).length}/${Object.keys(real).length}`, `parent ok ${Object.values(parent).filter(Boolean).length}`, `→ discriminating ${t.discriminating.length}`);
 }
 fs.writeFileSync(file, JSON.stringify(tasks, null, 1));

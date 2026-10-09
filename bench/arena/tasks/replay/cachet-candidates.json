@@ -8,6 +8,9 @@
    "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
   ],
   "message": "🐛 ci/test green + rename-free merge fold on any git (lane.sh safe.directory, walk-coverage SSE covers, runner-ci curl, merge-tree ignores merge.renames on git ≤2.49)",
+  "overlay": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
   "discriminating": []
  },
  {
@@ -19,6 +22,9 @@
    "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
   ],
   "message": "🐛 containment asserts each fold == the exact review-base fold (no trust in the fold's base); git<2.40 refuses the land loop",
+  "overlay": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
   "discriminating": []
  },
  {
@@ -30,9 +36,10 @@
    "crates/cachet-git-server/tests/confidential_odb_install_race.rs"
   ],
   "message": "🐛 install the confidential alternates via a unique temp so concurrent promotes never read it empty",
-  "discriminating": [
-   "confidential_odb_install_race::concurrent_installers_never_expose_an_incomplete_alternates"
-  ]
+  "overlay": [
+   "crates/cachet-git-server/tests/confidential_odb_install_race.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -44,6 +51,10 @@
    "crates/cachet-scorer/tests/support/mod.rs"
   ],
   "message": "🔒 security floor: narrow prose denylist to strict markup (drop txt/mdx) + close the code→prose rename exemption",
+  "overlay": [
+   "crates/cachet-scorer/tests/security_floor_prose_scope.rs",
+   "crates/cachet-scorer/tests/support/mod.rs"
+  ],
   "discriminating": []
  },
  {
@@ -55,6 +66,9 @@
    "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
   ],
   "message": "🚧 WIP: r3 STOP-and-report (no faithful recorded review-base) + P2/P3/criss-cross hardening + tests",
+  "overlay": [
+   "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
+  ],
   "discriminating": [
    "rpl_content_presence_realgit::criss_cross_multiple_merge_bases_fails_closed_to_the_fallback",
    "rpl_content_presence_realgit::renamed_reviewed_path_is_caught_by_the_no_renames_fallback",
@@ -70,16 +84,10 @@
    "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
   ],
   "message": "🔒 rpl content-presence: proper-strict-ancestor gate + fail-safe blob-identity fallback closes the degenerate-oracle CLASS (round-2 slice_head⊑main_tip); MQ-1 class proof via real plan_green + canon §4.13",
-  "discriminating": [
-   "rpl_content_presence_realgit::genuine_fault_input_fails_closed",
-   "rpl_content_presence_realgit::a_reviewed_change_absent_from_the_combined_head_trips",
-   "rpl_content_presence_realgit::prod_shape_base_equals_slice_head_holds_a_genuine_drop_via_real_plan_green",
-   "rpl_content_presence_realgit::genuine_3way_conflict_on_reviewed_path_fails_closed",
-   "rpl_content_presence_realgit::concurrent_fold_of_disjoint_edits_reports_no_loss",
-   "rpl_content_presence_realgit::recurring_class_slice_head_ancestor_of_main_tip_holds_a_genuine_drop_via_real_plan_green",
-   "rpl_content_presence_realgit::unborn_first_ever_land_fallback_clears_present_and_holds_drop",
-   "rpl_content_presence_realgit::single_slice_net_add_then_revert_reports_no_loss"
-  ]
+  "overlay": [
+   "crates/cachet-git-server/tests/rpl_content_presence_realgit.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -90,6 +98,9 @@
    "crates/cachet-scorer/tests/secrets_floor_example_paths.rs"
   ],
   "message": "🔒 secrets-floor example_paths DEMOTES (canon §2b), never silences (#189)",
+  "overlay": [
+   "crates/cachet-scorer/tests/secrets_floor_example_paths.rs"
+  ],
   "discriminating": []
  },
  {
@@ -102,10 +113,11 @@
    "crates/cachet-orchestrator/tests/vet_key_reviewer_identity.rs"
   ],
   "message": "🚧 wip: prod-path reviewer-identity test + doc sweep",
-  "discriminating": [
-   "vet_key_reviewer_identity::the_prod_reviewer_identity_carries_tier_resolved_model_and_prompt_hash",
-   "vet_key_reviewer_identity::a_resolved_model_swap_busts_the_prod_vet_key"
-  ]
+  "overlay": [
+   "crates/cachet-orchestrator/tests/gate_loop_m1.rs",
+   "crates/cachet-orchestrator/tests/vet_key_reviewer_identity.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -116,6 +128,9 @@
    "crates/cachet-cli/tests/cli_reads_remote.rs"
   ],
   "message": "✅ lock slice checks fail-closed arms over the wire; clean standalone output",
+  "overlay": [
+   "crates/cachet-cli/tests/cli_reads_remote.rs"
+  ],
   "discriminating": []
  },
  {
@@ -128,16 +143,11 @@
    "crates/cachet-git-server/tests/real_combine_land.rs"
   ],
   "message": "🐛 at-scale fixture deadlocked its own cat-file pipe; drain it",
-  "discriminating": [
-   "object_store_split::at5_backward_public_to_confidential_alternate_is_refused",
-   "object_store_split::at4_half_copied_promote_refuses_the_land",
-   "object_store_split::at7_clean_land_is_fully_served_after_promote",
-   "object_store_split::at_scale_promoted_closure_is_fsck_clean_and_byte_complete_in_public",
-   "object_store_split::at_scale_large_closure_promote_does_not_deadlock_on_the_pipe_buffer",
-   "real_combine_land::engaged_allowlist_holds_an_out_of_prefix_slice_and_freezes_the_ref",
-   "real_combine_land::unconfigured_allowlist_still_lands_and_advances_the_ref",
-   "real_combine_land::real_combiner_lands_the_combined_tree_via_the_cas"
-  ]
+  "overlay": [
+   "crates/cachet-git-server/tests/object_store_split.rs",
+   "crates/cachet-git-server/tests/real_combine_land.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -148,6 +158,9 @@
    "crates/cachet-git-server/tests/bl6_active_repo_cuts_over.rs"
   ],
   "message": "🔒 pin a deterministic identity in the scrubbed git env",
+  "overlay": [
+   "crates/cachet-git-server/tests/bl6_active_repo_cuts_over.rs"
+  ],
   "discriminating": []
  },
  {
@@ -159,6 +172,9 @@
    "crates/cachet-telemetry/tests/redaction_export.rs"
   ],
   "message": "🐛 rename/strip raw tracing field keys so forge log records reach OTLP",
+  "overlay": [
+   "crates/cachet-telemetry/tests/redaction_export.rs"
+  ],
   "discriminating": []
  },
  {
@@ -170,6 +186,9 @@
    "crates/cachet-gate/tests/verdict.rs"
   ],
   "message": "🧪 gate: lock unconditional reviewer block",
+  "overlay": [
+   "crates/cachet-gate/tests/verdict.rs"
+  ],
   "discriminating": []
  },
  {
@@ -181,10 +200,13 @@
    "crates/cachet-git-server/tests/bare_prefix_wedge_poc.rs"
   ],
   "message": "🔒 git: reserve bare internal ref prefixes",
+  "overlay": [
+   "crates/cachet-git-server/tests/bare_prefix_wedge_poc.rs"
+  ],
   "discriminating": [
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix",
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_commit_prefix",
    "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix",
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_commit_prefix"
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix"
   ]
  },
  {
@@ -196,6 +218,9 @@
    "crates/cachet-diff-ingest/tests/local_ingest.rs"
   ],
   "message": "🧪 fr8: lock ChangedPaths evasion vectors on a real git plane",
+  "overlay": [
+   "crates/cachet-diff-ingest/tests/local_ingest.rs"
+  ],
   "discriminating": []
  },
  {
@@ -207,6 +232,9 @@
    "crates/cachet-workflows/tests/build_images_yml.rs"
   ],
   "message": "⚡ cachet-workflows: per-job path pruning in plan() + scoping proofs\n\nWorkflow::plan() was including ALL jobs unconditionally; per-job `paths:`\nonly affected the `required` flag. On slice_open with real changed_paths,\njobs whose effective scope doesn't intersect are now skipped — matching\nthe logic resolve_required() already uses. push-to-main (empty\nchanged_paths) keeps all jobs. Tests lock the four cases: audit-only\n→ 0 jobs, cli-only → only build-cli, forge-only → only build-cachet-forge,\npush-main → all 7.",
+  "overlay": [
+   "crates/cachet-workflows/tests/build_images_yml.rs"
+  ],
   "discriminating": []
  },
  {
@@ -218,6 +246,9 @@
    "crates/cachet-orchestrator/tests/gate_loop_m1.rs"
   ],
   "message": "🐛 spend-ceiling: feed billed cost UNCONDITIONALLY (decouple from telemetry sink)",
+  "overlay": [
+   "crates/cachet-orchestrator/tests/gate_loop_m1.rs"
+  ],
   "discriminating": [
    "gate_loop_m1::spend_ceiling_blocks_without_instruments_wired"
   ]
@@ -231,9 +262,10 @@
    "crates/cachet-merge-queue/tests/mq_matrix_invariants.rs"
   ],
   "message": "🐛 evict_stale_base: never evict a disk-ahead-of-PG lag (GIT-CORRUPT-26 split-brain false-eviction)",
-  "discriminating": [
-   "mq_matrix_invariants::descendant_of_live_tip_is_the_safe_lag_never_evicted_gitcorrupt26"
-  ]
+  "overlay": [
+   "crates/cachet-merge-queue/tests/mq_matrix_invariants.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -244,6 +276,9 @@
    "crates/cachet-gate/tests/empty_gap_block_repro.rs"
   ],
   "message": "🐛 gate: no non-merge verdict ships a silent hold (empty gap + empty reason)",
+  "overlay": [
+   "crates/cachet-gate/tests/empty_gap_block_repro.rs"
+  ],
   "discriminating": []
  },
  {
@@ -255,6 +290,9 @@
    "crates/cachet-gate/tests/verdict.rs"
   ],
   "message": "🐛 gate: availability-envelope block carries a populated gap + reason (no silent blocked)",
+  "overlay": [
+   "crates/cachet-gate/tests/verdict.rs"
+  ],
   "discriminating": [
    "verdict::reviewer_unavailable_block_carries_a_populated_actionable_gap"
   ]
@@ -268,12 +306,10 @@
    "crates/cachet-cli/tests/slice_open_remote.rs"
   ],
   "message": "✨ slice open --remote --follow: open then tail the slice-status poll to terminal",
-  "discriminating": [
-   "slice_open_remote::remote_open_maps_a_403_to_a_runtime_error_never_a_fabricated_verdict",
-   "slice_open_remote::remote_open_draft_sends_is_draft_true_on_the_wire",
-   "slice_open_remote::remote_open_posts_the_right_path_body_and_idempotency_key_and_renders_the_verdict",
-   "slice_open_remote::remote_open_follow_opens_then_tails_the_slice_status_to_the_terminal_verdict"
-  ]
+  "overlay": [
+   "crates/cachet-cli/tests/slice_open_remote.rs"
+  ],
+  "discriminating": []
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -284,6 +320,9 @@
    "crates/cachet-git-server/tests/poison_eject_reattack.rs"
   ],
   "message": "🔒 CAS oid-gate class: is_ancestor reconciler oid-floor + canonical-argv (2 sibling sites)",
+  "overlay": [
+   "crates/cachet-git-server/tests/poison_eject_reattack.rs"
+  ],
   "discriminating": [
    "poison_eject_reattack::v7_is_ancestor_reconciler_refuses_non_oid_fail_closed"
   ]
@@ -297,6 +336,9 @@
    "crates/cachet-git-server/tests/poison_eject_reattack.rs"
   ],
   "message": "🔒 land-CAS: oid-shape gate new/expected_old before the git revspec argv (close V2b latent hole)",
+  "overlay": [
+   "crates/cachet-git-server/tests/poison_eject_reattack.rs"
+  ],
   "discriminating": [
    "poison_eject_reattack::v2b_refname_new_is_refused_oid_shape_gate_closed"
   ]
@@ -310,6 +352,9 @@
    "crates/cachet-search/tests/search.rs"
   ],
   "message": "✨ search: rank code results by relevance (path/whole-word/density)",
+  "overlay": [
+   "crates/cachet-search/tests/search.rs"
+  ],
   "discriminating": []
  }
 ]

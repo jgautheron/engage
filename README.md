@@ -6,7 +6,7 @@ A lean output-style pack for Claude Code, Codex, pi and OpenCode. One voice: ter
 lazy-in-the-good-way, no fluff — with an optional Star Trek garnish (off by default; `/trek on`). Say **"hit it"** to proceed.
 
 engage ships as **output styles**, not hooks. The style lives in the system prompt (which is
-prompt-cached), so it costs a fixed ~1,050 tokens once and **nothing per turn**, and it never
+prompt-cached), so it costs a fixed ~1,170 tokens once and **nothing per turn**, and it never
 drifts mid-session.
 
 ## The style
@@ -28,7 +28,7 @@ prose not reasoning, ask with concrete examples, and the optional Trek garnish.
 
 It's **two steps** — installing alone does nothing visible.
 
-**1. Install** (makes the styles + `/trek` *available*):
+**1. Install** (makes the style + `/trek` *available*):
 
 ```
 /plugin marketplace add jgautheron/engage
@@ -44,6 +44,15 @@ It's **two steps** — installing alone does nothing visible.
 
 > **Use the `engage:` prefix.** Styles shipped by a plugin are namespaced. A bare `"engage-terse"` is
 > silently ignored and Claude Code falls back to its default style.
+
+**Check it's active** (a wrong name fails silently): start a new session and ask
+
+```
+Do your instructions contain "Best code = none"? Answer yes or no.
+```
+
+`yes` means engage is loaded. `no` means the `outputStyle` value is wrong or the session predates the
+change.
 
 **Subagents get engage too.** Output styles only reach the main conversation; engage's
 `SubagentStart` hook injects the active style into every subagent (Explore, general-purpose, your
@@ -112,28 +121,31 @@ keeping Claude Code's built-in engineering behavior.
 
 engage lives in the (cached) system prompt: one style loads once, **0 per turn**. Hook-based style
 plugins re-inject every session, and a terse-prose hook typically re-nags every turn. Approximate
-tokens (chars/4), same basis for all:
+tokens (chars/4), same basis for all, measured from each plugin's current release (2026-10):
 
 | Delivery | one-time | per turn |
 |---|--:|--:|
-| **engage** (output style) | ~1050 | **0** |
-| a terse-prose hook plugin | ~1180 | ~34 |
-| a lazy-code hook plugin | ~1310 | 0 |
-| both hook plugins together | ~2490 | ~34 |
+| **engage** (output style) | ~1167 | **0** |
+| a terse-prose hook plugin | ~1301 | ~61 |
+| a lazy-code hook plugin | ~1307 | 0 |
+| both hook plugins together | ~2608 | ~61 |
 
 Total tokens carried at N turns:
 
 | turns | engage | terse hook | code hook | both hooks |
 |---|--:|--:|--:|--:|
-| 1 | **1048** | 1212 | 1308 | 2520 |
-| 10 | **1048** | 1518 | 1308 | 2826 |
-| 50 | **1048** | 2878 | 1308 | 4186 |
-| 100 | **1048** | 4578 | 1308 | 5886 |
-| 500 | **1048** | 18178 | 1308 | 19486 |
+| 1 | **1167** | 1362 | 1307 | 2669 |
+| 10 | **1167** | 1911 | 1307 | 3218 |
+| 50 | **1167** | 4351 | 1307 | 5658 |
+| 100 | **1167** | 7401 | 1307 | 8708 |
+| 500 | **1167** | 31801 | 1307 | 33108 |
 
 Flat line vs rising ones — engage is cheapest at every N, below even a single *prose-only* hook's
 one-time cost, and the gap widens every turn. And engage carries prose *and* the full engineering
 discipline in one style, where each hook does only half the job.
+
+**Subagents:** each subagent Claude Code spawns gets the style once (~1,170 tokens) through engage's
+`SubagentStart` hook — the price of subagents following the same rules.
 
 **Docs writing is built in:** the terse style switches to controlled prose for documentation at no
 extra cost. Bolting a separate technical-writing *skill* onto a hook plugin costs ~6.8k tokens the
@@ -157,7 +169,7 @@ gain. Details: [docs/agent-readability-study.md](docs/agent-readability-study.md
 ```
 .claude-plugin/                  Claude Code manifest + marketplace (Codex reads the marketplace too)
 .codex-plugin/plugin.json        Codex manifest (hooks + skills)
-output-styles/engage-*.md        the four voices — the single source for every host
+output-styles/engage-terse.md    the style — the single source for every host
 commands/trek.md                 the one Claude Code slash command
 lib/engage.mjs                   shared core: state file, style loader, trek toggle, command parser
 codex/                           SessionStart hook, $engage skill, shell CLI

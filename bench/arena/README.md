@@ -149,3 +149,14 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   pattern on the new `authz` task (plain `requireX`/boolean checks throughout); authz correctness was at
   ceiling (97–100%) for every contender. The pattern needs gdp-ts's library + lint + skill, not a style
   sentence. (Harness note: the run built v1–v4 itself — pass `--iters 1` before `--maintain` next time.)
+- **Replay with the build-cache fix (2026-10-13):** `git archive` stamped old mtimes, so cargo reused
+  artifacts from a newer tree; fixed by touching every exported file. Both earlier replay results (engage
+  83%, then 70%) were artifacts. Fixed run, 15 commits × n=3, Sonnet 5: real tests passing — no rules 71%,
+  ponytail 72%, engage 68%; 13 of 15 commits identical across contenders. Ponytail diffs closest to the
+  real size (1.03× vs engage 1.29×) and cheapest ($0.97 vs $1.06). Verdict: tie on real-code correctness.
+- **Haiku power check, 12-step, n=8:** all 100% correct. Engage vs ponytail pattern holds: lower max
+  complexity (20.6 vs 24.6), half the duplication (2.1 vs 4.4), zero non-null escapes vs 1.9; ponytail
+  smaller (3,913 vs 4,121 tok) with less churn (234 vs 258). Extend rule weakly confirmed (noextend:
+  churn +7%, 0.3 regressions). **engage-triggers** rejected (churn 303, size 4,645). **engage-diet**
+  (569 tok) ≈ engage on code (complexity 19.5, size 4,043, 0.8 regressions), prose 12% shorter at 91% vs
+  90%, but ticket refs 17% vs 0% in the comments probe — its shortened comment rule leaks.

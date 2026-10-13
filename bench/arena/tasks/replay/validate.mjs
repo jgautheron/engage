@@ -4,7 +4,7 @@ const file = process.argv[2]; const tasks = JSON.parse(fs.readFileSync(file, "ut
 process.env.CARGO_TARGET_DIR = path.join(tasks[0].repo, "target");
 const results = (rev, t) => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "rpv-"));
-  execFileSync("sh", ["-c", `git -C "${t.repo}" archive ${rev} | tar -x -C "${dir}"`]);
+  execFileSync("sh", ["-c", `git -C "${t.repo}" archive ${rev} | tar -x -C "${dir}" && find "${dir}" -type f -exec touch {} +`]);
   const map = {};
   for (const f of t.overlay ?? t.tests) {
     fs.mkdirSync(path.dirname(path.join(dir, f)), { recursive: true });

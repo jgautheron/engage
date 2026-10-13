@@ -1,0 +1,42 @@
+{
+  "footprint": {
+    "base": {
+      "once": 0,
+      "perTurn": 0
+    },
+    "terse-hook": {
+      "once": 1137,
+      "perTurn": 102
+    },
+    "code-hook": {
+      "once": 715,
+      "perTurn": 0
+    },
+    "both-hooks": {
+      "once": 1851,
+      "perTurn": 102
+    },
+    "engage": {
+      "once": 1157,
+      "perTurn": 0
+    },
+    "engage-diet": {
+      "once": 565,
+      "perTurn": 0
+    },
+    "engage-noextend": {
+      "once": 1127,
+      "perTurn": 0
+    },
+    "engage-triggers": {
+      "once": 1112,
+      "perTurn": 0
+    }
+  },
+  "versions": {
+    "terse-hook": "2e08b91",
+    "code-hook": "487cd74",
+    "both-hooks": "2e08b91+487cd74",
+    "engage": "e0733bd"
+  }
+}

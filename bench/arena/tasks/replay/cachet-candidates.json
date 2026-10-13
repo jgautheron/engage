@@ -11,7 +11,9 @@
   "overlay": [
    "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "landed_path_containment_realgit::non_utf8_decoy_does_not_gate_a_sibling_path"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -25,7 +27,9 @@
   "overlay": [
    "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "landed_path_containment_realgit::a_fold_that_fell_back_to_the_natural_base_holds"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -39,7 +43,9 @@
   "overlay": [
    "crates/cachet-git-server/tests/confidential_odb_install_race.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "confidential_odb_install_race::concurrent_installers_never_expose_an_incomplete_alternates"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -55,7 +61,13 @@
    "crates/cachet-scorer/tests/security_floor_prose_scope.rs",
    "crates/cachet-scorer/tests/support/mod.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "security_floor_prose_scope::code_to_prose_rename_deleting_an_auth_guard_still_floors",
+   "security_floor_prose_scope::build_script_txt_touching_an_auth_needle_still_floors",
+   "security_floor_prose_scope::dependency_manifest_txt_touching_an_auth_needle_still_floors",
+   "security_floor_prose_scope::mdx_exporting_an_executable_auth_function_still_floors",
+   "security_floor_prose_scope::rename_without_a_recorded_base_path_still_floors"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -101,7 +113,9 @@
   "overlay": [
    "crates/cachet-scorer/tests/secrets_floor_example_paths.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "secrets_floor_example_paths::base_owner_declared_example_path_exempts_the_file"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -189,7 +203,9 @@
   "overlay": [
    "crates/cachet-gate/tests/verdict.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "verdict::reviewer_unavailable_at_require_none_blocks_with_canonical_gap"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -205,8 +221,8 @@
   ],
   "discriminating": [
    "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_commit_prefix",
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix",
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix"
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix",
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix"
   ]
  },
  {
@@ -235,7 +251,10 @@
   "overlay": [
    "crates/cachet-workflows/tests/build_images_yml.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "build_images_yml::build_images_yml_cli_only_slice_schedules_only_build_cli",
+   "build_images_yml::build_images_yml_forge_only_slice_schedules_only_build_cachet_forge"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -265,7 +284,9 @@
   "overlay": [
    "crates/cachet-merge-queue/tests/mq_matrix_invariants.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "mq_matrix_invariants::descendant_of_live_tip_is_the_safe_lag_never_evicted_gitcorrupt26"
+  ]
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
@@ -355,6 +376,8 @@
   "overlay": [
    "crates/cachet-search/tests/search.rs"
   ],
-  "discriminating": []
+  "discriminating": [
+   "search::ranking_surfaces_the_relevant_file_first"
+  ]
  }
 ]

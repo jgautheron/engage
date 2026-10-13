@@ -1,6 +1,76 @@
 [
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "76fd0ddf0ce4ce83b7cc73e4d5b77cf0f4374a4f",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
+  "message": "\ud83d\udc1b ci/test green + rename-free merge fold on any git (lane.sh safe.directory, walk-coverage SSE covers, runner-ci curl, merge-tree ignores merge.renames on git \u22642.49)",
+  "overlay": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
+  "discriminating": [
+   "landed_path_containment_realgit::non_utf8_decoy_does_not_gate_a_sibling_path"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "edea13b55e158859b7cb170955eb6c050aa1a03e",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
+  "message": "\ud83d\udc1b containment asserts each fold == the exact review-base fold (no trust in the fold's base); git<2.40 refuses the land loop",
+  "overlay": [
+   "crates/cachet-git-server/tests/landed_path_containment_realgit.rs"
+  ],
+  "discriminating": [
+   "landed_path_containment_realgit::a_fold_that_fell_back_to_the_natural_base_holds"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "39a21bc0dec6414a2231f85ec1b2a6b71fed9714",
+  "crate": "cachet-git-server",
+  "package": "cachet-git-server",
+  "tests": [
+   "crates/cachet-git-server/tests/confidential_odb_install_race.rs"
+  ],
+  "message": "\ud83d\udc1b install the confidential alternates via a unique temp so concurrent promotes never read it empty",
+  "overlay": [
+   "crates/cachet-git-server/tests/confidential_odb_install_race.rs"
+  ],
+  "discriminating": [
+   "confidential_odb_install_race::concurrent_installers_never_expose_an_incomplete_alternates"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "baa9bc21d786dfa3bc9c1c95e25198710cb36a13",
+  "crate": "cachet-scorer",
+  "package": "cachet-scorer",
+  "tests": [
+   "crates/cachet-scorer/tests/security_floor_prose_scope.rs",
+   "crates/cachet-scorer/tests/support/mod.rs"
+  ],
+  "message": "\ud83d\udd12 security floor: narrow prose denylist to strict markup (drop txt/mdx) + close the code\u2192prose rename exemption",
+  "overlay": [
+   "crates/cachet-scorer/tests/security_floor_prose_scope.rs",
+   "crates/cachet-scorer/tests/support/mod.rs"
+  ],
+  "discriminating": [
+   "security_floor_prose_scope::code_to_prose_rename_deleting_an_auth_guard_still_floors",
+   "security_floor_prose_scope::build_script_txt_touching_an_auth_needle_still_floors",
+   "security_floor_prose_scope::dependency_manifest_txt_touching_an_auth_needle_still_floors",
+   "security_floor_prose_scope::mdx_exporting_an_executable_auth_function_still_floors",
+   "security_floor_prose_scope::rename_without_a_recorded_base_path_still_floors"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
   "commit": "b0a6a16957f4ffe7243b7486c63aee469746f62c",
   "crate": "cachet-git-server",
   "package": "cachet-git-server",
@@ -19,6 +89,38 @@
  },
  {
   "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "c04e09291e0f17b467a1022e0cf093d70ea4b00b",
+  "crate": "cachet-scorer",
+  "package": "cachet-scorer",
+  "tests": [
+   "crates/cachet-scorer/tests/secrets_floor_example_paths.rs"
+  ],
+  "message": "\ud83d\udd12 secrets-floor example_paths DEMOTES (canon \u00a72b), never silences (#189)",
+  "overlay": [
+   "crates/cachet-scorer/tests/secrets_floor_example_paths.rs"
+  ],
+  "discriminating": [
+   "secrets_floor_example_paths::base_owner_declared_example_path_exempts_the_file"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "998db4090ed0e086566bd40e9657a3098f95d61b",
+  "crate": "cachet-gate",
+  "package": "cachet-gate",
+  "tests": [
+   "crates/cachet-gate/tests/verdict.rs"
+  ],
+  "message": "\ud83e\uddea gate: lock unconditional reviewer block",
+  "overlay": [
+   "crates/cachet-gate/tests/verdict.rs"
+  ],
+  "discriminating": [
+   "verdict::reviewer_unavailable_at_require_none_blocks_with_canonical_gap"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
   "commit": "912f8f125f4c3ac0ace05c131f8dae7aedf8f710",
   "crate": "cachet-git-server",
   "package": "cachet-git-server",
@@ -31,8 +133,25 @@
   ],
   "discriminating": [
    "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_commit_prefix",
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix",
-   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix"
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_combined_ci_prefix",
+   "bare_prefix_wedge_poc::real_hook_refuses_bare_resolve_prefix"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "34485388b6d20da5f149e2b93e21e57eb4011e7c",
+  "crate": "cachet-workflows",
+  "package": "cachet-workflows",
+  "tests": [
+   "crates/cachet-workflows/tests/build_images_yml.rs"
+  ],
+  "message": "\u26a1 cachet-workflows: per-job path pruning in plan() + scoping proofs\n\nWorkflow::plan() was including ALL jobs unconditionally; per-job `paths:`\nonly affected the `required` flag. On slice_open with real changed_paths,\njobs whose effective scope doesn't intersect are now skipped \u2014 matching\nthe logic resolve_required() already uses. push-to-main (empty\nchanged_paths) keeps all jobs. Tests lock the four cases: audit-only\n\u2192 0 jobs, cli-only \u2192 only build-cli, forge-only \u2192 only build-cachet-forge,\npush-main \u2192 all 7.",
+  "overlay": [
+   "crates/cachet-workflows/tests/build_images_yml.rs"
+  ],
+  "discriminating": [
+   "build_images_yml::build_images_yml_cli_only_slice_schedules_only_build_cli",
+   "build_images_yml::build_images_yml_forge_only_slice_schedules_only_build_cachet_forge"
   ]
  },
  {
@@ -49,6 +168,22 @@
   ],
   "discriminating": [
    "gate_loop_m1::spend_ceiling_blocks_without_instruments_wired"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "f8bf099c6c05b698dd1808b128df5b7c2159cdee",
+  "crate": "cachet-merge-queue",
+  "package": "cachet-merge-queue",
+  "tests": [
+   "crates/cachet-merge-queue/tests/mq_matrix_invariants.rs"
+  ],
+  "message": "\ud83d\udc1b evict_stale_base: never evict a disk-ahead-of-PG lag (GIT-CORRUPT-26 split-brain false-eviction)",
+  "overlay": [
+   "crates/cachet-merge-queue/tests/mq_matrix_invariants.rs"
+  ],
+  "discriminating": [
+   "mq_matrix_invariants::descendant_of_live_tip_is_the_safe_lag_never_evicted_gitcorrupt26"
   ]
  },
  {
@@ -97,6 +232,22 @@
   ],
   "discriminating": [
    "poison_eject_reattack::v2b_refname_new_is_refused_oid_shape_gate_closed"
+  ]
+ },
+ {
+  "repo": "/Users/jonathangautheron/jgautheron/cachet",
+  "commit": "f30d5dafea0fbbe6137b5eae6f729921639341e5",
+  "crate": "cachet-search",
+  "package": "cachet-search",
+  "tests": [
+   "crates/cachet-search/tests/search.rs"
+  ],
+  "message": "\u2728 search: rank code results by relevance (path/whole-word/density)",
+  "overlay": [
+   "crates/cachet-search/tests/search.rs"
+  ],
+  "discriminating": [
+   "search::ranking_surfaces_the_relevant_file_first"
   ]
  }
 ]

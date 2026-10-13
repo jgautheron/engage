@@ -433,7 +433,9 @@ async function replaySuite(contenders) {
   const jobs = [];
   for (const t of tasks) for (const [v, c] of Object.entries(contenders)) for (let s = 1; s <= N; s++) jobs.push(async () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "arena-replay-"));
-    execFileSync("sh", ["-c", `git -C '${t.repo}' archive ${t.commit}^ | tar -x -C '${dir}'`]);
+    // Fresh mtimes: git archive stamps files with the commit date, so cargo would trust the (newer) cloned
+    // target dir and reuse artifacts built from other sources.
+    execFileSync("sh", ["-c", `git -C '${t.repo}' archive ${t.commit}^ | tar -x -C '${dir}' && find '${dir}' -type f -exec touch {} +`]);
     const before = fs.mkdtempSync(path.join(os.tmpdir(), "arena-replay-base-"));
     fs.cpSync(path.join(dir, "crates", t.crate), before, { recursive: true });
     const target = fs.mkdtempSync(path.join(os.tmpdir(), "arena-target-"));

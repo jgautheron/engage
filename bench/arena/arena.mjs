@@ -84,8 +84,9 @@ function wrap(c, prompt) {
 
 // ---------- claude runner ----------
 // --restricted: ignores user/project settings (no output style, plugins, CLAUDE.md), no shell, file tools confined to cwd.
-function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 20 }) {
-  const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "json", "--permission-mode", "acceptEdits", "--tools", tools];
+function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 20, log }) {
+  // stream-json: every tool call in order (saved to `log` for compliance checks); the last event is the result.
+  const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "stream-json", "--verbose", "--permission-mode", "acceptEdits", "--tools", tools];
   if (allow.length) args.push("--allowedTools", ...allow);
   if (system) args.push("--append-system-prompt", system);
   return new Promise((resolve) => {
@@ -97,7 +98,9 @@ function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 2
     const timer = setTimeout(() => p.kill("SIGTERM"), capMin * 60 * 1000);
     p.on("close", () => {
       clearTimeout(timer);
-      try { const j = JSON.parse(out); resolve({ ok: !j.is_error, text: j.result ?? "", outTok: j.usage?.output_tokens ?? 0, cost: j.total_cost_usd ?? 0, turns: j.num_turns ?? 0 }); }
+      if (log) { try { fs.mkdirSync(path.dirname(log), { recursive: true }); fs.writeFileSync(log, out); } catch {} }
+      const lines = out.trim().split("\n");
+      try { const j = JSON.parse(lines.findLast((l) => l.includes('"type":"result"')) ?? "{}"); if (!j.type) throw 0; resolve({ ok: !j.is_error, text: j.result ?? "", outTok: j.usage?.output_tokens ?? 0, cost: j.total_cost_usd ?? 0, turns: j.num_turns ?? 0 }); }
       catch { resolve({ ok: false, text: out.slice(0, 500), outTok: 0, cost: 0, turns: 0 }); }
     });
   });
@@ -255,7 +258,7 @@ async function evolveTask(task, contenders) {
       const prompt = k === 1
         ? `Build what ./REQUEST.md asks for, under ./src. ${how}`
         : `./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}`;
-      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`) });
+      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`), log: `${home}@v${k}.transcript.jsonl` });
       const snap = `${home}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
@@ -289,6 +292,8 @@ function scoreEvolve(task, runs) {
     }
     const last = r.iters[r.iters.length - 1];
     r.health = health(path.join(last.snap, "src"));
+    // Rule compliance: per rule, how often its trigger happened and how often it was obeyed.
+    try { r.compliance = JSON.parse(execFileSync("bun", [path.join(HERE, "compliance.ts"), r.dir], { encoding: "utf8", cwd: HERE, stdio: ["ignore", "pipe", "ignore"], timeout: 1800000 })); } catch { r.compliance = null; }
     // Test quality of the contender's own suite: mutation score, staleness, brittleness vs the reference.
     const refDir = [`v${last.k}`, `v${String(last.k).padStart(2, "0")}`].map((d) => path.join(T, "ref", d, "src")).find((d) => fs.existsSync(d));
     if (fs.existsSync(path.join(last.snap, "test")) && refDir) {
@@ -530,6 +535,11 @@ function scorecard(rows, footprint, versions) {
       add(`${task}: tests — failing on a correct alternative implementation`, "min", tq("brittle"), pct, 0.01);
       add(`${task}: tests — assertions per test`, "max", tq("expectsPerTest"), (x) => x.toFixed(2), 0.05);
       add(`${task}: tests — error-path tests`, "max", tq("errorTests"), (x) => x.toFixed(1), 0.1);
+    }
+    for (const [rule, label] of [["split", "split a >300-line file it edits"], ["never", "exhaustive never on literal-union switches"], ["evidence", "functions taking evidence/branded params"], ["green", "own test suite green after an iteration"], ["testFirst", "test edited before src (agent mode)"], ["planFirst", "plan stated before the first file (v1)"]]) {
+      const tot = (v, f) => R(v).reduce((a, r) => a + (r.compliance?.[rule]?.[f] ?? 0), 0);
+      if (!VARIANTS.some((v) => tot(v, "opportunities") > 0)) continue;
+      add(`${task}: compliance — ${label}`, "max", (v) => (tot(v, "opportunities") ? tot(v, "followed") / tot(v, "opportunities") : 0), (x) => `${Math.round(x * 100)}%`, 0.02);
     }
     add(`${task}: runs without a build step (all snapshots)`, "max", (v) => mean(R(v).flatMap((r) => r.iters.map((i) => i.native))), pct);
   }

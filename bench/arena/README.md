@@ -160,3 +160,11 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   churn +7%, 0.3 regressions). **engage-triggers** rejected (churn 303, size 4,645). **engage-diet**
   (569 tok) ≈ engage on code (complexity 19.5, size 4,043, 0.8 regressions), prose 12% shorter at 91% vs
   90%, but ticket refs 17% vs 0% in the comments probe — its shortened comment rule leaks.
+- **Rule compliance (`compliance.ts`, 2026-10-15):** score rules on *opportunities* (how often the trigger
+  happened) and *followed*, not on correctness. Snapshot checkers: split past 300 lines, exhaustive `never`
+  on literal-union switches (TS type checker), evidence/branded params, own suite green; transcript checkers
+  (`stream-json` logs per iteration): test edited before src, plan stated before the first file. Rescore of
+  past runs: **split 0% for every arm** (engage-split/longterm: 0 of 22–23 chances), **evidence/proof
+  params 0%** everywhere (incl. engage-gdp/types), **`never`: no opportunities in any task** (rule
+  untestable here), engage-drift kept the suite green *less* often (81% vs 100%). The failed rules were not
+  "followed but useless" — they were never adopted.

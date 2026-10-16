@@ -203,3 +203,22 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   only the text just written. Ticket references: no rules 25%, ponytail 25%, engage 8%, engage + guard
   0%. Comment blocks over 2 lines: 5% / 18% / 3% / 0%. Cost per run +4% ($0.023 → $0.024). Shipped in
   v0.8.0 as a plugin hook, active only while engage is the output style.
+- **Long-function guard, 35-step project (2026-10-16).** evolve-xl now runs to v35 (v16–v35: delete,
+  search, move, estimates, archive, comments, dependencies, filters, tag rename, snooze, project
+  rename, redo, escalate, project limits, title sort, clone, report, locking, history filter, tag
+  many). Every reference version scores 100%, and each new step's cases fail on the step before.
+  `hooks/fn-hook.mjs` blocks a function over 50 *own* lines (nested functions excluded) or over
+  complexity 12. Note: the old "largest function 400 lines" metric was the `createTracker` factory
+  closure with every method inside it; own-lines max was about 60 (new `fnOwnMax` health metric).
+  - **Build (Haiku, v1–v20, n=8):** max complexity 23.8 → 11.6, functions over complexity 12 3.9 → 0,
+    largest own function 60 → 49 lines. Output tokens +21%, turns +17%. Correctness 88% vs 100% at v20,
+    but that is one engage project whose step-9 edit broke `addTask` for good; the other 7 per arm
+    finished at 99–100%.
+  - **Blind Haiku maintainer (v21–v35, 2 replicates, 16 trajectories per arm):** no payoff. Final
+    tests 98% / 100% (the gap is the project that arrived broken), median output tokens 82.3k / 81.8k,
+    median lines changed 455 / 436. The structure gain lasted: after 15 unguarded steps the guarded
+    code still had half the max complexity (30.1 vs 14.5).
+  - **Verdict:** the guard reliably produces simpler functions for about 20% more build tokens, and
+    the simplicity survives maintenance, but an LLM maintainer is no faster or more correct on it.
+    Whether that is worth it depends on human readers, which the arena can't measure. Not a default;
+    a candidate for an opt-in guard. Total cost about $6.

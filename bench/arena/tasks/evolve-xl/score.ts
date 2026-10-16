@@ -9,6 +9,7 @@ const prev = prevDir ? await load(prevDir).catch(() => null) : null;
 const T = () => m.createTracker();
 const throws = (f: () => unknown, re: RegExp) => { try { f(); return false; } catch (e) { return re.test(String((e as Error).message)); } };
 const ids = (ts: any[]) => ts.map((t) => t.id).join(",");
+const hist2 = (es: any[]) => es.map((e: any) => e.type).join();
 const hist = (t: any, id: number) => t.history(id).map((e: any) => `${e.type}@${e.seq}`).join(",");
 
 const cases: [number, string, () => boolean][] = [
@@ -100,6 +101,69 @@ const cases: [number, string, () => boolean][] = [
   [15, "edit one undo", () => { const t = T(); t.addTask("a", { tags: ["x"] }); t.edit(1, { title: "b", tags: [] }); t.undo(); return t.get(1).title === "a" && t.get(1).tags.join() === "x"; }],
   // v12
   [12, "stats", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.addTask("c"); t.complete(2); return JSON.stringify(t.stats()) === JSON.stringify({ todo: 2, done: 1 }); }],
+  // v16
+  [16, "delete removes subtree", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.addTask("c", { parent: 2 }); t.addTask("d"); t.delete(1); return ids(t.list({ all: true })) === "4" && throws(() => t.get(3), /unknown task/) && throws(() => t.history(2), /unknown task/); }],
+  [16, "delete never reuses ids", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.delete(2); return t.addTask("c").id === 3 && throws(() => t.delete(9), /unknown task/); }],
+  [16, "delete undo", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.delete(1); t.undo(); return ids(t.list({ all: true })) === "1,2" && t.addTask("c").id === 3; }],
+  // v17
+  [17, "search", () => { const t = T(); t.addTask("Buy milk", { priority: "low" }); t.addTask("milk run", { parent: 1 }); t.addTask("Other"); t.addTask("MILKSHAKE", { priority: "high" }); return ids(t.search("  Milk ")) === "4,2,1"; }],
+  [17, "empty query", () => throws(() => T().search("  "), /empty query/)],
+  // v18
+  [18, "move", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.move(2, 1); const under = ids(t.subtasks(1)) === "2"; t.move(2, null); return under && t.get(2).parent === undefined && ids(t.list()) === "1,2"; }],
+  [18, "move cycle", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.addTask("c", { parent: 2 }); return throws(() => t.move(1, 3), /cycle/) && throws(() => t.move(1, 1), /cycle/) && throws(() => t.move(1, 9), /unknown task/); }],
+  [18, "move event + undo", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.move(2, 1); t.move(2, 1); const h = t.history(2).map((e: any) => e.type).join(); t.undo(); t.undo(); return h === "created,moved" && t.get(2).parent === undefined; }],
+  // v19
+  [19, "estimate validate", () => { const t = T(); return t.addTask("a", { estimate: 30 }).estimate === 30 && throws(() => t.addTask("b", { estimate: 0 }), /invalid estimate/) && throws(() => t.addTask("b", { estimate: 1.5 }), /invalid estimate/); }],
+  [19, "remaining", () => { const t = T(); t.addTask("a", { estimate: 30 }); t.addTask("b", { estimate: 15, parent: 1 }); t.addTask("c", { estimate: 5 }); t.addTask("d"); t.complete(3); return t.remaining() === 45; }],
+  [19, "edit estimate", () => { const t = T(); t.addTask("a", { estimate: 30 }); t.edit(1, { estimate: 10 }); const ten = t.get(1).estimate === 10; t.edit(1, { estimate: null }); return ten && t.get(1).estimate === undefined && throws(() => t.edit(1, { estimate: -2 }), /invalid estimate/); }],
+  // v20
+  [20, "archive rules", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.complete(2); return throws(() => t.archive(1), /not done/) && throws(() => t.archive(2), /is a subtask/); }],
+  [20, "archive hides everywhere", () => { const t = T(); t.addTask("a", { due: "2026-01-01" }); t.addTask("b", { parent: 1, estimate: 5 }); t.complete(2); t.complete(1); t.addTask("a2"); t.archive(1); return ids(t.list({ all: true })) === "3" && t.search("a").length === 1 && JSON.stringify(t.stats()) === JSON.stringify({ todo: 1, done: 0 }) && t.get(1).archived === true; }],
+  [20, "archive events, undo, export", () => { const t = T(); t.addTask("a"); t.complete(1); t.archive(1); t.archive(1); const u = m.importTracker(t.export()); t.unarchive(1); t.undo(); return t.history(1).map((e: any) => e.type).join() === "created,completed,archived" && t.get(1).archived === true && u.list().length === 0; }],
+  // v21
+  [21, "comments", () => { const t = T(); t.addTask("a"); t.comment(1, "  hi "); t.setActor("ann"); t.comment(1, "yo"); return JSON.stringify(t.comments(1)) === JSON.stringify([{ text: "hi", actor: "system" }, { text: "yo", actor: "ann" }]) && throws(() => t.comment(1, " "), /empty comment/); }],
+  [21, "comment event, undo, export", () => { const t = T(); t.addTask("a"); t.comment(1, "x"); t.comment(1, "y"); t.undo(); const u = m.importTracker(t.export()); return u.comments(1).length === 1 && t.history(1).map((e: any) => e.type).join() === "created,commented"; }],
+  // v22
+  [22, "dependencies block completion", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.addTask("c"); t.dependsOn(1, 3); t.dependsOn(1, 2); t.dependsOn(1, 2); const d = t.dependencies(1).join() === "2,3"; const blocked = throws(() => t.complete(1), /blocked/); t.complete(2); t.complete(3); return d && blocked && t.complete(1).status === "done"; }],
+  [22, "dependency cycle", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.addTask("c"); t.dependsOn(1, 2); t.dependsOn(2, 3); return throws(() => t.dependsOn(3, 1), /cycle/) && throws(() => t.dependsOn(1, 1), /cycle/) && throws(() => t.dependsOn(1, 9), /unknown task/); }],
+  [22, "completeMany blocked all-or-nothing", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.addTask("c"); t.dependsOn(2, 3); return throws(() => t.completeMany([1, 2]), /blocked/) && t.get(1).status === "todo"; }],
+  [22, "delete drops dependency, export", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.dependsOn(1, 2); const u = m.importTracker(t.export()); t.delete(2); return t.dependencies(1).length === 0 && u.dependencies(1).join() === "2" && t.history(1).map((e: any) => e.type).join() === "created,linked"; }],
+  // v23
+  [23, "dueBefore + text filters", () => { const t = T(); t.addTask("Pay rent", { due: "2026-03-01" }); t.addTask("pay tax", { due: "2026-05-01" }); t.addTask("Walk", { due: "2026-01-01" }); return ids(t.list({ dueBefore: "2026-04-01", text: "PAY" })) === "1" && throws(() => t.list({ dueBefore: "2026-02-31" }), /invalid date/); }],
+  // v24
+  [24, "renameTag", () => { const t = T(); t.addTask("a", { tags: ["old", "z"] }); t.addTask("b", { tags: ["Old", "new"] }); t.addTask("c"); const n = t.renameTag(" OLD ", "New"); return n === 2 && t.get(1).tags.join() === "new,z" && t.get(2).tags.join() === "new" && throws(() => t.renameTag(" ", "x"), /empty tag/); }],
+  [24, "renameTag events + one undo", () => { const t = T(); t.addTask("a", { tags: ["x"] }); t.addTask("b", { tags: ["x"] }); t.renameTag("x", "y"); const e = t.history(2).map((e: any) => e.type).join(); t.undo(); return e === "created,edited" && t.get(1).tags.join() === "x" && t.get(2).tags.join() === "x"; }],
+  // v25
+  [25, "snooze", () => { const t = T(); t.addTask("a", { due: "2026-02-27" }); t.addTask("b"); return t.snooze(1, 3).due === "2026-03-02" && throws(() => t.snooze(1, 0), /invalid days/) && throws(() => t.snooze(2, 1), /no due date/) && t.history(1).map((e: any) => e.type).join() === "created,snoozed"; }],
+  // v26
+  [26, "renameProject", () => { const t = T(); t.createProject("Home"); t.createProject("Work"); const r = t.renameProject("p1", "  Garden "); const dup = throws(() => t.renameProject("p1", "work"), /duplicate project/); t.renameProject("p2", "WORK"); t.undo(); return r.name === "Garden" && dup && t.projects()[1].name === "Work" && throws(() => t.renameProject("p9", "x"), /unknown project/); }],
+  // v27
+  [27, "redo", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.complete(1); t.undo(); t.undo(); const r = t.redo() && t.redo(); return r && t.list({ all: true }).length === 2 && t.get(1).status === "done" && t.redo() === false; }],
+  [27, "new mutation clears redo", () => { const t = T(); t.addTask("a"); t.undo(); t.addTask("b"); return t.redo() === false && m.importTracker(t.export()).redo() === false; }],
+  // v28
+  [28, "escalate", () => { const t = T(); t.addTask("a", { due: "2026-01-01", priority: 3 }); t.addTask("b", { due: "2026-01-01", priority: 1 }); t.addTask("c", { due: "2026-09-01", priority: 4 }); t.addTask("d", { due: "2026-01-01", priority: 5 }); t.complete(4); const n = t.escalate("2026-02-01"); return n === 1 && t.get(1).priority === 2 && t.get(4).priority === 5 && throws(() => t.escalate("x"), /invalid date/); }],
+  [28, "escalate events + one undo", () => { const t = T(); t.addTask("a", { due: "2026-01-01" }); t.addTask("b", { due: "2026-01-01" }); t.escalate("2026-02-01"); const e = t.history(1).map((e: any) => e.type).join(); t.undo(); return e === "created,escalated" && t.get(1).priority === 3 && t.get(2).priority === 3; }],
+  // v29
+  [29, "project limit blocks add", () => { const t = T(); t.createProject("H"); t.addTask("a", { project: "p1" }); t.setProjectLimit("p1", 1); return throws(() => t.addTask("b", { project: "p1" }), /project full/) && t.list().length === 1 && t.addTask("c").id === 2; }],
+  [29, "limit blocks edit + reopen", () => { const t = T(); t.createProject("H"); t.addTask("a", { project: "p1" }); t.addTask("b"); t.complete(1); t.addTask("c", { project: "p1" }); t.setProjectLimit("p1", 1); return throws(() => t.edit(2, { project: "p1" }), /project full/) && t.get(2).project === undefined && throws(() => t.reopen(1), /project full/); }],
+  [29, "limit validation, null, export", () => { const t = T(); t.createProject("H"); t.addTask("a", { project: "p1" }); t.addTask("b", { project: "p1" }); t.setProjectLimit("p1", 1); const u = m.importTracker(t.export()); const blocked = throws(() => u.addTask("c", { project: "p1" }), /project full/); t.setProjectLimit("p1", null); return blocked && t.addTask("c", { project: "p1" }).id === 3 && throws(() => t.setProjectLimit("p1", 0), /invalid limit/) && throws(() => t.setProjectLimit("p9", 1), /unknown project/); }],
+  // v30
+  [30, "sort by title", () => { const t = T(); t.addTask("beta", { priority: "high" }); t.addTask("Alpha"); t.addTask("alpha"); t.addTask("Gamma"); return ids(t.list({ sort: "title" })) === "2,3,1,4"; }],
+  // v31
+  [31, "clone", () => { const t = T(); t.createProject("H"); t.addTask("p"); t.addTask("a", { priority: 2, due: "2026-01-01", tags: ["x"], project: "p1", parent: 1, estimate: 9 }); t.comment(2, "c"); t.addTask("dep"); t.dependsOn(2, 3); t.complete(3); const c = t.clone(2); return c.id === 4 && c.title === "a (copy)" && c.status === "todo" && c.priority === 2 && c.parent === 1 && c.estimate === 9 && t.comments(4).length === 0 && t.dependencies(4).length === 0 && t.history(4).map((e: any) => e.type).join() === "created"; }],
+  [31, "clone respects limit + undo", () => { const t = T(); t.createProject("H"); t.addTask("a", { project: "p1" }); t.setProjectLimit("p1", 1); const full = throws(() => t.clone(1), /project full/); t.setProjectLimit("p1", null); t.clone(1); t.undo(); return full && t.list().length === 1; }],
+  // v32
+  [32, "report", () => { const t = T(); t.addTask("a", { due: "2026-01-01" }); t.addTask("b", { due: "2026-02-01", parent: 1 }); t.addTask("c", { due: "2026-03-01" }); t.addTask("d"); t.complete(4); return JSON.stringify(t.report("2026-02-01")) === JSON.stringify({ todo: 3, done: 1, overdue: 1, dueToday: 1 }) && throws(() => t.report("nope"), /invalid date/); }],
+  // v33
+  [33, "locked task rejects changes", () => { const t = T(); t.addTask("a", { due: "2026-01-01" }); t.addTask("b"); t.lock(1); return [() => t.complete(1), () => t.tag(1, "x"), () => t.edit(1, { title: "z" }), () => t.move(1, 2), () => t.snooze(1, 1), () => t.comment(1, "c"), () => t.dependsOn(1, 2), () => t.delete(1)].every((f) => throws(f, /locked/)) && t.get(1).title === "a" && t.list().length === 2; }],
+  [33, "locked subtask blocks delete; unknown first", () => { const t = T(); t.addTask("a"); t.addTask("b", { parent: 1 }); t.lock(2); return throws(() => t.delete(1), /locked/) && t.list({ all: true }).length === 2 && throws(() => t.complete(9), /unknown task/); }],
+  [33, "escalate + renameTag skip locked", () => { const t = T(); t.addTask("a", { due: "2026-01-01", tags: ["x"] }); t.addTask("b", { due: "2026-01-01", tags: ["x"] }); t.lock(1); return t.escalate("2026-02-01") === 1 && t.renameTag("x", "y") === 1 && t.get(1).priority === 3 && t.get(1).tags.join() === "x"; }],
+  [33, "unlock, events, undo", () => { const t = T(); t.addTask("a"); t.lock(1); t.lock(1); t.unlock(1); t.complete(1); t.undo(); t.undo(); return throws(() => t.complete(1), /locked/) && t.history(1).map((e: any) => e.type).join() === "created,locked"; }],
+  // v34
+  [34, "history filter", () => { const t = T(); t.addTask("a"); t.setActor("ann"); t.tag(1, "x"); t.complete(1); t.setActor("bo"); t.reopen(1); return hist2(t.history(1, { actor: "ann" })) === "tagged,completed" && hist2(t.history(1, { type: "reopened", actor: "bo" })) === "reopened" && t.history(1).length === 4; }],
+  // v35
+  [35, "tagMany", () => { const t = T(); t.addTask("a"); t.addTask("b"); return t.tagMany([2, 1], " X ").map((x: any) => x.id).join() === "2,1" && t.get(1).tags.join() === "x"; }],
+  [35, "tagMany all-or-nothing + one undo", () => { const t = T(); t.addTask("a"); t.addTask("b"); t.lock(2); const e = throws(() => t.tagMany([1, 2], "x"), /locked/) && t.get(1).tags.length === 0; t.unlock(2); t.tagMany([1, 2], "y"); t.undo(); return e && t.get(1).tags.length === 0 && t.get(2).tags.length === 0; }],
 ];
 const failed: string[] = [];
 let total = 0;

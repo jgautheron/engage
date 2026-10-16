@@ -220,7 +220,7 @@ function churn(a, b) {
 // Evolution configs: hard = iterations where architecture decides the cost; trivial = should stay tiny.
 const EVOLVE = {
   evolve: { hard: [3, 4], trivial: 5 },
-  "evolve-xl": { hard: [5, 9, 10, 11], trivial: 12 },
+  "evolve-xl": { hard: [5, 9, 10, 11], trivial: 12 }, // runs to v35; maintenance from v21 uses v21–v35
   authz: { hard: [2, 3, 5, 6, 7], trivial: 4 },
 };
 async function evolveTask(task, contenders) {
@@ -531,6 +531,9 @@ function scorecard(rows, footprint, versions) {
     add(`${task}: health — files at the end`, "max", hh("files"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — largest file (lines)`, "min", hh("maxFileLines"), (x) => x.toFixed(0), 0.1);
     add(`${task}: health — largest function (lines)`, "min", hh("fnLenMax"), (x) => x.toFixed(0), 0.1);
+    add(`${task}: health — largest function, own lines (nested functions excluded)`, "min", hh("fnOwnMax"), (x) => x.toFixed(0), 0.1);
+    add(`${task}: health — functions over 50 own lines`, "min", hh("fnOver50"), (x) => x.toFixed(1), 0);
+    add(`${task}: health — functions over complexity 12`, "min", hh("fnOverCx12"), (x) => x.toFixed(1), 0);
     add(`${task}: health — max branch complexity`, "min", hh("cxMax"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — duplicated blocks`, "min", hh("dupBlocks"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — non-null assertions`, "min", hh("nonNull"), (x) => x.toFixed(1), 0.1);
@@ -565,6 +568,9 @@ function scorecard(rows, footprint, versions) {
     add("maintain: blind maintainer — output tokens", "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
     const h = (k) => (v) => mean(R(v).map((r) => r.health?.[k] ?? 0));
     add("health: largest function (lines)", "min", h("fnLenMax"), (x) => x.toFixed(0), 0.1);
+    add("health: largest function, own lines", "min", h("fnOwnMax"), (x) => x.toFixed(0), 0.1);
+    add("health: functions over 50 own lines", "min", h("fnOver50"), (x) => x.toFixed(1), 0);
+    add("health: functions over complexity 12", "min", h("fnOverCx12"), (x) => x.toFixed(1), 0);
     add("health: largest file (lines)", "min", h("maxFileLines"), (x) => x.toFixed(0), 0.1);
     add("health: max branch complexity in a function", "min", h("cxMax"), (x) => x.toFixed(1), 0.1);
     add("health: functions with complexity > 10", "min", h("cxOver10"), (x) => x.toFixed(1), 0.1);

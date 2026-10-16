@@ -5,8 +5,11 @@ import fs from "node:fs";
 import path from "node:path";
 
 const home = process.argv[2];
-const snaps: { k: number; dir: string }[] = [];
-for (let k = 1; fs.existsSync(`${home}@v${k}/src`); k++) snaps.push({ k, dir: `${home}@v${k}` });
+// Snapshots may start above v1 (maintenance runs continue from an earlier project).
+const snaps: { k: number; dir: string }[] = fs.readdirSync(path.dirname(home))
+  .map((d) => { const m = new RegExp(`^${path.basename(home).replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}@v(\\d+)$`).exec(d); return m ? { k: +m[1], dir: path.join(path.dirname(home), d) } : null; })
+  .filter((x): x is { k: number; dir: string } => !!x && fs.existsSync(path.join(x.dir, "src")))
+  .sort((a, b) => a.k - b.k);
 
 const srcFiles = (dir: string) => fs.existsSync(path.join(dir, "src")) ? fs.readdirSync(path.join(dir, "src"), { recursive: true }).map(String).filter((f) => f.endsWith(".ts")) : [];
 const lines = (dir: string, f: string) => fs.readFileSync(path.join(dir, "src", f), "utf8").split("\n").length;
@@ -50,26 +53,35 @@ if (last) {
   }
 }
 
-// Rule: preconditions as types (gdp). Opportunity = exported functions; followed = takes a branded/evidence param.
+// Rule: preconditions as types (gdp). Opportunity = a sensitive mutating function (delete/set/transfer/remove/add/rename);
+// followed = it takes a branded id or proof parameter. Brands are collected across every file first.
+const SENSITIVE = /^(delete|set|transfer|remove|add|rename)/i;
 const evidence = { opportunities: 0, followed: 0 };
-if (last) for (const f of srcFiles(last.dir)) {
-  const sf = ts.createSourceFile(f, text(last.dir, f), ts.ScriptTarget.Latest, true);
+if (last) {
+  const files = srcFiles(last.dir).map((f) => ts.createSourceFile(f, text(last.dir, f), ts.ScriptTarget.Latest, true));
   const brands = new Set<string>();
-  const collect = (n: ts.Node) => {
-    if (ts.isTypeAliasDeclaration(n) && /__brand|unique symbol|Proof|Evidence/.test(n.type.getText(sf))) brands.add(n.name.text);
-    if (ts.isInterfaceDeclaration(n) && /__brand|unique symbol|Proof/.test(n.getText(sf))) brands.add(n.name.text);
-    ts.forEachChild(n, collect);
-  };
-  collect(sf);
-  const visit = (n: ts.Node) => {
-    const isFn = ts.isFunctionDeclaration(n) || ts.isMethodDeclaration(n) || (ts.isArrowFunction(n) && ts.isPropertyAssignment(n.parent));
-    if (isFn && (n as ts.FunctionLikeDeclaration).parameters.length) {
-      evidence.opportunities++;
-      if ((n as ts.FunctionLikeDeclaration).parameters.some((p) => p.type && [...brands].some((b) => p.type!.getText(sf).includes(b)))) evidence.followed++;
-    }
-    ts.forEachChild(n, visit);
-  };
-  visit(sf);
+  for (const sf of files) {
+    const collect = (n: ts.Node) => {
+      if (ts.isTypeAliasDeclaration(n) && /__brand|__proof|unique symbol|Proof|Evidence/.test(n.type.getText(sf))) brands.add(n.name.text);
+      if (ts.isInterfaceDeclaration(n) && /__brand|__proof|unique symbol|Proof/.test(n.getText(sf))) brands.add(n.name.text);
+      ts.forEachChild(n, collect);
+    };
+    collect(sf);
+  }
+  const fnName = (n: ts.Node) =>
+    (ts.isFunctionDeclaration(n) || ts.isMethodDeclaration(n)) && n.name ? n.name.getText()
+    : ts.isArrowFunction(n) && (ts.isPropertyAssignment(n.parent) || ts.isVariableDeclaration(n.parent)) ? n.parent.name.getText() : "";
+  for (const sf of files) {
+    const visit = (n: ts.Node) => {
+      const name = fnName(n);
+      if (SENSITIVE.test(name) && (n as ts.FunctionLikeDeclaration).parameters.length) {
+        evidence.opportunities++;
+        if ((n as ts.FunctionLikeDeclaration).parameters.some((p) => p.type && [...brands].some((b) => new RegExp(`\\b${b}\\b`).test(p.type!.getText(sf))))) evidence.followed++;
+      }
+      ts.forEachChild(n, visit);
+    };
+    visit(sf);
+  }
 }
 
 // Rule: keep the suite green (drift). Opportunity = every iteration that has a test dir; followed = own tests pass.

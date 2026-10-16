@@ -168,3 +168,38 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   params 0%** everywhere (incl. engage-gdp/types), **`never`: no opportunities in any task** (rule
   untestable here), engage-drift kept the suite green *less* often (81% vs 100%). The failed rules were not
   "followed but useless" — they were never adopted.
+- **Prose vs hook enforcement (2026-10-16).** A PostToolUse hook (`hooks/<name>-hook.mjs`, contender
+  `<variant>+<name>hook`) blocks the edit and tells the model why. Prose rules were never adopted; hooks
+  were, every time.
+  - **Split (Haiku, 12-step, n=10):** with the split hook, the largest file dropped from 469 to 277 lines
+    and the code spread over about 5 files instead of 1. Correctness was unchanged (99–100%). Cost rose
+    about 20% (output tokens, turns). The split prose rule alone: 1.1 files, largest file 469 lines.
+  - **gdp take 2 (Sonnet 5 builds v1, n=6):** proof/brand adoption — engage-gdp 0/6, engage-gdpx (rule
+    plus a 6-line example) 0/6, engage-gdpx with the gdp hook 6/6, engage with the real gdp-ts skill
+    and recipe loaded 6/6 (a `proofs/` module per fact, as the skill prescribes).
+  - **Did proofs help a blind Haiku maintainer?** The authz task gained v5 (suspended users, a
+    cross-cutting rule), v6 (sharing one project, a privilege-escalation trap) and v7 (bulk actions
+    whose request never states the permission, the exact gdp-ts scenario). Two maintainer replicates,
+    12 trajectories per arm, scored at v7: gdp hook 99.9%, engage 99.4%, gdp-ts skill 99.4%, ponytail
+    99.1%. No arm ever skipped a bulk-action check; every miss was error ordering. The maintainer kept
+    and extended the proof pattern (5 → 10 proof modules). It cost 1.5–2× the maintenance tokens and
+    2–3× the lines changed, with more non-null assertions (2.7–6.3 vs 0).
+  - **Verdict:** gdp is not added to engage. Current models do not skip authorization checks in
+    codebases this small, so the guarantee had nothing to catch here, while its cost showed up every
+    time. A codebase that wants the guarantee should install gdp-ts (library, lint, skill); engage
+    does not conflict with it. The split hook is not shipped either: it delivers smaller files, but
+    nothing showed that smaller files pay back the 20% cost. A blind Haiku maintainer (v13–v15, n=10 per arm) did equally well on split
+    and unsplit code (99–100%, same tokens); the one gap was a project already broken before the hand-off.
+- **Diet, take 2 (2026-10-16).** engage-diet2 (diet plus the full comment paragraph, 625 tok) tied engage
+  on comments (ticket refs 8% / 8%) and on the Haiku 12-step build. On Sonnet 5 (n=4) it tied on
+  correctness but leaned bigger on code (size +4–6% in 3 suites, largest function 383 → 419).
+  engage-diet3 (full Engineering section, diet's Voice and Always, 934 tok) tied on everything. Prose
+  length is noise at this n: the same engage text gave 612 then 515 tokens per reply in two runs, so
+  diet's "12% shorter prose" was not real. Verdict: parked. Saving 220 tokens of a cached prompt does
+  not justify dropping tested rules (vague-question options, the docs clause).
+- **gdp-ts skill candidate:** rebuilt on demand, not committed (it embeds rauchg/gdp-ts's MIT skill):
+  engage-terse body + `skills/gdp-ts/SKILL.md` + `references/recipe.md` + `references/where-to-stop.md`.
+- **Comment guard hook (2026-10-16, Sonnet 5, comments suite, n=10):** `claude/comment-guard.mjs` checks
+  only the text just written. Ticket references: no rules 25%, ponytail 25%, engage 8%, engage + guard
+  0%. Comment blocks over 2 lines: 5% / 18% / 3% / 0%. Cost per run +4% ($0.023 → $0.024). Shipped in
+  v0.8.0 as a plugin hook, active only while engage is the output style.

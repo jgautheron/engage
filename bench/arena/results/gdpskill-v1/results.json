@@ -1,0 +1,568 @@
+{
+ "authz": [
+  {
+   "variant": "engage-gdpskill",
+   "sample": 1,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-1",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-1@v1",
+     "outTok": 46029,
+     "cost": 1.5819272,
+     "turns": 73,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3068,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 1.5819272,
+   "partialCost": false,
+   "health": {
+    "files": 11,
+    "maxFileLines": 68,
+    "fns": 28,
+    "fnLenMean": 7.8,
+    "fnLenMax": 50,
+    "cxMean": 1.82,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 2,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.45,
+    "importCycles": 0,
+    "testFiles": 3,
+    "testCases": 18
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 7,
+     "followed": 1
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 3,
+    "tests": 17,
+    "expectsPerTest": 1.06,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 10,
+    "errorMsg": 10,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 22,
+    "mutationScore": 0.91
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 2,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-2",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-2@v1",
+     "outTok": 26691,
+     "cost": 0.7722980000000003,
+     "turns": 40,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2996,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.7722980000000003,
+   "partialCost": false,
+   "health": {
+    "files": 11,
+    "maxFileLines": 72,
+    "fns": 28,
+    "fnLenMean": 8.3,
+    "fnLenMax": 47,
+    "cxMean": 1.79,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.96,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.27,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 18
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 6,
+     "followed": 2
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 17,
+    "expectsPerTest": 0.88,
+    "noExpect": 2,
+    "weak": 0,
+    "errorTests": 10,
+    "errorMsg": 10,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 22,
+    "mutationScore": 0.91
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 3,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-3",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-3@v1",
+     "outTok": 22577,
+     "cost": 0.6358469999999999,
+     "turns": 34,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2781,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.6358469999999999,
+   "partialCost": false,
+   "health": {
+    "files": 11,
+    "maxFileLines": 77,
+    "fns": 24,
+    "fnLenMean": 8.7,
+    "fnLenMax": 47,
+    "cxMean": 1.63,
+    "cxMax": 3,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3,
+    "pureShare": 0.88,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 18
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 6,
+     "followed": 1
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 17,
+    "expectsPerTest": 1.06,
+    "noExpect": 1,
+    "weak": 0,
+    "errorTests": 13,
+    "errorMsg": 13,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 18,
+    "mutationScore": 0.94
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 4,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-4",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-4@v1",
+     "outTok": 28168,
+     "cost": 0.7024874000000001,
+     "turns": 30,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2848,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.7024874000000001,
+   "partialCost": false,
+   "health": {
+    "files": 11,
+    "maxFileLines": 96,
+    "fns": 28,
+    "fnLenMean": 8.8,
+    "fnLenMax": 61,
+    "cxMean": 1.71,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3,
+    "pureShare": 0.96,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.82,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 20
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 6,
+     "followed": 1
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 19,
+    "expectsPerTest": 1.11,
+    "noExpect": 0,
+    "weak": 0,
+    "errorTests": 14,
+    "errorMsg": 12,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 15,
+    "mutationScore": 0.93
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 5,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-5",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-5@v1",
+     "outTok": 23874,
+     "cost": 0.6241268,
+     "turns": 29,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2836,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.6241268,
+   "partialCost": false,
+   "health": {
+    "files": 11,
+    "maxFileLines": 69,
+    "fns": 23,
+    "fnLenMean": 9,
+    "fnLenMax": 51,
+    "cxMean": 1.87,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 3,
+    "pureShare": 0.87,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.09,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 17
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 6,
+     "followed": 1
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 16,
+    "expectsPerTest": 0.88,
+    "noExpect": 2,
+    "weak": 0,
+    "errorTests": 9,
+    "errorMsg": 9,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 25,
+    "mutationScore": 0.96
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 6,
+   "dir": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-6",
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-6@v1",
+     "outTok": 34627,
+     "cost": 0.9877543999999999,
+     "turns": 47,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3172,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.9877543999999999,
+   "partialCost": false,
+   "health": {
+    "files": 12,
+    "maxFileLines": 69,
+    "fns": 28,
+    "fnLenMean": 8.4,
+    "fnLenMax": 43,
+    "cxMean": 1.79,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 1,
+    "pureShare": 0.93,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.42,
+    "importCycles": 0,
+    "testFiles": 2,
+    "testCases": 21
+   },
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 7,
+     "followed": 2
+    },
+    "green": {
+     "opportunities": 1,
+     "followed": 1
+    },
+    "testFirst": {
+     "opportunities": 1,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 1,
+     "followed": 0
+    }
+   },
+   "testq": {
+    "testFiles": 2,
+    "tests": 20,
+    "expectsPerTest": 0.9,
+    "noExpect": 2,
+    "weak": 0,
+    "errorTests": 12,
+    "errorMsg": 12,
+    "mocks": 0,
+    "snapshots": 0,
+    "implNames": 0,
+    "ownPass": 1,
+    "brittle": 0,
+    "mutants": 24,
+    "mutationScore": 0.96
+   }
+  }
+ ]
+}

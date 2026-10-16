@@ -1,4 +1,4 @@
-// Reference for version V (1..4) → ref/v{V}/src/index.ts
+// Reference for version V (1..7) → ref/v{V}/src/index.ts
 const V = +process.argv[2];
 const src = `export type Role = "admin" | "member";
 export interface User { id: string; name: string }
@@ -12,20 +12,30 @@ export function createService(seed: Seed) {
   const user = (id: string) => { const u = s.users.find((x) => x.id === id); if (!u) throw new Error("not found"); return u; };
   const team = (id: string) => { const t = s.teams.find((x) => x.id === id); if (!t) throw new Error("not found"); return t; };
   const project = (id: string) => { const p = s.projects.find((x) => x.id === id); if (!p || deleted.has(id)) throw new Error("not found"); return p; };
-  const role = (t: Team, uid: string) => (t.ownerId === uid ? "owner" : t.members.find((m) => m.userId === uid)?.role ?? null);
+  const suspended = new Set<string>();
+  const shared = new Map<string, Set<string>>();
+  const member = (t: Team, uid: string) => (t.ownerId === uid ? "owner" : t.members.find((m) => m.userId === uid)?.role ?? null);
+  const role = (t: Team, uid: string) => (suspended.has(uid) ? null : member(t, uid));
   const need = (ok: boolean) => { if (!ok) throw new Error("forbidden"); };
   const copy = (p: Project) => ({ ...p });
   const svc: any = {
-    getProject(v: string, pid: string) { user(v); const p = project(pid); need(role(team(p.teamId), v) !== null); return copy(p); },
+    getProject(v: string, pid: string) { user(v); const p = project(pid); need(role(team(p.teamId), v) !== null || (!suspended.has(v) && !!shared.get(pid)?.has(v))); return copy(p); },
     renameProject(v: string, pid: string, name: string) { user(v); const p = project(pid); const r = role(team(p.teamId), v); need(r === "owner" || r === "admin"); p.name = name; return copy(p); },
     deleteProject(v: string, pid: string) { user(v); const p = project(pid); need(role(team(p.teamId), v) === "owner"); deleted.add(pid); },
     setPasswordProtection(v: string, pid: string, pw: string) { user(v); const p = project(pid); const t = team(p.teamId); const r = role(t, v); need(V >= 3 ? r === "owner" : r === "owner" || r === "admin"); if (t.plan !== "pro") throw new Error("upgrade required"); p.password = pw; },
   };
-  if (V >= 2) svc.transferProject = (v: string, pid: string, tid: string) => { user(v); const p = project(pid); const target = team(tid); need(role(team(p.teamId), v) === "owner"); const r = role(target, v); need(r === "owner" || r === "admin"); p.teamId = tid; return copy(p); };
+  if (V >= 2) svc.transferProject = (v: string, pid: string, tid: string) => { user(v); const p = project(pid); const target = team(tid); need(role(team(p.teamId), v) === "owner"); const r = role(target, v); need(r === "owner" || r === "admin"); p.teamId = tid; shared.delete(pid); return copy(p); };
   if (V >= 3) svc.removePasswordProtection = (v: string, pid: string) => { user(v); const p = project(pid); const t = team(p.teamId); need(role(t, v) === "owner"); if (t.plan !== "pro") throw new Error("upgrade required"); delete p.password; };
   if (V >= 4) {
     svc.listProjects = (v: string, tid: string) => { user(v); const t = team(tid); need(role(t, v) !== null); return s.projects.filter((p) => p.teamId === tid && !deleted.has(p.id)).sort((a, b) => (a.id < b.id ? -1 : 1)).map(copy); };
     svc.addMember = (v: string, tid: string, uid: string, r: Role) => { user(v); const t = team(tid); user(uid); const vr = role(t, v); need(vr === "owner" || vr === "admin"); need(r !== "admin" || vr === "owner"); if (role(t, uid) !== null) throw new Error("already a member"); t.members.push({ userId: uid, role: r }); };
+  }
+  if (V >= 5) svc.suspendUser = (v: string, uid: string) => { user(v); user(uid); need(!suspended.has(v) && v !== uid && s.teams.some((t) => t.ownerId === v && member(t, uid) !== null)); suspended.add(uid); };
+  if (V >= 6) svc.shareProject = (v: string, pid: string, uid: string) => { user(v); const p = project(pid); user(uid); const t = team(p.teamId); const r = role(t, v); need(r === "owner" || r === "admin"); if (member(t, uid) !== null) throw new Error("already a member"); shared.set(pid, (shared.get(pid) ?? new Set()).add(uid)); };
+  if (V >= 7) {
+    const teamProjects = (tid: string) => s.projects.filter((p) => p.teamId === tid && !deleted.has(p.id)).sort((a, b) => (a.id < b.id ? -1 : 1));
+    svc.renameAll = (v: string, tid: string, prefix: string) => { user(v); const t = team(tid); const r = role(t, v); need(r === "owner" || r === "admin"); return teamProjects(tid).map((p) => { p.name = prefix + p.name; return copy(p); }); };
+    svc.clearPasswords = (v: string, tid: string) => { user(v); const t = team(tid); need(role(t, v) === "owner"); if (t.plan !== "pro") throw new Error("upgrade required"); for (const p of teamProjects(tid)) delete p.password; };
   }
   return svc;
 }

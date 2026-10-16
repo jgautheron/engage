@@ -71,6 +71,16 @@ function buildContenders() {
     once: Math.round(((v.system ?? "") + (v.start ?? []).join("")).length / 4),
     perTurn: Math.round((v.turn ?? []).filter(Boolean).join("").length / 4),
   }]));
+  // "<variant>+<hook>": the same contender plus an enforcing PostToolUse hook from bench/arena/hooks/<hook>.mjs.
+  for (const v of VARIANTS) {
+    const m = /^(.+)\+(\w+hook)$/.exec(v);
+    if (!m) continue;
+    const settings = { hooks: { PostToolUse: [{ matcher: "Write|Edit|MultiEdit", hooks: [{ type: "command", command: `node ${path.join(HERE, "hooks", m[2].replace(/hook$/, "-hook") + ".mjs")}`, timeout: 10 }] }] } };
+    all[v] = { ...all[m[1]], settings };
+    footprint[v] = footprint[m[1]];
+  }
+  const unknown = VARIANTS.filter((v) => !all[v]);
+  if (unknown.length) throw new Error(`Unknown variants: ${unknown.join(", ")}. Put candidates in bench/arena/candidates/.`);
   return { contenders: Object.fromEntries(VARIANTS.map((v) => [v, all[v]])), versions, footprint };
 }
 
@@ -84,10 +94,11 @@ function wrap(c, prompt) {
 
 // ---------- claude runner ----------
 // --restricted: ignores user/project settings (no output style, plugins, CLAUDE.md), no shell, file tools confined to cwd.
-function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 20, log }) {
+function claude({ cwd, model, prompt, system, tools, allow = [], env, capMin = 20, log, settings }) {
   // stream-json: every tool call in order (saved to `log` for compliance checks); the last event is the result.
   const args = ["-p", "--restricted", "--strict-mcp-config", "--model", model, "--output-format", "stream-json", "--verbose", "--permission-mode", "acceptEdits", "--tools", tools];
   if (allow.length) args.push("--allowedTools", ...allow);
+  if (settings) args.push("--settings", JSON.stringify(settings));
   if (system) args.push("--append-system-prompt", system);
   return new Promise((resolve) => {
     // Prompt on stdin: --tools is variadic and would swallow a positional prompt.
@@ -210,7 +221,7 @@ function churn(a, b) {
 const EVOLVE = {
   evolve: { hard: [3, 4], trivial: 5 },
   "evolve-xl": { hard: [5, 9, 10, 11], trivial: 12 },
-  authz: { hard: [2, 3, 4], trivial: 4 },
+  authz: { hard: [2, 3, 5, 6, 7], trivial: 4 },
 };
 async function evolveTask(task, contenders) {
   const T = path.join(HERE, "tasks", task);
@@ -258,7 +269,7 @@ async function evolveTask(task, contenders) {
       const prompt = k === 1
         ? `Build what ./REQUEST.md asks for, under ./src. ${how}`
         : `./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}`;
-      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`), log: `${home}@v${k}.transcript.jsonl` });
+      const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, settings: c.settings, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`), log: `${home}@v${k}.transcript.jsonl` });
       const snap = `${home}@v${k}`;
       fs.rmSync(snap, { recursive: true, force: true });
       if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
@@ -386,7 +397,7 @@ async function commentsSuite(contenders) {
     fs.mkdirSync(path.join(dir, "src"), { recursive: true });
     const seed = path.join(T, "seed", p.id);
     if (fs.existsSync(seed)) fs.cpSync(seed, dir, { recursive: true });
-    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, `(session ${s})\n${p.prompt} You cannot run code.`) });
+    const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, settings: c.settings, tools: "Read,Write,Edit,Glob,Grep", prompt: wrap(c, `(session ${s})\n${p.prompt} You cannot run code.`) });
     return { variant: v, id: p.id, sample: s, ...commentStats(path.join(dir, "src")), outTok: r.outTok, cost: r.cost };
   });
   console.log(`comments: ${jobs.length} runs`);
@@ -503,8 +514,10 @@ function scorecard(rows, footprint, versions) {
     add(`${task}: tests passed at v${K} (every feature)`, "max", (v) => it(v, K, (i) => i.score), pct);
     add(`${task}: regressions (earlier cases broken, summed)`, "min", (v) => ks.slice(1).reduce((a, k) => a + it(v, k, (i) => i.regressions), 0), (x) => x.toFixed(1), 0);
     add(`${task}: v1 size — no premature abstraction (tok)`, "min", (v) => it(v, 1, (i) => i.tok), (x) => x.toFixed(0), 0.1);
-    add(`${task}: lines changed on design-heavy iterations (${hard.map((k) => "v" + k).join(",")})`, "min", (v) => hard.reduce((a, k) => a + it(v, k, (i) => i.churn.lines), 0), (x) => x.toFixed(0), 0.1);
-    add(`${task}: lines changed on the trivial v${trivial}`, "min", (v) => it(v, trivial, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
+    if (trivial <= K) {
+      add(`${task}: lines changed on design-heavy iterations (${hard.map((k) => "v" + k).join(",")})`, "min", (v) => hard.reduce((a, k) => a + it(v, k, (i) => i.churn.lines), 0), (x) => x.toFixed(0), 0.1);
+      add(`${task}: lines changed on the trivial v${trivial}`, "min", (v) => it(v, trivial, (i) => i.churn.lines), (x) => x.toFixed(0), 0.1);
+    }
     add(`${task}: output tokens, whole project`, "min", (v) => mean(R(v).map((r) => r.iters.reduce((a, i) => a + i.outTok, 0))), (x) => x.toFixed(0), 0.05);
     add(`${task}: cost growth — late vs early iteration tokens`, "min", (v) => mean(R(v).map((r) => {
       const t = r.iters.filter((i) => i.k !== 1 && i.k !== trivial).map((i) => i.outTok);

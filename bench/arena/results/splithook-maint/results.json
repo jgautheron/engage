@@ -1,0 +1,3964 @@
+{
+ "maintain": [
+  {
+   "variant": "engage-split",
+   "sample": 1,
+   "health": {
+    "files": 2,
+    "maxFileLines": 470,
+    "fns": 54,
+    "fnLenMean": 14.9,
+    "fnLenMax": 306,
+    "cxMean": 3.24,
+    "cxMax": 22,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.78,
+    "literalUnions": 2,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1.5,
+    "importCycles": 2,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-1@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.8909090909090909,
+     "regressions": 6,
+     "native": 1,
+     "tok": 4533,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-1@v13",
+     "outTok": 5880,
+     "cost": 0.00735231,
+     "score": 0.8813559322033898,
+     "regressions": 6,
+     "native": 1,
+     "tok": 4694,
+     "churn": {
+      "lines": 39,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-1@v14",
+     "outTok": 3062,
+     "cost": 0.00479878,
+     "score": 0.8888888888888888,
+     "regressions": 7,
+     "native": 1,
+     "tok": 4799,
+     "churn": {
+      "lines": 33,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-1@v15",
+     "outTok": 5319,
+     "cost": 0.00633749,
+     "score": 0.8970588235294118,
+     "regressions": 7,
+     "native": 1,
+     "tok": 5270,
+     "churn": {
+      "lines": 54,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01848858,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 2,
+   "health": {
+    "files": 1,
+    "maxFileLines": 490,
+    "fns": 40,
+    "fnLenMean": 15.2,
+    "fnLenMax": 259,
+    "cxMean": 3.73,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.72,
+    "literalUnions": 0,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-2@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3932,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-2@v13",
+     "outTok": 6586,
+     "cost": 0.00686072,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4106,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-2@v14",
+     "outTok": 2683,
+     "cost": 0.00414955,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4180,
+     "churn": {
+      "lines": 43,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-2@v15",
+     "outTok": 4374,
+     "cost": 0.00532448,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4571,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01633475,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 3,
+   "health": {
+    "files": 1,
+    "maxFileLines": 561,
+    "fns": 59,
+    "fnLenMean": 13.6,
+    "fnLenMax": 302,
+    "cxMean": 3,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.8,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-3@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4150,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-3@v13",
+     "outTok": 5199,
+     "cost": 0.00638077,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4325,
+     "churn": {
+      "lines": 33,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-3@v14",
+     "outTok": 3002,
+     "cost": 0.00449944,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4393,
+     "churn": {
+      "lines": 40,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-3@v15",
+     "outTok": 4609,
+     "cost": 0.005455699999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4781,
+     "churn": {
+      "lines": 50,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.016335910000000002,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 4,
+   "health": {
+    "files": 1,
+    "maxFileLines": 582,
+    "fns": 57,
+    "fnLenMean": 14,
+    "fnLenMax": 297,
+    "cxMean": 3.32,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.79,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-4@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4359,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-4@v13",
+     "outTok": 5401,
+     "cost": 0.006241719999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4539,
+     "churn": {
+      "lines": 39,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-4@v14",
+     "outTok": 3899,
+     "cost": 0.0051066,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4687,
+     "churn": {
+      "lines": 52,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-4@v15",
+     "outTok": 5382,
+     "cost": 0.0064497899999999995,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5179,
+     "churn": {
+      "lines": 46,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01779811,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 5,
+   "health": {
+    "files": 1,
+    "maxFileLines": 661,
+    "fns": 57,
+    "fnLenMean": 16.8,
+    "fnLenMax": 339,
+    "cxMean": 2.89,
+    "cxMax": 18,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 2,
+    "pureShare": 0.79,
+    "literalUnions": 1,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-5@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4457,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-5@v13",
+     "outTok": 5207,
+     "cost": 0.00639144,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4608,
+     "churn": {
+      "lines": 25,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-5@v14",
+     "outTok": 2391,
+     "cost": 0.00414354,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4681,
+     "churn": {
+      "lines": 37,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-5@v15",
+     "outTok": 6725,
+     "cost": 0.00723529,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5203,
+     "churn": {
+      "lines": 67,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.017770269999999998,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 6,
+   "health": {
+    "files": 1,
+    "maxFileLines": 573,
+    "fns": 50,
+    "fnLenMean": 15.4,
+    "fnLenMax": 324,
+    "cxMean": 3.66,
+    "cxMax": 21,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.72,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-6@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4339,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-6@v13",
+     "outTok": 5452,
+     "cost": 0.0062800700000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4503,
+     "churn": {
+      "lines": 33,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-6@v14",
+     "outTok": 4627,
+     "cost": 0.00567511,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4685,
+     "churn": {
+      "lines": 51,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-6@v15",
+     "outTok": 5928,
+     "cost": 0.0066751200000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5156,
+     "churn": {
+      "lines": 53,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.0186303,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 7,
+   "health": {
+    "files": 1,
+    "maxFileLines": 458,
+    "fns": 46,
+    "fnLenMean": 15,
+    "fnLenMax": 264,
+    "cxMean": 3.41,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.67,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-7@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4254,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-7@v13",
+     "outTok": 4600,
+     "cost": 0.00582371,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4383,
+     "churn": {
+      "lines": 18,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-7@v14",
+     "outTok": 4743,
+     "cost": 0.0055910000000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4532,
+     "churn": {
+      "lines": 61,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-7@v15",
+     "outTok": 4891,
+     "cost": 0.005817050000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4994,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.017231760000000002,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 8,
+   "health": {
+    "files": 1,
+    "maxFileLines": 573,
+    "fns": 58,
+    "fnLenMean": 14.5,
+    "fnLenMax": 304,
+    "cxMean": 3.02,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.83,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-8@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4752,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-8@v13",
+     "outTok": 4491,
+     "cost": 0.005995780000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4882,
+     "churn": {
+      "lines": 21,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-8@v14",
+     "outTok": 2706,
+     "cost": 0.00434815,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4972,
+     "churn": {
+      "lines": 48,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-8@v15",
+     "outTok": 5530,
+     "cost": 0.00645512,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5543,
+     "churn": {
+      "lines": 65,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.016799050000000003,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 9,
+   "health": {
+    "files": 1,
+    "maxFileLines": 482,
+    "fns": 55,
+    "fnLenMean": 12.5,
+    "fnLenMax": 252,
+    "cxMean": 3.02,
+    "cxMax": 18,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.75,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-9@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4172,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-9@v13",
+     "outTok": 4215,
+     "cost": 0.005366879999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4303,
+     "churn": {
+      "lines": 28,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-9@v14",
+     "outTok": 2770,
+     "cost": 0.0042962799999999995,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4396,
+     "churn": {
+      "lines": 28,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-9@v15",
+     "outTok": 6503,
+     "cost": 0.0072141,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4826,
+     "churn": {
+      "lines": 41,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.016877259999999998,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split",
+   "sample": 10,
+   "health": {
+    "files": 1,
+    "maxFileLines": 576,
+    "fns": 41,
+    "fnLenMean": 16.3,
+    "fnLenMax": 282,
+    "cxMean": 3.78,
+    "cxMax": 23,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.73,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 0,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split-10@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4044,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-10@v13",
+     "outTok": 4871,
+     "cost": 0.005763220000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4185,
+     "churn": {
+      "lines": 26,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-10@v14",
+     "outTok": 2772,
+     "cost": 0.00427645,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4260,
+     "churn": {
+      "lines": 45,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split-10@v15",
+     "outTok": 4970,
+     "cost": 0.00585379,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4635,
+     "churn": {
+      "lines": 48,
+      "files": 1
+     },
+     "locality": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01589346,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 1,
+   "health": {
+    "files": 4,
+    "maxFileLines": 351,
+    "fns": 46,
+    "fnLenMean": 13.4,
+    "fnLenMax": 256,
+    "cxMean": 3.65,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.78,
+    "literalUnions": 2,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 2,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-1@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4322,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-1@v13",
+     "outTok": 5504,
+     "cost": 0.006285150000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4511,
+     "churn": {
+      "lines": 28,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-1@v14",
+     "outTok": 3133,
+     "cost": 0.0043856400000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4591,
+     "churn": {
+      "lines": 27,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-1@v15",
+     "outTok": 5475,
+     "cost": 0.0063437599999999995,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5035,
+     "churn": {
+      "lines": 68,
+      "files": 3
+     },
+     "locality": {
+      "added": 0,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01701455,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 2,
+   "health": {
+    "files": 7,
+    "maxFileLines": 286,
+    "fns": 59,
+    "fnLenMean": 12.6,
+    "fnLenMax": 259,
+    "cxMean": 3.08,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.83,
+    "literalUnions": 1,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.14,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-2@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4870,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-2@v13",
+     "outTok": 5383,
+     "cost": 0.006587900000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5093,
+     "churn": {
+      "lines": 34,
+      "files": 4
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-2@v14",
+     "outTok": 3937,
+     "cost": 0.005380620000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5206,
+     "churn": {
+      "lines": 33,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-2@v15",
+     "outTok": 6734,
+     "cost": 0.007470589999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5635,
+     "churn": {
+      "lines": 58,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.019439110000000002,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 3,
+   "health": {
+    "files": 3,
+    "maxFileLines": 360,
+    "fns": 48,
+    "fnLenMean": 17.1,
+    "fnLenMax": 313,
+    "cxMean": 3.46,
+    "cxMax": 28,
+    "cxOver10": 5,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.71,
+    "literalUnions": 0,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-3@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4119,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-3@v13",
+     "outTok": 3800,
+     "cost": 0.004779139999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4220,
+     "churn": {
+      "lines": 23,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-3@v14",
+     "outTok": 1803,
+     "cost": 0.00327035,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4286,
+     "churn": {
+      "lines": 32,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-3@v15",
+     "outTok": 5246,
+     "cost": 0.00603276,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4710,
+     "churn": {
+      "lines": 46,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01408225,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 4,
+   "health": {
+    "files": 6,
+    "maxFileLines": 336,
+    "fns": 53,
+    "fnLenMean": 16.2,
+    "fnLenMax": 306,
+    "cxMean": 3.3,
+    "cxMax": 21,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.79,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.67,
+    "importCycles": 5,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-4@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4493,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-4@v13",
+     "outTok": 6820,
+     "cost": 0.007436130000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4694,
+     "churn": {
+      "lines": 37,
+      "files": 5
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-4@v14",
+     "outTok": 3619,
+     "cost": 0.00422633,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4774,
+     "churn": {
+      "lines": 47,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-4@v15",
+     "outTok": 6451,
+     "cost": 0.0072076499999999995,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5309,
+     "churn": {
+      "lines": 67,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.018870110000000002,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 5,
+   "health": {
+    "files": 5,
+    "maxFileLines": 345,
+    "fns": 56,
+    "fnLenMean": 15.2,
+    "fnLenMax": 312,
+    "cxMean": 3.2,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.77,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.2,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-5@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 5018,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-5@v13",
+     "outTok": 4351,
+     "cost": 0.00544709,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5163,
+     "churn": {
+      "lines": 22,
+      "files": 4
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-5@v14",
+     "outTok": 4523,
+     "cost": 0.00560807,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5291,
+     "churn": {
+      "lines": 39,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-5@v15",
+     "outTok": 7789,
+     "cost": 0.008211500000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5782,
+     "churn": {
+      "lines": 63,
+      "files": 4
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01926666,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 6,
+   "health": {
+    "files": 2,
+    "maxFileLines": 357,
+    "fns": 58,
+    "fnLenMean": 11.5,
+    "fnLenMax": 257,
+    "cxMean": 3.1,
+    "cxMax": 24,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.71,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1,
+    "importCycles": 1,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-6@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9636363636363636,
+     "regressions": 2,
+     "native": 1,
+     "tok": 3984,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-6@v13",
+     "outTok": 6072,
+     "cost": 0.00654998,
+     "score": 0.9830508474576272,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4183,
+     "churn": {
+      "lines": 36,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-6@v14",
+     "outTok": 5518,
+     "cost": 0.005942329999999999,
+     "score": 0.9841269841269841,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4316,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-6@v15",
+     "outTok": 6773,
+     "cost": 0.0068977199999999995,
+     "score": 0.9852941176470589,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4776,
+     "churn": {
+      "lines": 54,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01939003,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 7,
+   "health": {
+    "files": 3,
+    "maxFileLines": 320,
+    "fns": 39,
+    "fnLenMean": 16.6,
+    "fnLenMax": 281,
+    "cxMean": 4.26,
+    "cxMax": 22,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.77,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 3,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-7@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4559,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-7@v13",
+     "outTok": 4111,
+     "cost": 0.00518627,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4678,
+     "churn": {
+      "lines": 25,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-7@v14",
+     "outTok": 5553,
+     "cost": 0.00582833,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4807,
+     "churn": {
+      "lines": 71,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-7@v15",
+     "outTok": 6375,
+     "cost": 0.00687307,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5301,
+     "churn": {
+      "lines": 51,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01788767,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 8,
+   "health": {
+    "files": 7,
+    "maxFileLines": 349,
+    "fns": 55,
+    "fnLenMean": 15.2,
+    "fnLenMax": 292,
+    "cxMean": 3.33,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 3,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.82,
+    "literalUnions": 4,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.14,
+    "importCycles": 4,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-8@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4834,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-8@v13",
+     "outTok": 6735,
+     "cost": 0.00750402,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5072,
+     "churn": {
+      "lines": 46,
+      "files": 4
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-8@v14",
+     "outTok": 3348,
+     "cost": 0.0042324500000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5212,
+     "churn": {
+      "lines": 16,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-8@v15",
+     "outTok": 6873,
+     "cost": 0.007974059999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5657,
+     "churn": {
+      "lines": 57,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.019710529999999997,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 9,
+   "health": {
+    "files": 7,
+    "maxFileLines": 370,
+    "fns": 62,
+    "fnLenMean": 16.4,
+    "fnLenMax": 342,
+    "cxMean": 2.92,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.81,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.57,
+    "importCycles": 3,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-9@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4757,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-9@v13",
+     "outTok": 5943,
+     "cost": 0.006885220000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4917,
+     "churn": {
+      "lines": 37,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-9@v14",
+     "outTok": 2957,
+     "cost": 0.00353664,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4983,
+     "churn": {
+      "lines": 44,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-9@v15",
+     "outTok": 5056,
+     "cost": 0.0057758,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5430,
+     "churn": {
+      "lines": 59,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.016197660000000003,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-split+splithook",
+   "sample": 10,
+   "health": {
+    "files": 5,
+    "maxFileLines": 322,
+    "fns": 53,
+    "fnLenMean": 14.5,
+    "fnLenMax": 299,
+    "cxMean": 2.7,
+    "cxMax": 17,
+    "cxOver10": 3,
+    "depthMax": 2,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.74,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1.8,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage-split+splithook-10@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4161,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-10@v13",
+     "outTok": 3463,
+     "cost": 0.0044264000000000005,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4255,
+     "churn": {
+      "lines": 20,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-10@v14",
+     "outTok": 6077,
+     "cost": 0.00583619,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4370,
+     "churn": {
+      "lines": 77,
+      "files": 1
+     },
+     "locality": {
+      "added": 3,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage-split+splithook-10@v15",
+     "outTok": 5735,
+     "cost": 0.006644809999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4806,
+     "churn": {
+      "lines": 52,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.0169074,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 1,
+   "health": {
+    "files": 3,
+    "maxFileLines": 313,
+    "fns": 42,
+    "fnLenMean": 14.6,
+    "fnLenMax": 285,
+    "cxMean": 3.33,
+    "cxMax": 21,
+    "cxOver10": 3,
+    "depthMax": 3,
+    "dupBlocks": 1,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.76,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-1@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4610,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-1@v13",
+     "outTok": 3229,
+     "cost": 0.0044461,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4736,
+     "churn": {
+      "lines": 22,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-1@v14",
+     "outTok": 2678,
+     "cost": 0.0036189,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4847,
+     "churn": {
+      "lines": 30,
+      "files": 1
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-1@v15",
+     "outTok": 5910,
+     "cost": 0.006378680000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5374,
+     "churn": {
+      "lines": 36,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01444368,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 2,
+   "health": {
+    "files": 4,
+    "maxFileLines": 357,
+    "fns": 49,
+    "fnLenMean": 17.3,
+    "fnLenMax": 323,
+    "cxMean": 3.29,
+    "cxMax": 23,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.71,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1.75,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-2@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4546,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-2@v13",
+     "outTok": 3943,
+     "cost": 0.00497318,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4669,
+     "churn": {
+      "lines": 25,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-2@v14",
+     "outTok": 2630,
+     "cost": 0.00398807,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4757,
+     "churn": {
+      "lines": 45,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-2@v15",
+     "outTok": 5210,
+     "cost": 0.00607844,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5273,
+     "churn": {
+      "lines": 59,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.015039690000000001,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 3,
+   "health": {
+    "files": 5,
+    "maxFileLines": 361,
+    "fns": 49,
+    "fnLenMean": 16.1,
+    "fnLenMax": 316,
+    "cxMean": 3.69,
+    "cxMax": 22,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.76,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1.6,
+    "importCycles": 4,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-3@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 3995,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-3@v13",
+     "outTok": 6254,
+     "cost": 0.00704546,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4218,
+     "churn": {
+      "lines": 30,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-3@v14",
+     "outTok": 2332,
+     "cost": 0.00355664,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4286,
+     "churn": {
+      "lines": 27,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-3@v15",
+     "outTok": 6211,
+     "cost": 0.00688833,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4838,
+     "churn": {
+      "lines": 50,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01749043,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 4,
+   "health": {
+    "files": 5,
+    "maxFileLines": 315,
+    "fns": 49,
+    "fnLenMean": 13.1,
+    "fnLenMax": 270,
+    "cxMean": 3.39,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.8,
+    "literalUnions": 5,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 4,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-4@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4532,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-4@v13",
+     "outTok": 7324,
+     "cost": 0.00797084,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4711,
+     "churn": {
+      "lines": 35,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-4@v14",
+     "outTok": 2299,
+     "cost": 0.003934030000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4774,
+     "churn": {
+      "lines": 6,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-4@v15",
+     "outTok": 6349,
+     "cost": 0.006703870000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5200,
+     "churn": {
+      "lines": 48,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.018608740000000002,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 5,
+   "health": {
+    "files": 2,
+    "maxFileLines": 325,
+    "fns": 55,
+    "fnLenMean": 12.7,
+    "fnLenMax": 259,
+    "cxMean": 3.38,
+    "cxMax": 21,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.75,
+    "literalUnions": 3,
+    "taggedUnions": 1,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 1,
+    "importCycles": 1,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-5@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4280,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-5@v13",
+     "outTok": 5266,
+     "cost": 0.00583378,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4449,
+     "churn": {
+      "lines": 28,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-5@v14",
+     "outTok": 2793,
+     "cost": 0.00406815,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4546,
+     "churn": {
+      "lines": 29,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-5@v15",
+     "outTok": 5553,
+     "cost": 0.00597607,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5039,
+     "churn": {
+      "lines": 41,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.015878,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 6,
+   "health": {
+    "files": 6,
+    "maxFileLines": 333,
+    "fns": 45,
+    "fnLenMean": 17.2,
+    "fnLenMax": 294,
+    "cxMean": 3.51,
+    "cxMax": 24,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 5,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.73,
+    "literalUnions": 5,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-6@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4811,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-6@v13",
+     "outTok": 4611,
+     "cost": 0.005799199999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4947,
+     "churn": {
+      "lines": 26,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-6@v14",
+     "outTok": 3721,
+     "cost": 0.0048877,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5043,
+     "churn": {
+      "lines": 44,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-6@v15",
+     "outTok": 6306,
+     "cost": 0.0063973699999999994,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5528,
+     "churn": {
+      "lines": 52,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01708427,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 7,
+   "health": {
+    "files": 4,
+    "maxFileLines": 366,
+    "fns": 59,
+    "fnLenMean": 14.1,
+    "fnLenMax": 316,
+    "cxMean": 3,
+    "cxMax": 18,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.8,
+    "literalUnions": 1,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 2,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-7@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4220,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-7@v13",
+     "outTok": 4766,
+     "cost": 0.00548681,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4386,
+     "churn": {
+      "lines": 34,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-7@v14",
+     "outTok": 3088,
+     "cost": 0.00430244,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4459,
+     "churn": {
+      "lines": 46,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-7@v15",
+     "outTok": 5575,
+     "cost": 0.0059639,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4979,
+     "churn": {
+      "lines": 71,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01575315,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 8,
+   "health": {
+    "files": 3,
+    "maxFileLines": 322,
+    "fns": 50,
+    "fnLenMean": 13.7,
+    "fnLenMax": 268,
+    "cxMean": 3.02,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.76,
+    "literalUnions": 4,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-8@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4082,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-8@v13",
+     "outTok": 5036,
+     "cost": 0.00551892,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4235,
+     "churn": {
+      "lines": 27,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-8@v14",
+     "outTok": 6426,
+     "cost": 0.006669710000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4377,
+     "churn": {
+      "lines": 81,
+      "files": 1
+     },
+     "locality": {
+      "added": 4,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-8@v15",
+     "outTok": 4973,
+     "cost": 0.005490739999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4755,
+     "churn": {
+      "lines": 36,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01767937,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 9,
+   "health": {
+    "files": 5,
+    "maxFileLines": 363,
+    "fns": 47,
+    "fnLenMean": 17.1,
+    "fnLenMax": 317,
+    "cxMean": 3.34,
+    "cxMax": 20,
+    "cxOver10": 4,
+    "depthMax": 3,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.7,
+    "literalUnions": 0,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.4,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-9@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4509,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-9@v13",
+     "outTok": 4399,
+     "cost": 0.00560071,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4682,
+     "churn": {
+      "lines": 35,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 5,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-9@v14",
+     "outTok": 2960,
+     "cost": 0.00436392,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4748,
+     "churn": {
+      "lines": 48,
+      "files": 1
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-9@v15",
+     "outTok": 5507,
+     "cost": 0.00590303,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5193,
+     "churn": {
+      "lines": 50,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01586766,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage+splithook",
+   "sample": 10,
+   "health": {
+    "files": 7,
+    "maxFileLines": 367,
+    "fns": 53,
+    "fnLenMean": 15.8,
+    "fnLenMax": 326,
+    "cxMean": 3.32,
+    "cxMax": 19,
+    "cxOver10": 4,
+    "depthMax": 2,
+    "dupBlocks": 0,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.81,
+    "literalUnions": 3,
+    "taggedUnions": 0,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 2.57,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 12,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook/work/evolve-xl/engage+splithook-10@v12",
+     "outTok": 0,
+     "cost": 0,
+     "score": 0.9818181818181818,
+     "regressions": 1,
+     "native": 1,
+     "tok": 4705,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 13,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-10@v13",
+     "outTok": 5683,
+     "cost": 0.007177689999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4901,
+     "churn": {
+      "lines": 39,
+      "files": 4
+     },
+     "locality": {
+      "added": 2,
+      "changed": 4,
+      "removed": 0
+     }
+    },
+    {
+     "k": 14,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-10@v14",
+     "outTok": 2974,
+     "cost": 0.0037329200000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4959,
+     "churn": {
+      "lines": 50,
+      "files": 2
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 15,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/splithook-maint/work/maintain/engage+splithook-10@v15",
+     "outTok": 7540,
+     "cost": 0.00853097,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5475,
+     "churn": {
+      "lines": 66,
+      "files": 3
+     },
+     "locality": {
+      "added": 1,
+      "changed": 1,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.01944158,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  }
+ ]
+}

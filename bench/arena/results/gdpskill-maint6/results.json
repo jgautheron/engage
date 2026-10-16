@@ -1,0 +1,1024 @@
+{
+ "maintain": [
+  {
+   "variant": "engage-gdpskill",
+   "sample": 1,
+   "health": {
+    "files": 18,
+    "maxFileLines": 162,
+    "fns": 61,
+    "fnLenMean": 8.8,
+    "fnLenMax": 132,
+    "cxMean": 2.02,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 7,
+    "pureShare": 0.9,
+    "literalUnions": 1,
+    "taggedUnions": 3,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 4.39,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-1@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3068,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-1@v2",
+     "outTok": 9205,
+     "cost": 0.01119544,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3620,
+     "churn": {
+      "lines": 47,
+      "files": 3
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-1@v3",
+     "outTok": 5789,
+     "cost": 0.007587580000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3823,
+     "churn": {
+      "lines": 28,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-1@v4",
+     "outTok": 16056,
+     "cost": 0.01927847,
+     "score": 0.9714285714285714,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4945,
+     "churn": {
+      "lines": 119,
+      "files": 7
+     },
+     "locality": {
+      "added": 10,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-1@v5",
+     "outTok": 12825,
+     "cost": 0.01525286,
+     "score": 0.9767441860465116,
+     "regressions": 1,
+     "native": 1,
+     "tok": 5575,
+     "churn": {
+      "lines": 63,
+      "files": 5
+     },
+     "locality": {
+      "added": 6,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-1@v6",
+     "outTok": 11667,
+     "cost": 0.01591037,
+     "score": 0.9795918367346939,
+     "regressions": 1,
+     "native": 1,
+     "tok": 6194,
+     "churn": {
+      "lines": 67,
+      "files": 5
+     },
+     "locality": {
+      "added": 6,
+      "changed": 4,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.06922472,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 2,
+   "health": {
+    "files": 16,
+    "maxFileLines": 168,
+    "fns": 56,
+    "fnLenMean": 10.2,
+    "fnLenMax": 130,
+    "cxMean": 1.98,
+    "cxMax": 4,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 7,
+    "asAny": 0,
+    "nonNull": 0,
+    "pureShare": 0.95,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.75,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-2@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2996,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-2@v2",
+     "outTok": 10999,
+     "cost": 0.011473010000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3533,
+     "churn": {
+      "lines": 54,
+      "files": 4
+     },
+     "locality": {
+      "added": 4,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-2@v3",
+     "outTok": 4673,
+     "cost": 0.006163259999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3753,
+     "churn": {
+      "lines": 30,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-2@v4",
+     "outTok": 13630,
+     "cost": 0.01714728,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4583,
+     "churn": {
+      "lines": 91,
+      "files": 5
+     },
+     "locality": {
+      "added": 6,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-2@v5",
+     "outTok": 12050,
+     "cost": 0.012478389999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5149,
+     "churn": {
+      "lines": 60,
+      "files": 4
+     },
+     "locality": {
+      "added": 4,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-2@v6",
+     "outTok": 11263,
+     "cost": 0.01435201,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5741,
+     "churn": {
+      "lines": 62,
+      "files": 6
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.06161395,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 3,
+   "health": {
+    "files": 12,
+    "maxFileLines": 191,
+    "fns": 45,
+    "fnLenMean": 11.2,
+    "fnLenMax": 139,
+    "cxMean": 1.84,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 7,
+    "asAny": 0,
+    "nonNull": 9,
+    "pureShare": 0.82,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.25,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-3@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2781,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-3@v2",
+     "outTok": 8182,
+     "cost": 0.009133579999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3154,
+     "churn": {
+      "lines": 34,
+      "files": 2
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-3@v3",
+     "outTok": 6335,
+     "cost": 0.008300680000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3414,
+     "churn": {
+      "lines": 33,
+      "files": 3
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-3@v4",
+     "outTok": 12590,
+     "cost": 0.014184640000000004,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3887,
+     "churn": {
+      "lines": 58,
+      "files": 2
+     },
+     "locality": {
+      "added": 4,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-3@v5",
+     "outTok": 11358,
+     "cost": 0.013359849999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4175,
+     "churn": {
+      "lines": 28,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-3@v6",
+     "outTok": 11916,
+     "cost": 0.01339264,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4753,
+     "churn": {
+      "lines": 65,
+      "files": 5
+     },
+     "locality": {
+      "added": 3,
+      "changed": 4,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.05837139000000001,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 4,
+   "health": {
+    "files": 16,
+    "maxFileLines": 213,
+    "fns": 56,
+    "fnLenMean": 10.6,
+    "fnLenMax": 156,
+    "cxMean": 1.93,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 7,
+    "asAny": 0,
+    "nonNull": 9,
+    "pureShare": 0.95,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 4.56,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-4@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2848,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-4@v2",
+     "outTok": 10999,
+     "cost": 0.01165157,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3462,
+     "churn": {
+      "lines": 69,
+      "files": 4
+     },
+     "locality": {
+      "added": 5,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-4@v3",
+     "outTok": 5320,
+     "cost": 0.00646954,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3664,
+     "churn": {
+      "lines": 30,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-4@v4",
+     "outTok": 16816,
+     "cost": 0.018206470000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4522,
+     "churn": {
+      "lines": 96,
+      "files": 4
+     },
+     "locality": {
+      "added": 7,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-4@v5",
+     "outTok": 14433,
+     "cost": 0.016860029999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5065,
+     "churn": {
+      "lines": 61,
+      "files": 4
+     },
+     "locality": {
+      "added": 4,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-4@v6",
+     "outTok": 12108,
+     "cost": 0.01430902,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5620,
+     "churn": {
+      "lines": 64,
+      "files": 5
+     },
+     "locality": {
+      "added": 3,
+      "changed": 4,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.06749663,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 5,
+   "health": {
+    "files": 16,
+    "maxFileLines": 157,
+    "fns": 47,
+    "fnLenMean": 10.6,
+    "fnLenMax": 128,
+    "cxMean": 2.28,
+    "cxMax": 5,
+    "cxOver10": 0,
+    "depthMax": 2,
+    "dupBlocks": 5,
+    "asAny": 0,
+    "nonNull": 9,
+    "pureShare": 0.83,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.69,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-5@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 2836,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-5@v2",
+     "outTok": 9023,
+     "cost": 0.01054301,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3364,
+     "churn": {
+      "lines": 52,
+      "files": 3
+     },
+     "locality": {
+      "added": 3,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-5@v3",
+     "outTok": 6032,
+     "cost": 0.007393299999999999,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3586,
+     "churn": {
+      "lines": 32,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-5@v4",
+     "outTok": 12795,
+     "cost": 0.014591719999999997,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4445,
+     "churn": {
+      "lines": 90,
+      "files": 4
+     },
+     "locality": {
+      "added": 6,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-5@v5",
+     "outTok": 13119,
+     "cost": 0.015255520000000002,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4998,
+     "churn": {
+      "lines": 61,
+      "files": 4
+     },
+     "locality": {
+      "added": 4,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-5@v6",
+     "outTok": 11742,
+     "cost": 0.014542600000000001,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 5505,
+     "churn": {
+      "lines": 52,
+      "files": 5
+     },
+     "locality": {
+      "added": 3,
+      "changed": 3,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.062326150000000004,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  },
+  {
+   "variant": "engage-gdpskill",
+   "sample": 6,
+   "health": {
+    "files": 18,
+    "maxFileLines": 173,
+    "fns": 61,
+    "fnLenMean": 9.6,
+    "fnLenMax": 123,
+    "cxMean": 1.95,
+    "cxMax": 6,
+    "cxOver10": 0,
+    "depthMax": 1,
+    "dupBlocks": 4,
+    "asAny": 0,
+    "nonNull": 4,
+    "pureShare": 0.9,
+    "literalUnions": 1,
+    "taggedUnions": 2,
+    "exhaustive": 0,
+    "brandedIds": 0,
+    "importsPerFile": 3.83,
+    "importCycles": 0,
+    "testFiles": 0,
+    "testCases": 0
+   },
+   "iters": [
+    {
+     "k": 1,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-v1/work/authz/engage-gdpskill-6@v1",
+     "outTok": 0,
+     "cost": 0,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3172,
+     "churn": {
+      "lines": 0,
+      "files": 0
+     },
+     "locality": {
+      "added": 0,
+      "changed": 0,
+      "removed": 0
+     }
+    },
+    {
+     "k": 2,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-6@v2",
+     "outTok": 11997,
+     "cost": 0.01292847,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3711,
+     "churn": {
+      "lines": 53,
+      "files": 4
+     },
+     "locality": {
+      "added": 4,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 3,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-6@v3",
+     "outTok": 7437,
+     "cost": 0.010127389999999998,
+     "score": 1,
+     "regressions": 0,
+     "native": 1,
+     "tok": 3916,
+     "churn": {
+      "lines": 28,
+      "files": 2
+     },
+     "locality": {
+      "added": 2,
+      "changed": 2,
+      "removed": 0
+     }
+    },
+    {
+     "k": 4,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-6@v4",
+     "outTok": 11490,
+     "cost": 0.013028240000000002,
+     "score": 0.9714285714285714,
+     "regressions": 0,
+     "native": 1,
+     "tok": 4938,
+     "churn": {
+      "lines": 105,
+      "files": 6
+     },
+     "locality": {
+      "added": 9,
+      "changed": 1,
+      "removed": 0
+     }
+    },
+    {
+     "k": 5,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-6@v5",
+     "outTok": 14567,
+     "cost": 0.015784979999999997,
+     "score": 0.9767441860465116,
+     "regressions": 1,
+     "native": 1,
+     "tok": 5521,
+     "churn": {
+      "lines": 61,
+      "files": 3
+     },
+     "locality": {
+      "added": 7,
+      "changed": 9,
+      "removed": 0
+     }
+    },
+    {
+     "k": 6,
+     "snap": "/Users/jonathangautheron/jgautheron/engage/bench/arena/results/gdpskill-maint6/work/maintain/engage-gdpskill-6@v6",
+     "outTok": 13598,
+     "cost": 0.017225349999999997,
+     "score": 0.9795918367346939,
+     "regressions": 1,
+     "native": 1,
+     "tok": 6107,
+     "churn": {
+      "lines": 62,
+      "files": 5
+     },
+     "locality": {
+      "added": 5,
+      "changed": 4,
+      "removed": 0
+     }
+    }
+   ],
+   "cost": 0.06909443,
+   "compliance": {
+    "split": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "never": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "evidence": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "green": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "testFirst": {
+     "opportunities": 0,
+     "followed": 0
+    },
+    "planFirst": {
+     "opportunities": 0,
+     "followed": 0
+    }
+   }
+  }
+ ]
+}

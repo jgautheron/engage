@@ -58,6 +58,14 @@ change.
 `SubagentStart` hook injects the active style into every subagent (Explore, general-purpose, your
 own agents), minus the Trek garnish. Pick a non-engage style and subagents get nothing.
 
+**Comment guard.** The style alone still let a ticket number into about 1 in 12 runs. A
+`PostToolUse` hook checks only the text Claude just wrote. It flags comment blocks over 2 lines and
+ticket or issue references (`PROJ-123`, `#482`, `issue 17`). It then asks Claude to fix them before
+carrying on. Existing comments never trigger it. License headers and lint pragmas are exempt. It
+covers C-family, Go, Rust, Swift, JS/TS, Python, Ruby and shell files. It runs only while engage is
+the output style. In the arena, ticket references fell from 8% to 0% and blocks over 2 lines from
+3% to 0%, for 4% more cost per run.
+
 Or pick it interactively with `/config` → **Output style**. (Some Claude Code builds also expose a
 `/output-style engage:engage-terse` command; if yours returns *"Unknown command"*, use the settings key or
 `/config` above — those always work.)
@@ -171,6 +179,8 @@ gain. Details: [docs/agent-readability-study.md](docs/agent-readability-study.md
 .codex-plugin/plugin.json        Codex manifest (hooks + skills)
 output-styles/engage-terse.md    the style — the single source for every host
 commands/trek.md                 the one Claude Code slash command
+claude/                          Claude Code hooks: subagent style injection, comment guard
+hooks/hooks.json                 Claude Code hook registration
 lib/engage.mjs                   shared core: state file, style loader, trek toggle, command parser
 codex/                           SessionStart hook, $engage skill, shell CLI
 pi/index.js                      pi extension (package.json `pi` manifest points here)

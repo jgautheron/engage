@@ -3,7 +3,23 @@
     "SubagentStart": [
       {
         "hooks": [
-          { "type": "command", "command": "command -v node >/dev/null 2>&1 && node \"${CLAUDE_PLUGIN_ROOT}/claude/subagent.mjs\" || exit 0", "timeout": 5 }
+          {
+            "type": "command",
+            "command": "command -v node >/dev/null 2>&1 && node \"${CLAUDE_PLUGIN_ROOT}/claude/subagent.mjs\" || exit 0",
+            "timeout": 5
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v node >/dev/null 2>&1 && node \"${CLAUDE_PLUGIN_ROOT}/claude/comment-guard.mjs\" || exit 0",
+            "timeout": 5
+          }
         ]
       }
     ]

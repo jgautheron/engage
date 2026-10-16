@@ -12,6 +12,18 @@
           }
         ]
       }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "apply_patch|Bash|Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "command -v node >/dev/null 2>&1 && node \"${CLAUDE_PLUGIN_ROOT}/codex/comment-guard.mjs\" || exit 0",
+            "timeout": 5
+          }
+        ]
+      }
     ]
   }
 }

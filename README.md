@@ -91,22 +91,23 @@ Turn engage on or off via `/config` → **Output style**, or the `outputStyle` k
 
 ## Other hosts
 
-The same four style files drive Codex, pi and OpenCode through a thin adapter each. One shared
+The same style file drives Codex, pi and OpenCode through a thin adapter each. One shared
 setting — `~/.config/engage/state.json` (`{ "style": "terse", "trek": false }`) — so switching in
 one host switches them all. Node ≥ 18 is the only requirement.
 
 | Host | Install | Switch |
 |---|---|---|
-| **Codex** ≥ 0.131 | `codex plugin marketplace add jgautheron/engage` then `codex plugin add engage@engage`, open `/hooks` once to trust the SessionStart hook, start a new session | `$engage docs`, `$engage trek on` (the skill runs the CLI and adopts the style at once) |
-| **pi** ≥ 0.50 | `pi install git:github.com/jgautheron/engage` | `/engage docs`, `/trek on` — with completions and a footer badge |
-| **OpenCode** ≥ 1.1.26 | `git clone https://github.com/jgautheron/engage && node engage/install.mjs opencode` | `/engage docs`, `/trek on` — applies to the same turn |
+| **Codex** ≥ 0.131 | `codex plugin marketplace add jgautheron/engage` then `codex plugin add engage@engage`, open `/hooks` once to trust its two hooks, start a new session | `$engage off`, `$engage trek on` (the skill runs the CLI and adopts the style at once) |
+| **pi** ≥ 0.50 | `pi install git:github.com/jgautheron/engage` | `/engage off`, `/trek on` — with completions and a footer badge |
+| **OpenCode** ≥ 1.1.26 | `git clone https://github.com/jgautheron/engage && node engage/install.mjs opencode` | `/engage off`, `/trek on` — applies to the same turn |
 
 How each host carries the style:
 
 - **Codex** — a plugin-bundled `SessionStart` hook (`startup`, `resume`, `clear`, `compact`)
   emits the style as developer context once per session. Codex has no output-style concept and
   never auto-trusts plugin hooks, hence the one-time `/hooks` review. `/trek` from Claude Code
-  arrives as the migrated `$source-command-trek` skill; prefer `$engage trek on|off`.
+  arrives as the migrated `$source-command-trek` skill; prefer `$engage trek on|off`. A
+  `PostToolUse` hook runs the same comment guard as Claude Code on `apply_patch` edits.
 - **pi** — an extension appends the style to the system prompt each turn and registers the two
   commands. Re-run `pi install git:…@<ref>` to move to a newer commit; `pi update` keeps git refs pinned.
 - **OpenCode** — a plugin pushes the style through the system-prompt transform (so the built-in

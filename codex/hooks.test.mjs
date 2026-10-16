@@ -36,3 +36,15 @@ test("codex: compaction re-injects the style with a continue-don't-greet note; s
 
   assert.throws(() => run("engage.mjs", "ultra"), /unknown style/);
 });
+
+test("codex: comment guard reads apply_patch added lines and follows the engage setting", () => {
+  const patch = "*** Begin Patch\n*** Update File: src/a.ts\n@@\n-old();\n+// fixes PAY-12\n+f();\n*** Add File: src/b.py\n+# ok\n*** End Patch";
+  const guard = (command) => execFileSync("node", [path.join(here, "comment-guard.mjs")], { env, encoding: "utf8", input: JSON.stringify({ tool_name: "apply_patch", tool_input: { command } }) });
+  run("engage.mjs", "terse");
+  const out = JSON.parse(guard(patch));
+  assert.equal(out.decision, "block");
+  assert.match(out.reason, /a\.ts: ticket\/issue reference/);
+  assert.equal(guard(patch.replace("// fixes PAY-12", "// why it retries")), "");
+  run("engage.mjs", "off");
+  assert.equal(guard(patch), "");
+});

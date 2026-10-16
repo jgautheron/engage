@@ -38,21 +38,33 @@ export function commentProblems(file, text) {
   return problems;
 }
 
-function written(input) {
-  const t = input.tool_input ?? {};
-  if (typeof t.content === "string") return t.content;
-  if (typeof t.new_string === "string") return t.new_string;
-  return (t.edits ?? []).map((e) => e.new_string ?? "").join("\n");
+// Codex edits arrive as an apply_patch body (directly or inside a Bash heredoc); only its added lines count.
+function patchFiles(command) {
+  const files = [];
+  for (const line of command.split("\n")) {
+    const header = /^\*\*\* (?:Add|Update) File: (.+)$/.exec(line);
+    if (header) files.push({ file: header[1].trim(), text: "" });
+    else if (files.length && line.startsWith("+")) files[files.length - 1].text += line.slice(1) + "\n";
+  }
+  return files;
 }
 
-/** Hook output for one PostToolUse event: a block decision with the reason, or null when the comments are clean. */
+function writtenFiles(input) {
+  const t = input.tool_input ?? {};
+  if (typeof t.command === "string") return patchFiles(t.command);
+  const file = t.file_path ?? "";
+  if (typeof t.content === "string") return [{ file, text: t.content }];
+  if (typeof t.new_string === "string") return [{ file, text: t.new_string }];
+  return [{ file, text: (t.edits ?? []).map((e) => e.new_string ?? "").join("\n") }];
+}
+
+/** Hook output for one PostToolUse event (Claude Code or Codex): a block decision with the reason, or null when clean. */
 export function guard(input) {
-  const file = input.tool_input?.file_path ?? "";
-  const problems = commentProblems(file, written(input));
+  const problems = writtenFiles(input).flatMap(({ file, text }) => commentProblems(file, text).map((p) => `${path.basename(file)}: ${p}`));
   if (!problems.length) return null;
   return {
     decision: "block",
-    reason: `${path.basename(file)}: ${problems.slice(0, 3).join("; ")}. Comments stay at most ${MAX_LINES} lines, say only a why the code can't, and carry no ticket/issue numbers (those belong in the commit or PR). Fix these comments, then carry on.`,
+    reason: `${problems.slice(0, 3).join("; ")}. Comments stay at most ${MAX_LINES} lines, say only a why the code can't, and carry no ticket/issue numbers (those belong in the commit or PR). Fix these comments, then carry on.`,
   };
 }
 

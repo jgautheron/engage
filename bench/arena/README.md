@@ -222,3 +222,22 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
     the simplicity survives maintenance, but an LLM maintainer is no faster or more correct on it.
     Whether that is worth it depends on human readers, which the arena can't measure. Not a default;
     a candidate for an opt-in guard. Total cost about $6.
+- **Control flow: if/else ladders (2026-10-18).** Metric: SonarSource Cognitive Complexity per function
+  (`hooks/cognitive.mjs`: +1 per branch, +nesting level for nested ones, flat else-if +1). Named
+  functions are scored on their own; anonymous inline callbacks count toward their parent, so branches
+  can't be hidden in lambdas (the first hook run did exactly that in 2 of 4 Sonnet projects: arrays of
+  closures with `((task.title = title), true)`). Health gains cogMax/cogOver15/cogSum/nestMax/chainMax.
+  - **What the ladders are:** engage already nests shallowly (2–3 levels, no else-after-return). The
+    worst functions are flat ladders: per-field `if (changes.x !== undefined)` updates in `edit`, and
+    hand-rolled import validators.
+  - **Prose rule (engage-flow: Sonar limit, guard clauses, lookup tables, field-rule tables, never-switch):**
+    Sonnet no effect (worst 27.5 → 32.0); Haiku partial (34.8 → 25.6). Rejected.
+  - **Hook (`hooks/cc-hook.mjs`: block at cognitive > 15 or nesting > 3, message names the fixes):**
+    Sonnet 15-step n=4: worst 27.5 → 14.8, functions over 15 2.3 → 0, total −14%, nesting 3.3 → 2.3,
+    tokens +12%, cost +4%. Haiku 20-step n=8: worst 34.8 → 14.3, over 15 3.1 → 0, total −13%, tokens
+    +11%. Inspected: real flattening (resolve-each-field helpers), no lambda tricks after the fix.
+  - **Blind Haiku maintainer v21–v35 (16 per arm):** correctness equal once the one project that
+    arrived broken is excluded (0/14 vs 1/16 trajectories with a drop); maintenance tokens +5% on the
+    guarded code. The gain lasts: after 15 unguarded steps, worst 19.0 vs 39.6, over 15 1.3 vs 4.0.
+  - Haiku without any guard collapsed at step 9 in 2 of 16 projects (same bug: default state without
+    `events`, then `[...events]`); 0 of 32 guarded projects did. Suggestive, not significant.

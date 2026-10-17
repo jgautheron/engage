@@ -534,6 +534,12 @@ function scorecard(rows, footprint, versions) {
     add(`${task}: health — largest function, own lines (nested functions excluded)`, "min", hh("fnOwnMax"), (x) => x.toFixed(0), 0.1);
     add(`${task}: health — functions over 50 own lines`, "min", hh("fnOver50"), (x) => x.toFixed(1), 0);
     add(`${task}: health — functions over complexity 12`, "min", hh("fnOverCx12"), (x) => x.toFixed(1), 0);
+    add(`${task}: control flow — worst cognitive complexity in a function`, "min", hh("cogMax"), (x) => x.toFixed(1), 0.1);
+    add(`${task}: control flow — functions over cognitive complexity 15`, "min", hh("cogOver15"), (x) => x.toFixed(1), 0);
+    add(`${task}: control flow — total cognitive complexity`, "min", hh("cogSum"), (x) => x.toFixed(0), 0.1);
+    add(`${task}: control flow — deepest nesting`, "min", hh("nestMax"), (x) => x.toFixed(1), 0);
+    add(`${task}: control flow — longest else-if chain`, "min", hh("chainMax"), (x) => x.toFixed(1), 0);
+    add(`${task}: control flow — else after return/throw`, "min", hh("elseAfterReturn"), (x) => x.toFixed(1), 0);
     add(`${task}: health — max branch complexity`, "min", hh("cxMax"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — duplicated blocks`, "min", hh("dupBlocks"), (x) => x.toFixed(1), 0.1);
     add(`${task}: health — non-null assertions`, "min", hh("nonNull"), (x) => x.toFixed(1), 0.1);
@@ -571,6 +577,7 @@ function scorecard(rows, footprint, versions) {
     add("health: largest function, own lines", "min", h("fnOwnMax"), (x) => x.toFixed(0), 0.1);
     add("health: functions over 50 own lines", "min", h("fnOver50"), (x) => x.toFixed(1), 0);
     add("health: functions over complexity 12", "min", h("fnOverCx12"), (x) => x.toFixed(1), 0);
+    add("control flow: worst cognitive complexity (start)", "min", h("cogMax"), (x) => x.toFixed(1), 0.1);
     add("health: largest file (lines)", "min", h("maxFileLines"), (x) => x.toFixed(0), 0.1);
     add("health: max branch complexity in a function", "min", h("cxMax"), (x) => x.toFixed(1), 0.1);
     add("health: functions with complexity > 10", "min", h("cxOver10"), (x) => x.toFixed(1), 0.1);

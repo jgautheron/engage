@@ -4,10 +4,13 @@ import { Glob } from "bun";
 import path from "node:path";
 // @ts-ignore plain JS module
 import { oversized } from "./hooks/fn-hook.mjs";
+// @ts-ignore plain JS module
+import { cognitive } from "./hooks/cognitive.mjs";
 const [dir, testDir] = process.argv.slice(2);
 const fns: { len: number; cx: number; depth: number; pure: boolean }[] = [];
 // Own lines: a function's length without the functions nested in it (a factory closure is not one big function).
 const own: { lines: number; complexity: number }[] = [];
+const cog: { cognitive: number; depth: number; chain: number; elseAfterReturn: number }[] = [];
 let asAny = 0, nonNull = 0, files = 0, maxFile = 0, literalUnions = 0, taggedUnions = 0, exhaustive = 0, brandedIds = 0;
 const lines: string[] = [];
 const imports = new Map<string, string[]>(); // file → relative imports (resolved, no extension)
@@ -50,6 +53,7 @@ function isPure(fn: ts.FunctionLikeDeclaration): boolean {
 for await (const f of new Glob("**/*.ts").scan(dir)) {
   const text = await Bun.file(`${dir}/${f}`).text();
   own.push(...oversized(f, text, -1, -1));
+  cog.push(...cognitive(f, text));
   files++; const L = text.split("\n"); maxFile = Math.max(maxFile, L.length);
   lines.push(...L.map((l) => l.trim()).filter((l) => l.length > 12 && !l.startsWith("//") && !l.startsWith("*") && !l.startsWith("import")));
   const sf = ts.createSourceFile(f, text, ts.ScriptTarget.Latest, true);
@@ -105,6 +109,9 @@ const cx = fns.map((f) => f.cx).sort((a, b) => b - a);
 console.log(JSON.stringify({
   files, maxFileLines: maxFile, fns: fns.length,
   fnLenMean: +mean(fns.map((f) => f.len)).toFixed(1), fnLenMax: Math.max(0, ...fns.map((f) => f.len)),
+  cogMax: Math.max(0, ...cog.map((f) => f.cognitive)), cogOver15: cog.filter((f) => f.cognitive > 15).length,
+  cogSum: cog.reduce((a, f) => a + f.cognitive, 0), nestMax: Math.max(0, ...cog.map((f) => f.depth)),
+  chainMax: Math.max(0, ...cog.map((f) => f.chain)), elseAfterReturn: cog.reduce((a, f) => a + f.elseAfterReturn, 0),
   fnOwnMax: Math.max(0, ...own.map((f) => f.lines)), fnOver50: own.filter((f) => f.lines > 50).length, fnOverCx12: own.filter((f) => f.complexity > 12).length,
   cxMean: +mean(cx).toFixed(2), cxMax: cx[0] ?? 0, cxOver10: cx.filter((c) => c > 10).length,
   depthMax: Math.max(0, ...fns.map((f) => f.depth)), dupBlocks: dup, asAny, nonNull,

@@ -252,3 +252,15 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
   - engage+ccsofthook (non-blocking PostToolUse note naming the offenders): worst 14.5, over 15: 0; one
     project shipped a duplicate `history` declaration at v9 and never loaded again (75% final).
   The earlier null result was the prompt's fault: one buried sentence with no reason and no example.
+- **Hook-free version, adopted in v0.9.0 (2026-10-18).** engage-flow3 = rule at the top with the reason and
+  an unrelated-domain example, restated in a closing "Last, before you write code" section (1,519 tok, +362).
+  | test | engage worst / total | flow3 worst / total | flow2 + per-request reminder |
+  |---|--:|--:|--:|
+  | Sonnet, 1 feature per request, n=4 | 27.5 / 157 | 25.8 / 131 (−17%) | 15.8 / 142 |
+  | Sonnet, 5 features per request, n=4 | 35.0 / 184 | 26.5 / 149 (−20%) | 22.3 / 132 |
+  | Haiku 20-step, n=8 | 28.0 / 171 | 18.4 / 121 (−30%) | 18.6 / 123 |
+  Cost: Sonnet same ($1.62 vs $1.64), Haiku tokens +16%. Long turns make every arm worse; the reminder
+  fades there too. The per-request reminder (a UserPromptSubmit hook) was best on Sonnet's worst
+  function but was not shipped: the user chose no hooks. One flow3 Haiku project broke at v16 (a counter
+  renamed for `delete`, the fresh-tracker default not updated); unguarded engage had 2 such collapses in
+  16 earlier projects.

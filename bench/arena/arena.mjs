@@ -21,6 +21,7 @@ const JOBS = +arg("jobs", 4);
 // the repo so agent-written test code can't wander into the hidden suites.
 const AGENT = arg("agent") === "1";
 const ITERS = +arg("iters", 0); // build only the first N iterations (0 = all)
+const BATCH = +arg("batch", 1); // send B change requests as one request, to see whether rules fade within a long turn
 const START_FROM = arg("start-from"); // earlier run whose v1 snapshot seeds each project (swap experiment)
 const START_VARIANT = arg("start-variant");
 const AGENT_TOOLS = "Read,Write,Edit,Glob,Grep,Bash";
@@ -269,21 +270,27 @@ async function evolveTask(task, contenders) {
       const k = i + 1;
       if (k <= doneK) continue;
       if (START_FROM && k === 1) continue;
-      fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
+      if (BATCH > 1 && k % BATCH !== 0 && k !== files.length) continue;
+      const first = BATCH > 1 ? Math.floor((k - 1) / BATCH) * BATCH + 1 : k;
+      const batch = files.slice(first - 1, k);
+      fs.writeFileSync(path.join(dir, "REQUEST.md"), batch.map((b) => fs.readFileSync(path.join(T, b), "utf8")).join("\n\n---\n\nThen, in the same turn:\n\n"));
       const how = AGENT
         ? "Check your work by running exactly `bunx tsc --noEmit` and `bun test` from the project root; put any tests under ./test."
         : "Do not write tests. You cannot run code; get it right in one pass.";
-      const prompt = k === 1
+      const prompt = first === 1
         ? `Build what ./REQUEST.md asks for, under ./src. ${how}`
         : `./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}`;
       const r = await claude({ cwd: dir, model: MODELS.gen, system: c.system, settings: c.settings, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [], prompt: wrap(c, `(session ${s}, step ${k})\n${prompt}`), log: `${home}@v${k}.transcript.jsonl` });
-      const snap = `${home}@v${k}`;
-      fs.rmSync(snap, { recursive: true, force: true });
-      if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
-      if (fs.existsSync(path.join(dir, "test"))) fs.cpSync(path.join(dir, "test"), path.join(snap, "test"), { recursive: true });
-      const meta = { outTok: r.outTok, cost: r.cost, turns: r.turns };
-      fs.writeFileSync(path.join(snap, "iter.json"), JSON.stringify(meta));
-      iters.push({ k, snap, ...meta });
+      // A batch leaves one result; every step in it gets that snapshot, with the cost on the last step.
+      for (let j = first; j <= k; j++) {
+        const snap = `${home}@v${j}`;
+        fs.rmSync(snap, { recursive: true, force: true });
+        if (fs.existsSync(path.join(dir, "src"))) fs.cpSync(path.join(dir, "src"), path.join(snap, "src"), { recursive: true });
+        if (fs.existsSync(path.join(dir, "test"))) fs.cpSync(path.join(dir, "test"), path.join(snap, "test"), { recursive: true });
+        const meta = j === k ? { outTok: r.outTok, cost: r.cost, turns: r.turns } : { outTok: 0, cost: 0, turns: 0 };
+        fs.writeFileSync(path.join(snap, "iter.json"), JSON.stringify(meta));
+        iters.push({ k: j, snap, ...meta });
+      }
     }
     iters.sort((a, b) => a.k - b.k);
     return { variant: v, sample: s, dir: home, iters, cost: iters.reduce((a, i) => a + (i.cost ?? 0), 0), partialCost: iters.some((i) => i.cost === null) };
@@ -351,7 +358,10 @@ async function maintainFrom(runDir, task) {
     const iters = [{ k: built, snap: last, outTok: 0, cost: 0 }];
     for (const [i, f] of extra.entries()) {
       const k = built + i + 1;
-      fs.copyFileSync(path.join(T, f), path.join(dir, "REQUEST.md"));
+      if (BATCH > 1 && k % BATCH !== 0 && k !== files.length) continue;
+      const first = BATCH > 1 ? Math.floor((k - 1) / BATCH) * BATCH + 1 : k;
+      const batch = files.slice(first - 1, k);
+      fs.writeFileSync(path.join(dir, "REQUEST.md"), batch.map((b) => fs.readFileSync(path.join(T, b), "utf8")).join("\n\n---\n\nThen, in the same turn:\n\n"));
       const how = AGENT ? "Check your work by running exactly `bunx tsc --noEmit` and `bun test` from the project root." : "Do not write tests. You cannot run code; get it right in one pass.";
       const res = await claude({ cwd: dir, model: MODELS.mod, tools: AGENT ? AGENT_TOOLS : "Read,Write,Edit,Glob,Grep", allow: AGENT ? AGENT_ALLOW : [],
         prompt: `(session ${r.sample}, step ${k})\n./REQUEST.md is a change request for this codebase (./src). Implement it. ${how}` });

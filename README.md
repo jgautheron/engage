@@ -6,7 +6,7 @@ A lean output-style pack for Claude Code, Codex, pi and OpenCode. One voice: ter
 lazy-in-the-good-way, no fluff — with an optional Star Trek garnish (off by default; `/trek on`). Say **"hit it"** to proceed.
 
 engage ships as **output styles**, not hooks. The style lives in the system prompt (which is
-prompt-cached), so it costs a fixed ~1,170 tokens once and **nothing per turn**, and it never
+prompt-cached), so it costs a fixed ~1,490 tokens once and **nothing per turn**, and it never
 drifts mid-session.
 
 ## The style
@@ -57,6 +57,13 @@ change.
 **Subagents get engage too.** Output styles only reach the main conversation; engage's
 `SubagentStart` hook injects the active style into every subagent (Explore, general-purpose, your
 own agents), minus the Trek garnish. Pick a non-engage style and subagents get nothing.
+
+**Control flow.** AI-written code tends to pile up if/else ladders. The style opens with a control-flow
+rule (each function at most cognitive complexity 15 and two levels deep, branches named as helpers,
+early returns, lookup tables) with its reason and one example, and restates it at the very end. In the
+arena that cut total complexity by 17% (Sonnet 5) to 30% (Haiku), at the same cost on Sonnet. The rule
+alone, as one sentence in the middle, had no effect; placement, the reason and the example are what
+made it stick.
 
 **Comment guard.** The style alone still let a ticket number into about 1 in 12 runs. A
 `PostToolUse` hook checks only the text Claude just wrote. It flags comment blocks over 2 lines and
@@ -134,7 +141,7 @@ tokens (chars/4), same basis for all, measured from each plugin's current releas
 
 | Delivery | one-time | per turn |
 |---|--:|--:|
-| **engage** (output style) | ~1167 | **0** |
+| **engage** (output style) | ~1488 | **0** |
 | a terse-prose hook plugin | ~1301 | ~61 |
 | a lazy-code hook plugin | ~1307 | 0 |
 | both hook plugins together | ~2608 | ~61 |
@@ -143,17 +150,18 @@ Total tokens carried at N turns:
 
 | turns | engage | terse hook | code hook | both hooks |
 |---|--:|--:|--:|--:|
-| 1 | **1167** | 1362 | 1307 | 2669 |
-| 10 | **1167** | 1911 | 1307 | 3218 |
-| 50 | **1167** | 4351 | 1307 | 5658 |
-| 100 | **1167** | 7401 | 1307 | 8708 |
-| 500 | **1167** | 31801 | 1307 | 33108 |
+| 1 | 1488 | 1362 | **1307** | 2669 |
+| 10 | 1488 | 1911 | **1307** | 3218 |
+| 50 | 1488 | 4351 | **1307** | 5658 |
+| 100 | 1488 | 7401 | **1307** | 8708 |
+| 500 | 1488 | 31801 | **1307** | 33108 |
 
-Flat line vs rising ones — engage is cheapest at every N, below even a single *prose-only* hook's
-one-time cost, and the gap widens every turn. And engage carries prose *and* the full engineering
-discipline in one style, where each hook does only half the job.
+Flat line vs rising ones: engage passes the terse-prose hook after the third turn and the gap widens
+every turn after that. The lazy-code hook stays ~180 tokens cheaper; engage spends those on the
+control-flow rule, which cut total complexity by 17–30% in the arena. And engage carries prose *and*
+the full engineering discipline in one style, where each hook does only half the job.
 
-**Subagents:** each subagent Claude Code spawns gets the style once (~1,170 tokens) through engage's
+**Subagents:** each subagent Claude Code spawns gets the style once (~1,490 tokens) through engage's
 `SubagentStart` hook — the price of subagents following the same rules.
 
 **Docs writing is built in:** the terse style switches to controlled prose for documentation at no

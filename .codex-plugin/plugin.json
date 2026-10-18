@@ -1,6 +1,6 @@
 {
   "name": "engage",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Terse, lazy-in-the-good-way output style for coding agents. One style, a comment guard, optional Trek garnish.",
   "author": {
     "name": "Jonathan Gautheron",

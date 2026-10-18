@@ -241,3 +241,14 @@ engage is best, tied (±2% rates, ±5% token counts) or behind. Raw replies and 
     guarded code. The gain lasts: after 15 unguarded steps, worst 19.0 vs 39.6, over 15 1.3 vs 4.0.
   - Haiku without any guard collapsed at step 9 in 2 of 16 projects (same bug: default state without
     `events`, then `[...events]`); 0 of 32 guarded projects did. Suggestive, not significant.
+- **Making the control-flow rule stick (2026-10-18, Sonnet 5, 15-step, n=4).** Research: explain why, show an
+  example, put critical rules first (primacy), and re-state them right before the decision point because
+  compliance decays with every function written. Four arms, same run:
+  - engage: worst function 27.5, over 15: 2.0, total 157.
+  - engage-flow2 (rule moved to the top, with the reason and an unrelated-domain before/after example):
+    worst 27.3, over 15: 2.3, total 136 (−13%). Lowers overall complexity, not the worst function.
+  - engage+flowturn (one 50-token reminder line appended to every request): worst 15.8, over 15: 0.5,
+    nesting 2.3, cost $1.63 vs $1.64. Nearly the blocking hook's effect at no extra cost.
+  - engage+ccsofthook (non-blocking PostToolUse note naming the offenders): worst 14.5, over 15: 0; one
+    project shipped a duplicate `history` declaration at v9 and never loaded again (75% final).
+  The earlier null result was the prompt's fault: one buried sentence with no reason and no example.

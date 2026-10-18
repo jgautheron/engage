@@ -1,0 +1,1 @@
+Reminder for the code you write in this turn: every function reads top to bottom as short steps — cognitive complexity 15 or less, at most two levels deep; give branches names (small helpers, early returns, lookup tables) instead of if/else ladders.

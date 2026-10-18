@@ -72,6 +72,13 @@ function buildContenders() {
     perTurn: Math.round((v.turn ?? []).filter(Boolean).join("").length / 4),
   }]));
   // "<variant>+<hook>": the same contender plus an enforcing PostToolUse hook from bench/arena/hooks/<hook>.mjs.
+  // "<variant>+<name>turn": the same contender plus hooks/<name>-turn.txt as a reminder in every request.
+  for (const v of VARIANTS) {
+    const t = /^(.+)\+(\w+)turn$/.exec(v);
+    if (!t) continue;
+    all[v] = { ...all[t[1]], turn: [...(all[t[1]].turn ?? []), fs.readFileSync(path.join(HERE, "hooks", `${t[2]}-turn.txt`), "utf8").trim()] };
+    footprint[v] = { ...footprint[t[1]], perTurn: footprint[t[1]].perTurn + Math.round(all[v].turn.at(-1).length / 4) };
+  }
   for (const v of VARIANTS) {
     const m = /^(.+)\+(\w+hook)$/.exec(v);
     if (!m) continue;
